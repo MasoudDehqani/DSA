@@ -77,21 +77,40 @@ let rec append = (l: singlyListNode<'a>, newVal: 'a) => {
 
 // let sampleSinglyLinkedList = makeNode(1)->append(2)->append(3)->append(4)->search(3)
 
-let rec insertAtIndex = (l: singlyListNode<'a>, index: int, newVal: 'a, ~currentIndex=0) => {
-  let (newHead, shouldReArrange) = switch (index === 0, currentIndex === index - 1, l.next) {
-  | (true, _, _) => ({value: newVal, next: Some(l)}, false)
-  | (false, false, Some(n)) => (
-      insertAtIndex(n, index, newVal, ~currentIndex={currentIndex + 1}),
-      true,
-    )
-  | (false, true, _) => ({value: newVal, next: l.next}, true)
-  | (false, false, None) => (l, false)
-  }
+// let rec insertAtIndex = (l: singlyListNode<'a>, index: int, newVal: 'a, ~currentIndex=0) => {
+//   let (newHead, shouldReArrange) = switch (index === 0, currentIndex === index - 1, l.next) {
+//   | (true, _, _) => ({value: newVal, next: Some(l)}, false)
+//   | (false, false, Some(n)) => (
+//       insertAtIndex(n, index, newVal, ~currentIndex={currentIndex + 1}),
+//       true,
+//     )
+//   | (false, true, _) => ({value: newVal, next: l.next}, true)
+//   | (false, false, None) => (l, false)
+//   }
 
-  if !shouldReArrange {
-    newHead
+//   if !shouldReArrange {
+//     newHead
+//   } else {
+//     {value: l.value, next: Some(newHead)}
+//   }
+// }
+
+let rec insertAtIndex = (l: singlyListNode<'a>, index: int, newVal: 'a, ~currentIndex=0) => {
+  if index === 0 {
+    {value: newVal, next: Some(l)}
   } else {
-    {value: l.value, next: Some(newHead)}
+    switch (currentIndex === index - 1, l.next) {
+    | (true, _) => {
+        value: l.value,
+        next: Some({value: newVal, next: l.next}),
+      }
+    | (false, Some(n)) => {
+        value: l.value,
+        next: Some(insertAtIndex(n, index, newVal, ~currentIndex={currentIndex + 1})),
+      }
+
+    | (false, None) => l
+    }
   }
 }
 

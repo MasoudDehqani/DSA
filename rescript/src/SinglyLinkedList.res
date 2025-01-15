@@ -17,38 +17,6 @@ let rec append = (l: singlyListNode<'a>, newVal: 'a) => {
   {value: l.value, next: Some(newNext)}
 }
 
-// let rec deleteByIndex = (l: singlyListNode<'a>, index: int, ~currentIndex=0) => {
-//   let newNext = if currentIndex < index {
-//     switch l.next {
-//     | Some(n) => deleteByIndex(n, index, ~currentIndex={currentIndex + 1})
-//     | None => Some(l)
-//     }
-//   } else if currentIndex === index {
-//     l.next
-//   } else {
-//     Some(l)
-//   }
-
-//   {value: l.value, next: newNext}
-
-//   // let newNext = switch l.next {
-//   // | Some(n) =>
-//   //   if index === currentIndex {
-//   //     {value: n.value, next: n.next}
-//   //   } else {
-//   //     deleteByIndex(n, index, ~currentIndex={currentIndex + 1})
-//   //   }
-
-//   // | None => l
-//   // }
-
-//   // if index === currentIndex {
-//   //   {value: newNext.value, next: newNext.next}
-//   // } else {
-//   //   {value: l.value, next: Some(newNext)}
-//   // }
-// }
-
 // let sampleSinglyLinkedList = makeNode(1)->append(2)->append(3)->append(4)
 // let sampleSinglyLinkedList = makeNode(1)->append(2)->append(3)->append(4)->deleteByIndex(1)
 
@@ -95,23 +63,47 @@ let rec append = (l: singlyListNode<'a>, newVal: 'a) => {
 //   }
 // }
 
-let rec insertAtIndex = (l: singlyListNode<'a>, index: int, newVal: 'a, ~currentIndex=0) => {
+// let rec insertAtIndex = (l: singlyListNode<'a>, index: int, newVal: 'a, ~currentIndex=0) => {
+//   if index === 0 {
+//     {value: newVal, next: Some(l)}
+//   } else {
+//     switch (currentIndex === index - 1, l.next) {
+//     | (true, _) => {
+//         value: l.value,
+//         next: Some({value: newVal, next: l.next}),
+//       }
+//     | (false, Some(n)) => {
+//         value: l.value,
+//         next: Some(insertAtIndex(n, index, newVal, ~currentIndex={currentIndex + 1})),
+//       }
+
+//     | (false, None) => l
+//     }
+//   }
+// }
+
+// let sampleSinglyLinkedList = makeNode(1)->append(2)->append(4)->insertAtIndex(2, 3)
+
+let rec deleteByIndex = (l: singlyListNode<'a>, index: int, ~currentIndex=0) => {
   if index === 0 {
-    {value: newVal, next: Some(l)}
+    switch l.next {
+    | Some(n) => n
+    | None => {value: -1, next: None}
+    }
   } else {
     switch (currentIndex === index - 1, l.next) {
-    | (true, _) => {
-        value: l.value,
-        next: Some({value: newVal, next: l.next}),
-      }
     | (false, Some(n)) => {
         value: l.value,
-        next: Some(insertAtIndex(n, index, newVal, ~currentIndex={currentIndex + 1})),
+        next: Some(deleteByIndex(n, index, ~currentIndex={currentIndex + 1})),
       }
 
     | (false, None) => l
+
+    | (true, Some(n)) => {value: l.value, next: n.next}
+
+    | (true, None) => l
     }
   }
 }
 
-let sampleSinglyLinkedList = makeNode(1)->append(2)->append(4)->insertAtIndex(2, 3)
+let sampleSinglyLinkedList = makeNode(1)->append(2)->append(3)->append(4)->deleteByIndex(0)

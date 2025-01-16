@@ -179,3 +179,25 @@ let insertAtIndex = (lst: singlyLinkedList<'a>, index: int, newValue: 'a) => {
 
   Node(insertAtIndexHelper(lst, newValue, index, 0))
 }
+
+let deleteByIndex = (lst: singlyLinkedList<'a>, index: int) => {
+  let rec deleteByIndexHelper = (node, index, currentIndex) => {
+    switch (currentIndex === index - 1, node.next) {
+    | (false, Some(nxt)) => {
+        value: node.value,
+        next: Some(deleteByIndexHelper(nxt, index, currentIndex + 1)),
+      }
+    | (false, None) => node
+    | (true, Some(nxt)) => {value: node.value, next: nxt.next}
+    | (true, None) => node
+    }
+  }
+
+  switch lst {
+  | Empty => Empty
+  | Node({value: _, next: Some(nxt)}) if index === 0 => Node({value: nxt.value, next: nxt.next})
+  | Node({value: _, next: None}) if index === 0 => Empty
+  | _ if index < 0 => lst
+  | Node(node) => Node(deleteByIndexHelper(node, index, 0))
+  }
+}

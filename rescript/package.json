@@ -5,7 +5,8 @@
   "scripts": {
     "res:build": "rescript",
     "res:clean": "rescript clean",
-    "res:dev": "rescript -w"
+    "res:dev": "rescript -w",
+    "dev": "vite"
   },
   "keywords": [
     "rescript"

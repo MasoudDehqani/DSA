@@ -39,21 +39,23 @@ module SinglyLinkedListV1 = {
     }
   }
 
-  let rec insertAtIndex = (l: singlyListNode<'a>, index: int, newVal: 'a, ~currentIndex=0) => {
-    let (newHead, shouldReArrange) = switch (index === 0, currentIndex === index - 1, l.next) {
-    | (true, _, _) => ({value: newVal, next: Some(l)}, false)
-    | (false, false, Some(n)) => (
-        insertAtIndex(n, index, newVal, ~currentIndex={currentIndex + 1}),
-        true,
-      )
-    | (false, true, _) => ({value: newVal, next: l.next}, true)
-    | (false, false, None) => (l, false)
-    }
+  module InsertAtIndexV1 = {
+    let rec insertAtIndex = (l: singlyListNode<'a>, index: int, newVal: 'a, ~currentIndex=0) => {
+      let (newHead, shouldReArrange) = switch (index === 0, currentIndex === index - 1, l.next) {
+      | (true, _, _) => ({value: newVal, next: Some(l)}, false)
+      | (false, false, Some(n)) => (
+          insertAtIndex(n, index, newVal, ~currentIndex={currentIndex + 1}),
+          true,
+        )
+      | (false, true, _) => ({value: newVal, next: l.next}, true)
+      | (false, false, None) => (l, false)
+      }
 
-    if !shouldReArrange {
-      newHead
-    } else {
-      {value: l.value, next: Some(newHead)}
+      if !shouldReArrange {
+        newHead
+      } else {
+        {value: l.value, next: Some(newHead)}
+      }
     }
   }
 

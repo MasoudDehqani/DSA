@@ -153,7 +153,7 @@ let insertAtIndex = (lst: singlyLinkedList<'a>, index: int, newValue: 'a) => {
     switch (currentIndex === index - 1, node.next) {
     | (false, Some(nxt)) => {
         value: node.value,
-        next: Some(insertAtIndexHelper(nxt, newValue, index, currentIndex + 1)),
+        next: Some(insertAtIndexHelper(nxt, index, newValue, currentIndex + 1)),
       }
     | (false, None) => node
     | (true, _) => {value: node.value, next: Some({value: newValue, next: node.next})}
@@ -161,6 +161,7 @@ let insertAtIndex = (lst: singlyLinkedList<'a>, index: int, newValue: 'a) => {
   }
 
   switch lst {
+  | _ if index < 0 => lst
   | Empty => Node({value: newValue, next: None})
   | Node(node) if index === 0 => Node({value: newValue, next: Some(node)})
   | Node(node) => Node(insertAtIndexHelper(node, index, newValue, 0))

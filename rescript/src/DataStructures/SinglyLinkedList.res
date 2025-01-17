@@ -1,112 +1,103 @@
-// type rec singlyListNode<'a> = {
-//   value: 'a,
-//   next: option<singlyListNode<'a>>,
-// }
+module SinglyLinkedListV1 = {
+  type rec singlyListNode<'a> = {
+    value: 'a,
+    next: option<singlyListNode<'a>>,
+  }
 
-// let makeNode = (val: 'a) => {
-//   value: val,
-//   next: None,
-// }
+  let makeNode = (val: 'a) => {
+    value: val,
+    next: None,
+  }
 
-// let rec append = (l: singlyListNode<'a>, newVal: 'a) => {
-//   let newNext = switch l.next {
-//   | Some(n) => append(n, newVal)
-//   | None => {value: newVal, next: None}
-//   }
+  let rec append = (l: singlyListNode<'a>, newVal: 'a) => {
+    let newNext = switch l.next {
+    | Some(n) => append(n, newVal)
+    | None => {value: newVal, next: None}
+    }
 
-//   {value: l.value, next: Some(newNext)}
-// }
+    {value: l.value, next: Some(newNext)}
+  }
 
-// let sampleSinglyLinkedList = makeNode(1)->append(2)->append(3)->append(4)
-// let sampleSinglyLinkedList = makeNode(1)->append(2)->append(3)->append(4)->deleteByIndex(1)
+  let rec readByIndex = (l: singlyListNode<'a>, index: int, ~currentIndex: int=0) => {
+    switch (l.next, currentIndex < index) {
+    | (Some(n), true) => readByIndex(n, index, ~currentIndex={currentIndex + 1})
+    | (None, true) => None
+    | (_, false) =>
+      if currentIndex === index {
+        Some(l.value)
+      } else {
+        None
+      }
+    }
+  }
 
-// let rec readByIndex = (l: singlyListNode<'a>, index: int, ~currentIndex: int=0) => {
-//   switch (l.next, currentIndex < index) {
-//   | (Some(n), true) => readByIndex(n, index, ~currentIndex={currentIndex + 1})
-//   | (None, true) => None
-//   | (_, false) =>
-//     if currentIndex === index {
-//       Some(l.value)
-//     } else {
-//       None
-//     }
-//   }
-// }
+  let rec search = (l: singlyListNode<'a>, val: 'a, ~currentIndex=0) => {
+    switch (l.next, l.value === val) {
+    | (Some(n), false) => search(n, val, ~currentIndex={currentIndex + 1})
+    | (None, false) => None
+    | (_, true) => Some(currentIndex)
+    }
+  }
 
-// let sampleSinglyLinkedList = makeNode(1)->append(2)->append(3)->append(4)->readByIndex(0)
+  let rec insertAtIndex = (l: singlyListNode<'a>, index: int, newVal: 'a, ~currentIndex=0) => {
+    let (newHead, shouldReArrange) = switch (index === 0, currentIndex === index - 1, l.next) {
+    | (true, _, _) => ({value: newVal, next: Some(l)}, false)
+    | (false, false, Some(n)) => (
+        insertAtIndex(n, index, newVal, ~currentIndex={currentIndex + 1}),
+        true,
+      )
+    | (false, true, _) => ({value: newVal, next: l.next}, true)
+    | (false, false, None) => (l, false)
+    }
 
-// let rec search = (l: singlyListNode<'a>, val: 'a, ~currentIndex=0) => {
-//   switch (l.next, l.value === val) {
-//   | (Some(n), false) => search(n, val, ~currentIndex={currentIndex + 1})
-//   | (None, false) => None
-//   | (_, true) => Some(currentIndex)
-//   }
-// }
+    if !shouldReArrange {
+      newHead
+    } else {
+      {value: l.value, next: Some(newHead)}
+    }
+  }
 
-// let sampleSinglyLinkedList = makeNode(1)->append(2)->append(3)->append(4)->search(3)
+  let rec insertAtIndex = (l: singlyListNode<'a>, index: int, newVal: 'a, ~currentIndex=0) => {
+    if index === 0 {
+      {value: newVal, next: Some(l)}
+    } else {
+      switch (currentIndex === index - 1, l.next) {
+      | (true, _) => {
+          value: l.value,
+          next: Some({value: newVal, next: l.next}),
+        }
+      | (false, Some(n)) => {
+          value: l.value,
+          next: Some(insertAtIndex(n, index, newVal, ~currentIndex={currentIndex + 1})),
+        }
 
-// let rec insertAtIndex = (l: singlyListNode<'a>, index: int, newVal: 'a, ~currentIndex=0) => {
-//   let (newHead, shouldReArrange) = switch (index === 0, currentIndex === index - 1, l.next) {
-//   | (true, _, _) => ({value: newVal, next: Some(l)}, false)
-//   | (false, false, Some(n)) => (
-//       insertAtIndex(n, index, newVal, ~currentIndex={currentIndex + 1}),
-//       true,
-//     )
-//   | (false, true, _) => ({value: newVal, next: l.next}, true)
-//   | (false, false, None) => (l, false)
-//   }
+      | (false, None) => l
+      }
+    }
+  }
 
-//   if !shouldReArrange {
-//     newHead
-//   } else {
-//     {value: l.value, next: Some(newHead)}
-//   }
-// }
+  let rec deleteByIndex = (l: singlyListNode<'a>, index: int, ~currentIndex=0) => {
+    if index === 0 {
+      switch l.next {
+      | Some(n) => n
+      | None => {value: -1, next: None}
+      }
+    } else {
+      switch (currentIndex === index - 1, l.next) {
+      | (false, Some(n)) => {
+          value: l.value,
+          next: Some(deleteByIndex(n, index, ~currentIndex={currentIndex + 1})),
+        }
 
-// let rec insertAtIndex = (l: singlyListNode<'a>, index: int, newVal: 'a, ~currentIndex=0) => {
-//   if index === 0 {
-//     {value: newVal, next: Some(l)}
-//   } else {
-//     switch (currentIndex === index - 1, l.next) {
-//     | (true, _) => {
-//         value: l.value,
-//         next: Some({value: newVal, next: l.next}),
-//       }
-//     | (false, Some(n)) => {
-//         value: l.value,
-//         next: Some(insertAtIndex(n, index, newVal, ~currentIndex={currentIndex + 1})),
-//       }
+      | (false, None) => l
 
-//     | (false, None) => l
-//     }
-//   }
-// }
+      | (true, Some(n)) => {value: l.value, next: n.next}
 
-// let sampleSinglyLinkedList = makeNode(1)->append(2)->append(4)->insertAtIndex(2, 3)
-
-// let rec deleteByIndex = (l: singlyListNode<'a>, index: int, ~currentIndex=0) => {
-//   if index === 0 {
-//     switch l.next {
-//     | Some(n) => n
-//     | None => {value: -1, next: None}
-//     }
-//   } else {
-//     switch (currentIndex === index - 1, l.next) {
-//     | (false, Some(n)) => {
-//         value: l.value,
-//         next: Some(deleteByIndex(n, index, ~currentIndex={currentIndex + 1})),
-//       }
-
-//     | (false, None) => l
-
-//     | (true, Some(n)) => {value: l.value, next: n.next}
-
-//     | (true, None) => l
-//     }
-//   }
-// }
-
-// let sampleSinglyLinkedList = makeNode(1)->append(2)->append(3)->append(4)->deleteByIndex(0)
+      | (true, None) => l
+      }
+    }
+  }
+}
 
 type rec listNode<'a> = {value: 'a, next: option<listNode<'a>>}
 type rec singlyLinkedList<'a> = Empty | Node(listNode<'a>)

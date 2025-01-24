@@ -1,0 +1,4 @@
+(library
+ (name data_structures)
+ (public_name OCaml.data_structures)
+ (modules singly_linked_list stack))

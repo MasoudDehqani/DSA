@@ -1,0 +1,4 @@
+(library
+ (name OCaml)
+ (public_name OCaml)
+ (libraries OCaml.data_structures OCaml.algorithms))

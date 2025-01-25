@@ -1,21 +1,30 @@
-
-#[derive(Debug)]
-pub struct ListNode<T> {
-  pub value: T,
-  pub next: Box<Option<ListNode<T>>>
-}
-
 #[derive(Debug)]
 pub enum SinglyLinkedList<T> {
-  Node(ListNode<T>),
-  Nil
+    Nil,
+    Node(T, Box<SinglyLinkedList<T>>),
 }
 
+use crate::SinglyLinkedList::{Nil, Node};
+
 impl<T: Copy> SinglyLinkedList<T> {
-  pub fn read(&self, _index: u32) -> Option<T> {
-    match self {
-      SinglyLinkedList::Node(list_node) => Some(list_node.value),
-      SinglyLinkedList::Nil => None
+    pub fn read(&self, index: u32) -> Option<T> {
+        fn read_aux<T: Copy>(
+            lst: &SinglyLinkedList<T>,
+            index: u32,
+            current_index: u32,
+        ) -> Option<T> {
+            match lst {
+                Nil => None,
+                Node(v, nxt) => {
+                    if index == current_index {
+                        Some(*v)
+                    } else {
+                        read_aux(nxt, index, current_index + 1)
+                    }
+                }
+            }
+        }
+
+        read_aux(&self, index, 0)
     }
-  }
 }

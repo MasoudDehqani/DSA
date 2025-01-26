@@ -101,91 +101,115 @@ module SinglyLinkedListV1 = {
   }
 }
 
-type rec listNode<'a> = {value: 'a, next: option<listNode<'a>>}
-type rec singlyLinkedList<'a> = Empty | Node(listNode<'a>)
+module SinglyLinkedListV2 = {
+  type rec listNode<'a> = {value: 'a, next: option<listNode<'a>>}
+  type rec singlyLinkedList<'a> = Empty | Node(listNode<'a>)
 
-let makeNode = (val: 'a): listNode<'a> => {
-  value: val,
-  next: None,
-}
+  let makeNode = (val: 'a): listNode<'a> => {
+    value: val,
+    next: None,
+  }
 
-let append = (lst: singlyLinkedList<'a>, newValue: 'a): singlyLinkedList<'a> => {
-  let rec appendByValueHelper = (lst: singlyLinkedList<'a>, newValue: 'a) => {
+  let append = (lst: singlyLinkedList<'a>, newValue: 'a): singlyLinkedList<'a> => {
+    let rec appendByValueHelper = (lst: singlyLinkedList<'a>, newValue: 'a) => {
+      switch lst {
+      | Empty => {value: newValue, next: None}
+      | Node(node) =>
+        switch node.next {
+        | Some(nxt) => {value: node.value, next: Some(appendByValueHelper(Node(nxt), newValue))}
+        | None => {value: node.value, next: Some({value: newValue, next: None})}
+        }
+      }
+    }
+
+    Node(appendByValueHelper(lst, newValue))
+  }
+
+  let rec readByIndex = (lst: singlyLinkedList<'a>, index: int, ~currentIndex=0): option<'a> => {
     switch lst {
-    | Empty => {value: newValue, next: None}
+    | Empty => None
     | Node(node) =>
-      switch node.next {
-      | Some(nxt) => {value: node.value, next: Some(appendByValueHelper(Node(nxt), newValue))}
-      | None => {value: node.value, next: Some({value: newValue, next: None})}
+      switch (currentIndex === index, node.next) {
+      | (false, Some(nxt)) => readByIndex(Node(nxt), index, ~currentIndex={currentIndex + 1})
+      | (false, None) => None
+      | (true, _) => Some(node.value)
       }
     }
   }
 
-  Node(appendByValueHelper(lst, newValue))
-}
-
-let rec readByIndex = (lst: singlyLinkedList<'a>, index: int, ~currentIndex=0): option<'a> => {
-  switch lst {
-  | Empty => None
-  | Node(node) =>
-    switch (currentIndex === index, node.next) {
-    | (false, Some(nxt)) => readByIndex(Node(nxt), index, ~currentIndex={currentIndex + 1})
-    | (false, None) => None
-    | (true, _) => Some(node.value)
-    }
-  }
-}
-
-let rec search = (lst: singlyLinkedList<'a>, searchValue: 'a, ~currentIndex=0): option<int> => {
-  switch lst {
-  | Empty => None
-  | Node(node) =>
-    switch (searchValue === node.value, node.next) {
-    | (false, Some(nxt)) => search(Node(nxt), searchValue, ~currentIndex={currentIndex + 1})
-    | (false, None) => None
-    | (true, _) => Some(currentIndex)
-    }
-  }
-}
-
-let insertAtIndex = (lst: singlyLinkedList<'a>, index: int, newValue: 'a) => {
-  let rec insertAtIndexHelper = (node: listNode<'a>, index: int, newValue: 'a, currentIndex) => {
-    switch (currentIndex === index - 1, node.next) {
-    | (false, Some(nxt)) => {
-        value: node.value,
-        next: Some(insertAtIndexHelper(nxt, index, newValue, currentIndex + 1)),
+  let rec search = (lst: singlyLinkedList<'a>, searchValue: 'a, ~currentIndex=0): option<int> => {
+    switch lst {
+    | Empty => None
+    | Node(node) =>
+      switch (searchValue === node.value, node.next) {
+      | (false, Some(nxt)) => search(Node(nxt), searchValue, ~currentIndex={currentIndex + 1})
+      | (false, None) => None
+      | (true, _) => Some(currentIndex)
       }
-    | (false, None) => node
-    | (true, _) => {value: node.value, next: Some({value: newValue, next: node.next})}
     }
   }
 
-  switch lst {
-  | _ if index < 0 => lst
-  | Empty => Node({value: newValue, next: None})
-  | Node(node) if index === 0 => Node({value: newValue, next: Some(node)})
-  | Node(node) => Node(insertAtIndexHelper(node, index, newValue, 0))
-  }
-}
-
-let deleteByIndex = (lst: singlyLinkedList<'a>, index: int) => {
-  let rec deleteByIndexHelper = (node, index, currentIndex) => {
-    switch (currentIndex === index - 1, node.next) {
-    | (false, Some(nxt)) => {
-        value: node.value,
-        next: Some(deleteByIndexHelper(nxt, index, currentIndex + 1)),
+  let insertAtIndex = (lst: singlyLinkedList<'a>, index: int, newValue: 'a) => {
+    let rec insertAtIndexHelper = (node: listNode<'a>, index: int, newValue: 'a, currentIndex) => {
+      switch (currentIndex === index - 1, node.next) {
+      | (false, Some(nxt)) => {
+          value: node.value,
+          next: Some(insertAtIndexHelper(nxt, index, newValue, currentIndex + 1)),
+        }
+      | (false, None) => node
+      | (true, _) => {value: node.value, next: Some({value: newValue, next: node.next})}
       }
-    | (false, None) => node
-    | (true, Some(nxt)) => {value: node.value, next: nxt.next}
-    | (true, None) => node
+    }
+
+    switch lst {
+    | _ if index < 0 => lst
+    | Empty => Node({value: newValue, next: None})
+    | Node(node) if index === 0 => Node({value: newValue, next: Some(node)})
+    | Node(node) => Node(insertAtIndexHelper(node, index, newValue, 0))
     }
   }
 
-  switch lst {
-  | Empty => Empty
-  | Node({value: _, next: Some(nxt)}) if index === 0 => Node({value: nxt.value, next: nxt.next})
-  | Node({value: _, next: None}) if index === 0 => Empty
-  | _ if index < 0 => lst
-  | Node(node) => Node(deleteByIndexHelper(node, index, 0))
+  let deleteByIndex = (lst: singlyLinkedList<'a>, index: int) => {
+    let rec deleteByIndexHelper = (node, index, currentIndex) => {
+      switch (currentIndex === index - 1, node.next) {
+      | (false, Some(nxt)) => {
+          value: node.value,
+          next: Some(deleteByIndexHelper(nxt, index, currentIndex + 1)),
+        }
+      | (false, None) => node
+      | (true, Some(nxt)) => {value: node.value, next: nxt.next}
+      | (true, None) => node
+      }
+    }
+
+    switch lst {
+    | Empty => Empty
+    | Node({value: _, next: Some(nxt)}) if index === 0 => Node({value: nxt.value, next: nxt.next})
+    | Node({value: _, next: None}) if index === 0 => Empty
+    | _ if index < 0 => lst
+    | Node(node) => Node(deleteByIndexHelper(node, index, 0))
+    }
   }
 }
+
+type rec singlyLinkedList<'a> = Empty | Node(('a, singlyLinkedList<'a>))
+
+let readByIndex = (lst: singlyLinkedList<'a>, index: int): option<'a> => {
+  let rec readByIndexAux = (lst: singlyLinkedList<'a>, index: int, currentIndex: int): option<
+    'a,
+  > => {
+    switch lst {
+    | Empty => None
+    | Node(head, tail) =>
+      if currentIndex === index {
+        Some(head)
+      } else {
+        readByIndexAux(tail, index, currentIndex + 1)
+      }
+    }
+  }
+
+  readByIndexAux(lst, index, 0)
+}
+
+let myList = Node(1, Node(2, Node(3, Empty)))

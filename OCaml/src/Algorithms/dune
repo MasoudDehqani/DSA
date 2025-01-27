@@ -1,0 +1,4 @@
+(library
+ (name Algorithms)
+ (public_name OCaml.Algorithms)
+ (modules factorial))

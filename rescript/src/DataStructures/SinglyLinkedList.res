@@ -223,6 +223,10 @@ let rec append = (lst: singlyLinkedList<'a>, val: 'a): singlyLinkedList<'a> => {
   }
 }
 
+let prepend = (lst: singlyLinkedList<'a>, val: 'a): singlyLinkedList<'a> => {
+  Node(val, lst)
+}
+
 let rec insert = (lst: singlyLinkedList<'a>, val: 'a, index: int): singlyLinkedList<'a> => {
   switch lst {
   | Empty => index === 0 ? Node(val, lst) : lst
@@ -234,5 +238,19 @@ let rec delete = (lst: singlyLinkedList<'a>, index: int): singlyLinkedList<'a> =
   switch lst {
   | Empty => index === 0 ? Empty : lst
   | Node(head, tail) => index === 0 ? tail : Node(head, delete(tail, index - 1))
+  }
+}
+
+let rec pop = (lst: singlyLinkedList<'a>): singlyLinkedList<'a> => {
+  switch lst {
+  | Empty => Empty
+  | Node(head, tail) => tail === Empty ? Empty : Node(head, pop(tail))
+  }
+}
+
+let rec peek = (lst: singlyLinkedList<'a>): option<'a> => {
+  switch lst {
+  | Empty => None
+  | Node(head, tail) => tail === Empty ? Some(head) : peek(tail)
   }
 }

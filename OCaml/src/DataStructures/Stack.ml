@@ -28,9 +28,7 @@ module Stack: Stack = struct
     | Entry (v, _) -> Some(v)
 end *)
 
-type 'a t =
-  | Nil
-  | Entry of 'a * 'a t
+type 'a t = Nil | Entry of 'a * 'a t
 
 let pop = function
   | Nil -> Nil
@@ -38,7 +36,7 @@ let pop = function
 
 let peek = function
   | Nil -> None
-  | Entry (top, _rest) -> Some(top)
+  | Entry (top, _rest) -> Some top
 
 let push v = function
   | Nil -> Entry (v, Nil)

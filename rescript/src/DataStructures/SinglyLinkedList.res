@@ -192,24 +192,47 @@ module SinglyLinkedListV2 = {
   }
 }
 
-type rec singlyLinkedList<'a> = Empty | Node(('a, singlyLinkedList<'a>))
+type rec singlyLinkedList<'a> = Empty | Node('a, singlyLinkedList<'a>)
 
-let readByIndex = (lst: singlyLinkedList<'a>, index: int): option<'a> => {
-  let rec readByIndexAux = (lst: singlyLinkedList<'a>, index: int, currentIndex: int): option<
-    'a,
-  > => {
+let rec read = (lst: singlyLinkedList<'a>, index: int): option<'a> => {
+  if index < 0 {
+    None
+  } else {
     switch lst {
     | Empty => None
-    | Node(head, tail) =>
-      if currentIndex === index {
-        Some(head)
-      } else {
-        readByIndexAux(tail, index, currentIndex + 1)
-      }
+    | Node(head, tail) => index === 0 ? Some(head) : read(tail, index - 1)
+    }
+  }
+}
+
+let search = (lst: singlyLinkedList<'a>, val: 'a): option<int> => {
+  let rec searchAux = (lst: singlyLinkedList<'a>, val: 'a, currentIndex: int) => {
+    switch lst {
+    | Empty => None
+    | Node(head, tail) => val === head ? Some(currentIndex) : searchAux(tail, val, currentIndex + 1)
     }
   }
 
-  readByIndexAux(lst, index, 0)
+  searchAux(lst, val, 0)
 }
 
-let myList = Node(1, Node(2, Node(3, Empty)))
+let rec append = (lst: singlyLinkedList<'a>, val: 'a): singlyLinkedList<'a> => {
+  switch lst {
+  | Empty => Node(val, Empty)
+  | Node(head, tail) => Node(head, append(tail, val))
+  }
+}
+
+let rec insert = (lst: singlyLinkedList<'a>, val: 'a, index: int): singlyLinkedList<'a> => {
+  switch lst {
+  | Empty => index === 0 ? Node(val, lst) : lst
+  | Node(head, tail) => index === 0 ? Node(val, lst) : Node(head, insert(tail, val, index - 1))
+  }
+}
+
+let rec delete = (lst: singlyLinkedList<'a>, index: int): singlyLinkedList<'a> => {
+  switch lst {
+  | Empty => index === 0 ? Empty : lst
+  | Node(head, tail) => index === 0 ? tail : Node(head, delete(tail, index - 1))
+  }
+}

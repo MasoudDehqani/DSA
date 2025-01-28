@@ -1,1 +1,4 @@
-let rec factorial n = if n < 3 then n else (factorial (n - 1)) * n
+let rec factorial = function
+  | 1 -> 1
+  | 2 -> 2
+  | n -> factorial (n - 1) * n

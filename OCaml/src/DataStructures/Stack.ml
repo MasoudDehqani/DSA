@@ -1,4 +1,4 @@
-module type Stack = sig
+(* module type Stack = sig
   type 'a stack  
   val empty: 'a stack
   
@@ -26,4 +26,20 @@ module Stack: Stack = struct
   let pop = function
     | Empty -> None
     | Entry (v, _) -> Some(v)
-end
+end *)
+
+type 'a t =
+  | Nil
+  | Entry of 'a * 'a t
+
+let pop = function
+  | Nil -> Nil
+  | Entry (_top, rest) -> rest
+
+let peek = function
+  | Nil -> None
+  | Entry (top, _rest) -> Some(top)
+
+let push v = function
+  | Nil -> Entry (v, Nil)
+  | Entry (top, rest) -> Entry (v, Entry (top, rest))

@@ -1,7 +1,7 @@
-mod data_structures;
 mod algorithms;
-use data_structures::singly_linked_list::SinglyLinkedList::{self, Nil, Node};
+mod data_structures;
 use algorithms::factorial::factorial;
+use data_structures::singly_linked_list::SinglyLinkedList::{self, Nil, Node};
 
 fn main() {
     let lst = Node(1, Box::new(Node(2, Box::new(Nil))));

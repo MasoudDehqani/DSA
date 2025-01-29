@@ -1,4 +1,7 @@
 let rec factorial = function
-  | 1 -> 1
-  | 2 -> 2
-  | n -> factorial (n - 1) * n
+  | n when n <= 0 ->
+      invalid_arg "Factorial is only defined for positive integers"
+  | 0
+  | 1 ->
+      1
+  | n -> n * factorial (n - 1)

@@ -64,4 +64,41 @@ export default class SinglyLinkedList<T> {
 
     return currentNode.value === val ? currentIndex : null;
   }
+
+  delete(index: number) {
+    if (this.head == null || this.head.next == null) return null;
+
+    let currentNode = this.head;
+
+    while (index > 1 && currentNode.next != null) {
+      index -= 1;
+      currentNode = currentNode.next;
+    }
+
+    if (index === 1) {
+      currentNode.next =
+        currentNode.next?.next == null ? null : currentNode.next.next;
+    }
+
+    return this.head;
+  }
+
+  reverse() {
+    if (this.head == null) return null;
+    if (this.head.next == null) return this.head;
+
+    let currentNode = this.head;
+    let newListNode = new SinglyLinkedListNode(this.head.value);
+
+    while (currentNode.next != null) {
+      newListNode = new SinglyLinkedListNode(
+        currentNode.next.value,
+        newListNode
+      );
+
+      currentNode = currentNode.next;
+    }
+
+    return new SinglyLinkedList(newListNode);
+  }
 }

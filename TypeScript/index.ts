@@ -53,4 +53,6 @@ const newNode = new SinglyLinkedListNode(
   new SinglyLinkedListNode(2, new SinglyLinkedListNode(3))
 );
 
-console.log(new SinglyLinkedList(newNode).append(4).search(3));
+console.log(
+  new SinglyLinkedList(newNode).append(4).append(5).append(6).reverse()
+);

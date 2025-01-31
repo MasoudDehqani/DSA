@@ -13,8 +13,8 @@
 // import gcd from "./gcd/gcd.js";
 // import isNumberPrime from "./isNumberPrime/isNumberPrime.js";
 
-import binaryToDecimal from "./binaryToDecimal/binaryToDecimal.js";
-import decimalToBinary from "./decimalToBinary/decimalToBinary.js";
+// import binaryToDecimal from "./binaryToDecimal/binaryToDecimal.js";
+// import decimalToBinary from "./decimalToBinary/decimalToBinary.js";
 
 // console.log(reverseString("Hello!"))
 // console.log(countDigits(3259))
@@ -43,4 +43,3 @@ import decimalToBinary from "./decimalToBinary/decimalToBinary.js";
 // console.log(gcd(8, 6));
 // console.log(isNumberPrime(71));
 // console.log(decimalToBinary(23));
-console.log(binaryToDecimal([1, 0, 1, 1, 1]));

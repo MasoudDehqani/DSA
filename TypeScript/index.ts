@@ -50,9 +50,15 @@ import SinglyLinkedList, {
 
 const newNode = new SinglyLinkedListNode(
   1,
-  new SinglyLinkedListNode(2, new SinglyLinkedListNode(3))
+  new SinglyLinkedListNode(2)
 );
 
-console.log(
-  new SinglyLinkedList(newNode).append(4).append(5).append(6).reverse()
-);
+// console.log(
+//   new SinglyLinkedList(newNode).append(4).append(5).append(6).reverse()
+// );
+const lst = new SinglyLinkedList(newNode)
+// lst.appendInPlace(4)
+const n = lst.append(3);
+console.log(n);
+
+console.log(lst);

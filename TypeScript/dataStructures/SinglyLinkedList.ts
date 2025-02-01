@@ -9,32 +9,39 @@ export class SinglyLinkedListNode<T> {
 }
 
 export default class SinglyLinkedList<T> {
-  head?: SinglyLinkedListNode<T>;
+  head?: SinglyLinkedListNode<T> | null;
 
-  constructor(headNodeValue?: SinglyLinkedListNode<T>) {
+  constructor(headNodeValue?: SinglyLinkedListNode<T> | null) {
     this.head = headNodeValue;
   }
 
-  private getLastNode() {
-    if (this.head == null) return this.head;
+  append(newValue: T): SinglyLinkedList<T> {
+    const newNode = new SinglyLinkedListNode(newValue);
+    if (this.head == null) return new SinglyLinkedList(newNode);
+
+    const newHead = new SinglyLinkedListNode(this.head.value);
+    let newListCurrent = newHead;
+    let currentNode = this.head.next;
+
+    while (currentNode != null) {
+      newListCurrent.next = new SinglyLinkedListNode(currentNode.value)
+      newListCurrent = newListCurrent.next;
+      currentNode = currentNode.next;
+    }
+
+    newListCurrent.next = newNode
+    return new SinglyLinkedList(newHead);
+  }
+
+  appendInPlace(newValue: T): void {
+    if (this.head == null) return;
 
     let lastNode = this.head;
     while (lastNode.next != null) {
       lastNode = lastNode.next;
     }
 
-    return lastNode;
-  }
-
-  append(newValue: T) {
-    let lastNode = this.getLastNode();
-    if (lastNode == null) {
-      lastNode = new SinglyLinkedListNode(newValue);
-      return new SinglyLinkedList(lastNode);
-    }
-
     lastNode.next = new SinglyLinkedListNode(newValue);
-    return new SinglyLinkedList(this.head);
   }
 
   read(index: number) {

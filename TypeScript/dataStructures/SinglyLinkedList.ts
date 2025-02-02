@@ -24,12 +24,12 @@ export default class SinglyLinkedList<T> {
     let currentNode = this.head.next;
 
     while (currentNode != null) {
-      newListCurrent.next = new SinglyLinkedListNode(currentNode.value)
+      newListCurrent.next = new SinglyLinkedListNode(currentNode.value);
       newListCurrent = newListCurrent.next;
       currentNode = currentNode.next;
     }
 
-    newListCurrent.next = newNode
+    newListCurrent.next = newNode;
     return new SinglyLinkedList(newHead);
   }
 
@@ -73,46 +73,52 @@ export default class SinglyLinkedList<T> {
   }
 
   delete(index: number) {
-    if (this.head == null || this.head.next == null || index < 0) return null;
-    if (index === 0) return new SinglyLinkedList(this.head.next)
+    if (this.head == null) throw new Error("list is empty");
+    if (index === 0) return new SinglyLinkedList(this.head.next);
+    if (index < 0) throw new Error("negative index error");
 
     const newHead = new SinglyLinkedListNode(this.head.value);
     let newCurrentNode = newHead;
-    let currentNode: SinglyLinkedListNode<T> | null = this.head.next;
+    let currentNode = this.head.next;
 
     for (let i = 1; i <= index; i++) {
-      if (currentNode == null) break
+      if (currentNode == null) throw new Error("out of bound index");
 
       if (i === index) {
-        newCurrentNode.next = currentNode.next
-        break
+        newCurrentNode.next = currentNode.next;
+        break;
       } else {
-        newCurrentNode.next = new SinglyLinkedListNode(currentNode.value)
+        newCurrentNode.next = new SinglyLinkedListNode(currentNode.value);
       }
 
-      newCurrentNode = newCurrentNode.next
-      currentNode = currentNode.next
-    }
-
-    return new SinglyLinkedList(newHead)
-  }
-
-  deleteInPlace(index: number) {
-    if (this.head == null || this.head.next == null) return null;
-
-    let currentNode = this.head;
-
-    while (index > 1 && currentNode.next != null) {
-      index -= 1;
+      newCurrentNode = newCurrentNode.next;
       currentNode = currentNode.next;
     }
 
-    if (index === 1) {
-      currentNode.next =
-        currentNode.next?.next == null ? null : currentNode.next.next;
+    return new SinglyLinkedList(newHead);
+  }
+
+  deleteInPlace(index: number) {
+    if (this.head == null) throw new Error("empty list");
+    if (index === 0) {
+      this.head = this.head.next;
+      return;
     }
 
-    return this.head;
+    if (index < 0) throw new Error("negative index");
+
+    let currentNode: SinglyLinkedListNode<T> | null = this.head;
+
+    for (let i = 0; i <= index; i++) {
+      if (currentNode == null) throw new Error("out of bound index");
+
+      if (i === index - 1 && currentNode.next != null) {
+        currentNode.next = currentNode.next.next;
+        break;
+      }
+
+      currentNode = currentNode.next;
+    }
   }
 
   reverse() {

@@ -56,11 +56,12 @@ const newNode = new SinglyLinkedListNode(
 // console.log(
 //   new SinglyLinkedList(newNode).append(4).append(5).append(6).reverse()
 // );
-const lst = new SinglyLinkedList(newNode)
+const lst = new SinglyLinkedList(newNode);
 // lst.appendInPlace(4)
 // const n = lst.append(3);
-const d = lst.delete(1);
+const d = lst.delete(-1);
 // console.log(n);
 console.log(d);
+// lst.deleteInPlace(3);
 
 console.log(lst);

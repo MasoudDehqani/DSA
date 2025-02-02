@@ -144,6 +144,16 @@ export default class SinglyLinkedList<T> {
   }
 
   reverseInPlace(): void {
-    // TODO implementation
+    let prevNode = null;
+    let currentNode = this.head;
+
+    while (currentNode != null) {
+      const nxt = currentNode.next;
+      currentNode.next = prevNode;
+      prevNode = currentNode;
+      currentNode = nxt;
+    }
+
+    this.head = prevNode;
   }
 }

@@ -50,7 +50,7 @@ import SinglyLinkedList, {
 
 const newNode = new SinglyLinkedListNode(
   1,
-  new SinglyLinkedListNode(2)
+  new SinglyLinkedListNode(2, new SinglyLinkedListNode(3))
 );
 
 // console.log(
@@ -58,7 +58,9 @@ const newNode = new SinglyLinkedListNode(
 // );
 const lst = new SinglyLinkedList(newNode)
 // lst.appendInPlace(4)
-const n = lst.append(3);
-console.log(n);
+// const n = lst.append(3);
+const d = lst.delete(1);
+// console.log(n);
+console.log(d);
 
 console.log(lst);

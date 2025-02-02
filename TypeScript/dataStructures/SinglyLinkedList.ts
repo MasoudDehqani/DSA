@@ -73,6 +73,40 @@ export default class SinglyLinkedList<T> {
   }
 
   delete(index: number) {
+    if (this.head == null || this.head.next == null || index < 0) return null;
+    if (index === 0) return new SinglyLinkedList(this.head.next)
+
+    const newHead = new SinglyLinkedListNode(this.head.value);
+    let newCurrentNode = newHead;
+    let currentNode = this.head.next;
+
+    for (let i = 1; i <= index; i++) {
+      if (currentNode == null) break
+      if (currentNode.next == null) {
+        if (i === index) {
+          newCurrentNode.next = null
+        } else {
+          newCurrentNode.next = new SinglyLinkedListNode(currentNode.value)
+        }
+
+        break
+      }
+
+      if (i === index) {
+        newCurrentNode.next = new SinglyLinkedListNode(currentNode.next.value, currentNode.next.next)
+        break
+      } else {
+        newCurrentNode.next = new SinglyLinkedListNode(currentNode.value)
+      }
+
+      newCurrentNode = newCurrentNode.next
+      currentNode = currentNode.next
+    }
+
+    return new SinglyLinkedList(newHead)
+  }
+
+  deleteInPlace(index: number) {
     if (this.head == null || this.head.next == null) return null;
 
     let currentNode = this.head;

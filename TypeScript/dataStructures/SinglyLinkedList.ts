@@ -24,11 +24,8 @@ export default class SinglyLinkedList<T> {
     let currentNode = this.head.next;
 
     while (currentNode != null) {
-      console.log(newHead);
       newListCurrent.next = new SinglyLinkedListNode(currentNode.value);
-      console.log(newHead);
       newListCurrent = newListCurrent.next;
-      console.log(newHead);
       currentNode = currentNode.next;
     }
 

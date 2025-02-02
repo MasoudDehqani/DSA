@@ -78,22 +78,13 @@ export default class SinglyLinkedList<T> {
 
     const newHead = new SinglyLinkedListNode(this.head.value);
     let newCurrentNode = newHead;
-    let currentNode = this.head.next;
+    let currentNode: SinglyLinkedListNode<T> | null = this.head.next;
 
     for (let i = 1; i <= index; i++) {
       if (currentNode == null) break
-      if (currentNode.next == null) {
-        if (i === index) {
-          newCurrentNode.next = null
-        } else {
-          newCurrentNode.next = new SinglyLinkedListNode(currentNode.value)
-        }
-
-        break
-      }
 
       if (i === index) {
-        newCurrentNode.next = new SinglyLinkedListNode(currentNode.next.value, currentNode.next.next)
+        newCurrentNode.next = currentNode.next
         break
       } else {
         newCurrentNode.next = new SinglyLinkedListNode(currentNode.value)

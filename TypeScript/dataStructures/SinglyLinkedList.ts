@@ -44,17 +44,19 @@ export default class SinglyLinkedList<T> {
     lastNode.next = new SinglyLinkedListNode(newValue);
   }
 
-  read(index: number) {
-    let currentNode = this.head;
+  read(index: number): T | null {
+    if (this.head == null) return null;
+    if (index < 0) throw new Error("negative index error");
 
-    if (currentNode == null) return null;
+    let currentNode: SinglyLinkedListNode<T> | null = this.head;
 
-    while (index > 0 && currentNode.next != null) {
+    while (currentNode != null) {
+      if (index === 0) return currentNode.value;
       currentNode = currentNode.next;
       index -= 1;
     }
 
-    return index === 0 ? currentNode.value : null;
+    return null;
   }
 
   search(val: T): number | null {
@@ -73,7 +75,7 @@ export default class SinglyLinkedList<T> {
     return null;
   }
 
-  delete(index: number) {
+  delete(index: number): SinglyLinkedList<T> {
     if (this.head == null) throw new Error("list is empty");
     if (index === 0) return new SinglyLinkedList(this.head.next);
     if (index < 0) throw new Error("negative index error");
@@ -99,7 +101,7 @@ export default class SinglyLinkedList<T> {
     return new SinglyLinkedList(newHead);
   }
 
-  deleteInPlace(index: number) {
+  deleteInPlace(index: number): void {
     if (this.head == null) throw new Error("empty list");
     if (index === 0) {
       this.head = this.head.next;
@@ -122,9 +124,9 @@ export default class SinglyLinkedList<T> {
     }
   }
 
-  reverse() {
+  reverse(): SinglyLinkedList<T> | null {
     if (this.head == null) return null;
-    if (this.head.next == null) return this.head;
+    if (this.head.next == null) return new SinglyLinkedList(this.head);
 
     let currentNode = this.head;
     let newListNode = new SinglyLinkedListNode(this.head.value);
@@ -139,5 +141,9 @@ export default class SinglyLinkedList<T> {
     }
 
     return new SinglyLinkedList(newListNode);
+  }
+
+  reverseInPlace(): void {
+    // TODO implementation
   }
 }

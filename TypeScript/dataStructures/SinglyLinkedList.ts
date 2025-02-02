@@ -78,20 +78,21 @@ export default class SinglyLinkedList<T> {
     if (index === 0) return new SinglyLinkedList(this.head.next);
     if (index < 0) throw new Error("negative index error");
 
-    let newHead = new SinglyLinkedListNode(this.head.value);
+    const newHead = new SinglyLinkedListNode(this.head.value);
+    let currentNewNode = newHead;
     let currentNode = this.head.next;
 
     for (let i = 1; i <= index; i++) {
       if (currentNode == null) throw new Error("out of bound index");
 
       if (i === index) {
-        newHead.next = currentNode.next;
+        currentNewNode.next = currentNode.next;
         break;
       } else {
-        newHead.next = currentNode;
+        currentNewNode.next = new SinglyLinkedListNode(currentNode.value);
       }
 
-      newHead = newHead.next;
+      currentNewNode = currentNewNode.next;
       currentNode = currentNode.next;
     }
 

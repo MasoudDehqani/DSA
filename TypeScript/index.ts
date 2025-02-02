@@ -66,6 +66,7 @@ const lst = new SinglyLinkedList(newNode);
 // lst.appendInPlace(8);
 // console.log(lst.search(2));
 // console.log(lst.search(3));
-console.log(lst.append(4));
+// console.log(lst.append(4));
+console.log(lst.delete(2));
 
 console.log(lst);

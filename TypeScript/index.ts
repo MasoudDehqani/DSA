@@ -59,9 +59,13 @@ const newNode = new SinglyLinkedListNode(
 const lst = new SinglyLinkedList(newNode);
 // lst.appendInPlace(4)
 // const n = lst.append(3);
-const d = lst.delete(-1);
+// const d = lst.delete(1);
 // console.log(n);
-console.log(d);
+// console.log(d);
 // lst.deleteInPlace(3);
+// lst.appendInPlace(8);
+// console.log(lst.search(2));
+// console.log(lst.search(3));
+console.log(lst.append(4));
 
 console.log(lst);

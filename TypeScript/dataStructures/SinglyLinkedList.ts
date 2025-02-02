@@ -4,15 +4,15 @@ export class SinglyLinkedListNode<T> {
 
   constructor(value: T, next?: SinglyLinkedListNode<T> | null) {
     this.value = value;
-    this.next = next == null ? null : next;
+    this.next = next || null;
   }
 }
 
 export default class SinglyLinkedList<T> {
-  head?: SinglyLinkedListNode<T> | null;
+  head: SinglyLinkedListNode<T> | null;
 
   constructor(headNodeValue?: SinglyLinkedListNode<T> | null) {
-    this.head = headNodeValue;
+    this.head = headNodeValue || null;
   }
 
   append(newValue: T): SinglyLinkedList<T> {
@@ -24,8 +24,11 @@ export default class SinglyLinkedList<T> {
     let currentNode = this.head.next;
 
     while (currentNode != null) {
+      console.log(newHead);
       newListCurrent.next = new SinglyLinkedListNode(currentNode.value);
+      console.log(newHead);
       newListCurrent = newListCurrent.next;
+      console.log(newHead);
       currentNode = currentNode.next;
     }
 
@@ -58,18 +61,19 @@ export default class SinglyLinkedList<T> {
   }
 
   search(val: T): number | null {
+    let currentNode = this.head;
     let currentIndex = 0;
 
-    let currentNode = this.head;
+    while (currentNode != null) {
+      if (currentNode.value === val) {
+        return currentIndex;
+      }
 
-    if (currentNode == null) return null;
-
-    while (currentNode.value !== val && currentNode.next != null) {
       currentNode = currentNode.next;
       currentIndex += 1;
     }
 
-    return currentNode.value === val ? currentIndex : null;
+    return null;
   }
 
   delete(index: number) {
@@ -77,21 +81,20 @@ export default class SinglyLinkedList<T> {
     if (index === 0) return new SinglyLinkedList(this.head.next);
     if (index < 0) throw new Error("negative index error");
 
-    const newHead = new SinglyLinkedListNode(this.head.value);
-    let newCurrentNode = newHead;
+    let newHead = new SinglyLinkedListNode(this.head.value);
     let currentNode = this.head.next;
 
     for (let i = 1; i <= index; i++) {
       if (currentNode == null) throw new Error("out of bound index");
 
       if (i === index) {
-        newCurrentNode.next = currentNode.next;
+        newHead.next = currentNode.next;
         break;
       } else {
-        newCurrentNode.next = new SinglyLinkedListNode(currentNode.value);
+        newHead.next = currentNode;
       }
 
-      newCurrentNode = newCurrentNode.next;
+      newHead = newHead.next;
       currentNode = currentNode.next;
     }
 

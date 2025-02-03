@@ -30,3 +30,4 @@ let myList4 = Node(1, Node(2, Node(3, Node(4, Empty))))
 // Console.log(pop(myList))
 
 // Console.log(peek(myList4))
+Console.log(reverse(myList4))

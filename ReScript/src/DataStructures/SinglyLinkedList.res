@@ -254,3 +254,17 @@ let rec peek = (lst: singlyLinkedList<'a>): option<'a> => {
   | Node(head, tail) => tail === Empty ? Some(head) : peek(tail)
   }
 }
+
+let reverse = (lst: singlyLinkedList<'a>): singlyLinkedList<'a> => {
+  let rec reverseAux = (lst, acc) => {
+    switch lst {
+    | Empty => acc
+    | Node(head, tail) => {
+        let newAcc = Node(head, acc)
+        reverseAux(tail, newAcc)
+      }
+    }
+  }
+
+  reverseAux(lst, Empty)
+}

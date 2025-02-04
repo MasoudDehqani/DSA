@@ -72,6 +72,7 @@ const lst = new SinglyLinkedList(newNode);
 // console.log(lst.append(4));
 // console.log(lst.delete(2));
 // lst.deleteInPlace(2);
-lst.reverseInPlace();
+// lst.reverseInPlace();
+lst.reverseRecursiveInPlace();
 
 console.log(lst);

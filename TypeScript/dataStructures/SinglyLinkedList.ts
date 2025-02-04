@@ -158,4 +158,28 @@ export default class SinglyLinkedList<T> {
 
     this.head = prevNode;
   }
+
+  reverseRecursiveInPlace() {
+    if (this.head == null || this.head.next == null) return;
+
+    const reverseRecursiveInPlaceAux = (
+      listHead: SinglyLinkedListNode<T>
+    ): SinglyLinkedListNode<T> => {
+      if (listHead.next == null) return listHead;
+
+      const newHead = reverseRecursiveInPlaceAux(listHead.next);
+
+      const hd = listHead;
+      const nxt = listHead.next;
+      const rest = listHead.next.next;
+
+      listHead = nxt;
+      listHead.next = hd;
+      listHead.next.next = rest;
+
+      return newHead;
+    };
+
+    this.head = reverseRecursiveInPlaceAux(this.head);
+  }
 }

@@ -182,4 +182,24 @@ export default class SinglyLinkedList<T> {
 
     this.head = reverseRecursiveInPlaceAux(this.head);
   }
+
+  reverseTailRecursive(): SinglyLinkedList<T> {
+    if (this.head == null || this.head.next == null)
+      return new SinglyLinkedList(this.head);
+
+    const reverseTailRecursiveAux = (
+      listHead: SinglyLinkedListNode<T>,
+      acc: SinglyLinkedList<T>
+    ): SinglyLinkedList<T> => {
+      const newAcc = new SinglyLinkedList(
+        new SinglyLinkedListNode(listHead.value, acc.head)
+      );
+
+      if (listHead.next == null) return newAcc;
+
+      return reverseTailRecursiveAux(listHead.next, newAcc);
+    };
+
+    return reverseTailRecursiveAux(this.head, new SinglyLinkedList());
+  }
 }

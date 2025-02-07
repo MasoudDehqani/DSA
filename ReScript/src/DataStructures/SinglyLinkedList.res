@@ -194,9 +194,12 @@ module SinglyLinkedListV2 = {
 
 type rec singlyLinkedList<'a> = Empty | Node('a, singlyLinkedList<'a>)
 
+exception EmptyList(string)
+exception OutOfBoundIndex(string)
+
 let rec read = (lst: singlyLinkedList<'a>, index: int): option<'a> => {
   if index < 0 {
-    None
+    raise(Invalid_argument("negative index"))
   } else {
     switch lst {
     | Empty => None
@@ -206,7 +209,7 @@ let rec read = (lst: singlyLinkedList<'a>, index: int): option<'a> => {
 }
 
 let search = (lst: singlyLinkedList<'a>, val: 'a): option<int> => {
-  let rec searchAux = (lst: singlyLinkedList<'a>, val: 'a, currentIndex: int) => {
+  let rec searchAux = (lst, val, currentIndex) => {
     switch lst {
     | Empty => None
     | Node(head, tail) => val === head ? Some(currentIndex) : searchAux(tail, val, currentIndex + 1)
@@ -227,42 +230,60 @@ let prepend = (lst: singlyLinkedList<'a>, val: 'a): singlyLinkedList<'a> => {
   Node(val, lst)
 }
 
-let rec insert = (lst: singlyLinkedList<'a>, val: 'a, index: int): singlyLinkedList<'a> => {
-  switch lst {
-  | Empty => index === 0 ? Node(val, lst) : lst
-  | Node(head, tail) => index === 0 ? Node(val, lst) : Node(head, insert(tail, val, index - 1))
+let insert = (lst: singlyLinkedList<'a>, val: 'a, index: int): singlyLinkedList<'a> => {
+  let rec insertAux = (lst, val, index) => {
+    switch lst {
+    | Empty => index === 0 ? Node(val, Empty) : raise(OutOfBoundIndex("out of bound index"))
+    | Node(head, tail) =>
+      index === 0 ? Node(val, Node(head, tail)) : Node(head, insertAux(tail, val, index - 1))
+    }
+  }
+
+  if index < 0 {
+    raise(Invalid_argument("negative index"))
+  } else {
+    insertAux(lst, val, index)
   }
 }
 
-let rec delete = (lst: singlyLinkedList<'a>, index: int): singlyLinkedList<'a> => {
-  switch lst {
-  | Empty => index === 0 ? Empty : lst
-  | Node(head, tail) => index === 0 ? tail : Node(head, delete(tail, index - 1))
+let delete = (lst: singlyLinkedList<'a>, index: int): singlyLinkedList<'a> => {
+  let rec deleteAux = (lst, index) => {
+    switch lst {
+    | Empty => raise(OutOfBoundIndex("out of bound index"))
+    | Node(head, tail) => index === 0 ? tail : Node(head, deleteAux(tail, index - 1))
+    }
+  }
+
+  if index < 0 {
+    raise(Invalid_argument("negative index"))
+  } else if lst === Empty {
+    raise(EmptyList("deletion from an empty list"))
+  } else {
+    deleteAux(lst, index)
   }
 }
 
 let rec pop = (lst: singlyLinkedList<'a>): singlyLinkedList<'a> => {
   switch lst {
-  | Empty => Empty
-  | Node(head, tail) => tail === Empty ? Empty : Node(head, pop(tail))
+  | Empty => raise(EmptyList("cannot pop from an empty list"))
+  | Node(_head, Empty) => Empty
+  | Node(head, tail) => Node(head, pop(tail))
   }
 }
 
 let rec peek = (lst: singlyLinkedList<'a>): option<'a> => {
   switch lst {
   | Empty => None
-  | Node(head, tail) => tail === Empty ? Some(head) : peek(tail)
+  | Node(head, Empty) => Some(head)
+  | Node(_head, tail) => peek(tail)
   }
 }
 
 let reverse = (lst: singlyLinkedList<'a>): singlyLinkedList<'a> => {
-  let rec reverseAux = (lst, acc) => {
+  let rec reverseAux = (lst: singlyLinkedList<'a>, acc: singlyLinkedList<'a>) => {
     switch lst {
     | Empty => acc
-    | Node(head, tail) => {
-        let newAcc = Node(head, acc)
-        reverseAux(tail, newAcc)
-      }
+    | Node(head, tail) => reverseAux(tail, Node(head, acc))
     }
   }
 

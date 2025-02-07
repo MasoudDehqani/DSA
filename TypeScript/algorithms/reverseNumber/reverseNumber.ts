@@ -21,7 +21,7 @@ export function reverseNumber(
   return reverseNumber(q, digitCount - 1) + (n % 10) * 10 ** (digitCount - 1);
 }
 
-const reverseNumberTailRecursiveAux = (n: number, acc: number) => {
+const reverseNumberTailRecursiveAux = (n: number, acc: number): number => {
   if (n === 0) return acc;
 
   const quotient = Math.trunc(n / 10);
@@ -33,7 +33,7 @@ const reverseNumberTailRecursiveAux = (n: number, acc: number) => {
   return reverseNumberTailRecursiveAux(quotient, acc * 10 + rem);
 };
 
-export function reverseNumberTailRecursive(n: number) {
+export function reverseNumberTailRecursive(n: number): number {
   if (!Number.isInteger(n)) {
     throw new Error("Input must be an integer.");
   }

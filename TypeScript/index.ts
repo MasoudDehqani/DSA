@@ -1,3 +1,3 @@
-import { powTailRecursiveSquaring } from "./algorithms/pow/pow.js";
+import { reverseNumberTailRecursive } from "./algorithms/reverseNumber/reverseNumber.js";
 
-console.log(powTailRecursiveSquaring(-2, 7));
+console.log(reverseNumberTailRecursive(-1230));

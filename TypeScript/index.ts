@@ -1,5 +1,5 @@
-import { isNumberPalindrome } from "./algorithms/isNumberPalindrome/isNumberPalindrome.js";
-import isStringPalindrome from "./algorithms/isStringPalindrome/isStringPalindrome.js";
+import flattenArray from "./algorithms/flattenArray/flattenArray.js";
 
-console.log(isStringPalindrome("123321"));
-console.log(isNumberPalindrome(123321));
+console.log(
+  flattenArray([1, [2, [[[3, 4, 5]]], [6]], 7, 8, [9, 10, [11, [[12]]]], [13]])
+);

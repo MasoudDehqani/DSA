@@ -26,10 +26,22 @@ let my_list5 = Node (1, Node (1, Node (2, Node (3, Node (4, Nil))))) *)
 (* let () = append 4 my_list |> display *)
 (* let () = insert 4 3 my_list |> display *)
 (* let () = insert 4 3 my_list |> reverse |> display *)
-let m = map (fun n -> n * 2) my_list
-let n = map (fun n -> (n |> string_of_int) ^ "3" |> int_of_string) my_list
-let () = m |> display
-let () = n |> display
+(* let m = map (fun n -> n * 2) my_list *)
+
+(* let n = map (fun n -> (n |> string_of_int) ^ "3" |> int_of_string) my_list *)
+let my_list_s = Node ("H", Node ("E", Node ("L", Node ("L", Node ("O", Nil)))))
+let fsl = fold_left (fun acc curr -> acc ^ curr) "" my_list_s
+let fsr = fold_right (fun curr acc -> acc ^ curr) my_list_s ""
+(* let () = m |> display *)
+
+(* let () = n |> display *)
+
+let fil = fold_left (fun acc curr -> acc - curr) 0 my_list
+let fir = fold_right (fun curr acc -> curr - acc) my_list 0
+let () = fsl |> print_endline
+let () = fsr |> print_endline
+let () = fil |> string_of_int |> print_endline
+let () = fir |> string_of_int |> print_endline
 
 (* let rec print_stack (stack : int Stack.t) =
   match stack with

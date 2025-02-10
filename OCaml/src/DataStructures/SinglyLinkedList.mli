@@ -12,3 +12,5 @@ val length : 'a t -> int
 val reverse : 'a t -> 'a t
 val display : int t -> unit
 val map : ('a -> 'b) -> 'a t -> 'b t
+val fold_left : ('b -> 'a -> 'b) -> 'b -> 'a t -> 'b
+val fold_right : ('a -> 'b -> 'b) -> 'a t -> 'b -> 'b

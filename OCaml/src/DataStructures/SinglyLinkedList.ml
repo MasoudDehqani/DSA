@@ -60,3 +60,12 @@ let reverse lst = reverse_aux lst Nil
 let rec map fn = function
   | Nil -> Nil
   | Node (head, tail) -> Node (fn head, map fn tail)
+
+let rec fold_left fn acc = function
+  | Nil -> acc
+  | Node (head, tail) -> fold_left fn (fn acc head) tail
+
+let rec fold_right fn lst acc =
+  match lst with
+  | Nil -> acc
+  | Node (head, tail) -> fn head (fold_right fn tail acc)

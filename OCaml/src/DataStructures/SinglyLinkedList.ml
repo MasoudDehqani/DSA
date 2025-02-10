@@ -44,7 +44,8 @@ let rec display_aux lst acc =
   match lst with
   | Nil -> acc ^ "Nil"
   | Node (head, tail) ->
-      let new_acc = acc ^ (head |> string_of_int) ^ " -> " in
+      let string_of_head = head |> string_of_int in
+      let new_acc = acc ^ string_of_head ^ " -> " in
       display_aux tail new_acc
 
 let display lst = print_endline (display_aux lst "")

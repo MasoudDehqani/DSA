@@ -24,11 +24,12 @@ let rec append value = function
 
 let prepend value lst = Node (value, lst)
 
-let rec insert value index = function
-  | Nil -> if index = 0 then Node (value, Nil) else Nil
-  | Node (head, tail) ->
-      if index = 0 then Node (value, Node (head, tail))
-      else Node (head, insert value (index - 1) tail)
+let rec insert value index lst =
+  match (lst, index = 0) with
+  | Nil, false -> Nil
+  | Nil, true -> Node (value, Nil)
+  | Node (head, tail), false -> Node (head, insert value (index - 1) tail)
+  | Node (head, tail), true -> Node (value, Node (head, tail))
 
 let rec delete index = function
   | Nil -> Nil
@@ -37,7 +38,7 @@ let rec delete index = function
 
 let rec length = function
   | Nil -> 0
-  | Node (_head, tail) -> length tail + 1
+  | Node (_, tail) -> length tail + 1
 
 let rec display_aux lst acc =
   match lst with
@@ -47,3 +48,10 @@ let rec display_aux lst acc =
       display_aux tail new_acc
 
 let display lst = print_endline (display_aux lst "")
+
+let rec reverse_aux lst acc =
+  match lst with
+  | Nil -> acc
+  | Node (head, tail) -> reverse_aux tail @@ Node (head, acc)
+
+let reverse lst = reverse_aux lst Nil

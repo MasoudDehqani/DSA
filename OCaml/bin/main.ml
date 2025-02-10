@@ -25,6 +25,7 @@ let my_list5 = Node (1, Node (1, Node (2, Node (3, Node (4, Nil))))) *)
 let () = prepend 0 my_list |> display
 let () = append 4 my_list |> display
 let () = insert 4 3 my_list |> display
+let () = insert 4 3 my_list |> reverse |> display
 
 (* let rec print_stack (stack : int Stack.t) =
   match stack with

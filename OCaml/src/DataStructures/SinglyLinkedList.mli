@@ -9,4 +9,5 @@ val prepend : 'a -> 'a t -> 'a t
 val insert : 'a -> int -> 'a t -> 'a t
 val delete : int -> 'a t -> 'a t
 val length : 'a t -> int
+val reverse : 'a t -> 'a t
 val display : int t -> unit

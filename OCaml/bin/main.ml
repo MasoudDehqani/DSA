@@ -22,10 +22,14 @@ let my_list3 = Node (1, Node (2, Node (3, Node (3, Node (4, Nil)))))
 let my_list4 = Node (1, Nil)
 let my_list5 = Node (1, Node (1, Node (2, Node (3, Node (4, Nil))))) *)
 
-let () = prepend 0 my_list |> display
-let () = append 4 my_list |> display
-let () = insert 4 3 my_list |> display
-let () = insert 4 3 my_list |> reverse |> display
+(* let () = prepend 0 my_list |> display *)
+(* let () = append 4 my_list |> display *)
+(* let () = insert 4 3 my_list |> display *)
+(* let () = insert 4 3 my_list |> reverse |> display *)
+let m = map (fun n -> n * 2) my_list
+let n = map (fun n -> (n |> string_of_int) ^ "3" |> int_of_string) my_list
+let () = m |> display
+let () = n |> display
 
 (* let rec print_stack (stack : int Stack.t) =
   match stack with

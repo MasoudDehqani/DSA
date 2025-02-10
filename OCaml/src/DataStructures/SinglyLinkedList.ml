@@ -56,3 +56,7 @@ let rec reverse_aux lst acc =
   | Node (head, tail) -> reverse_aux tail @@ Node (head, acc)
 
 let reverse lst = reverse_aux lst Nil
+
+let rec map fn = function
+  | Nil -> Nil
+  | Node (head, tail) -> Node (fn head, map fn tail)

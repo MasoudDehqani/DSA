@@ -289,3 +289,14 @@ let reverse = (lst: singlyLinkedList<'a>): singlyLinkedList<'a> => {
 
   reverseAux(lst, Empty)
 }
+
+let display = (lst: singlyLinkedList<int>): unit => {
+  let rec displayAux = (lst, acc) => {
+    switch lst {
+    | Empty => acc ++ "Empty"
+    | Node(head, tail) => displayAux(tail, acc ++ `${head->Int.toString} -> `)
+    }
+  }
+
+  Console.log(displayAux(lst, ""))
+}

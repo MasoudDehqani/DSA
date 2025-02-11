@@ -69,3 +69,9 @@ let rec fold_right fn lst acc =
   match lst with
   | Nil -> acc
   | Node (head, tail) -> fn head (fold_right fn tail acc)
+
+let rec filter fn = function
+  | Nil -> Nil
+  | Node (head, tail) ->
+      let is_true = fn head in
+      if is_true then Node (head, filter fn tail) else filter fn tail

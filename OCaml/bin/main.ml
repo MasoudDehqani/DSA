@@ -16,10 +16,9 @@ open SinglyLinkedList
 (* let () = v3 |> string_of_int |> print_endline *)
 
 let my_list = Node (1, Node (2, Node (3, Nil)))
-
-(* let my_list2 = Nil
+let my_list2 = Nil
 let my_list3 = Node (1, Node (2, Node (3, Node (3, Node (4, Nil)))))
-let my_list4 = Node (1, Nil)
+(* let my_list4 = Node (1, Nil)
 let my_list5 = Node (1, Node (1, Node (2, Node (3, Node (4, Nil))))) *)
 
 (* let () = prepend 0 my_list |> display *)
@@ -42,6 +41,9 @@ let () = fsl |> print_endline
 let () = fsr |> print_endline
 let () = fil |> string_of_int |> print_endline
 let () = fir |> string_of_int |> print_endline
+let () = filter (fun n -> n mod 2 = 0) my_list |> display
+let () = filter (fun n -> n < 3) my_list2 |> display
+let () = filter (fun n -> n != 3) my_list3 |> display
 
 (* let rec print_stack (stack : int Stack.t) =
   match stack with

@@ -13,5 +13,7 @@ let myList6 = Node(1, Empty)
 // Console.log(read(myList6, 1))
 // Console.log(deleteManS(myList, 0))
 // Console.log(display(myList))
-myList->delete(1)->display
-let _ = myList4->reverse->display
+// myList->delete(1)->display
+// let _ = myList4->reverse->display
+
+let _ = myList4->filter(n => n < 3)->display

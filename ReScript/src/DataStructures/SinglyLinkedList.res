@@ -300,3 +300,17 @@ let display = (lst: singlyLinkedList<int>): unit => {
 
   Console.log(displayAux(lst, ""))
 }
+
+let rec map = (lst: singlyLinkedList<'a>, fn: 'a => 'b): singlyLinkedList<'b> => {
+  switch lst {
+  | Empty => Empty
+  | Node(head, tail) => Node(fn(head), map(tail, fn))
+  }
+}
+
+let rec filter = (lst: singlyLinkedList<'a>, fn: 'a => bool): singlyLinkedList<'a> => {
+  switch lst {
+  | Empty => Empty
+  | Node(head, tail) => fn(head) ? Node(head, filter(tail, fn)) : filter(tail, fn)
+  }
+}

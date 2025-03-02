@@ -9,6 +9,7 @@ let myList3 = Node(1, Node(2, Node(3, Node(3, Empty))))
 let myList4 = Node(1, Node(2, Node(3, Node(4, Empty))))
 let myList5 = Empty
 let myList6 = Node(1, Empty)
+let myList7 = Node("H", Node("E", Node("L", Node("L", Node("O", Empty)))))
 
 // Console.log(read(myList6, 1))
 // Console.log(deleteManS(myList, 0))
@@ -17,3 +18,6 @@ let myList6 = Node(1, Empty)
 // let _ = myList4->reverse->display
 
 let _ = myList4->filter(n => n < 3)->display
+let _ = reduceLeft(myList4, (acc, curr) => acc + curr, 0)->Console.log
+let _ = reduceLeft(myList7, (acc, curr) => acc ++ curr, "")->Console.log
+let _ = reduceRight(myList7, (acc, curr) => acc ++ curr, "")->Console.log

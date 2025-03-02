@@ -314,3 +314,17 @@ let rec filter = (lst: singlyLinkedList<'a>, fn: 'a => bool): singlyLinkedList<'
   | Node(head, tail) => fn(head) ? Node(head, filter(tail, fn)) : filter(tail, fn)
   }
 }
+
+let rec reduceLeft = (lst: singlyLinkedList<'a>, fn: ('b, 'a) => 'b, acc: 'b): 'b => {
+  switch lst {
+  | Empty => acc
+  | Node(head, tail) => reduceLeft(tail, fn, fn(acc, head))
+  }
+}
+
+let rec reduceRight = (lst: singlyLinkedList<'a>, fn: ('b, 'a) => 'b, acc: 'b): 'b => {
+  switch lst {
+  | Empty => acc
+  | Node(head, tail) => fn(reduceRight(tail, fn, acc), head)
+  }
+}

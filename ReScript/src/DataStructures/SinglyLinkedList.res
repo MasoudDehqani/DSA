@@ -290,7 +290,7 @@ let reverse = (lst: singlyLinkedList<'a>): singlyLinkedList<'a> => {
   reverseAux(lst, Empty)
 }
 
-let display = (lst: singlyLinkedList<int>): unit => {
+let displayIntList = (lst: singlyLinkedList<int>): unit => {
   let rec displayAux = (lst, acc) => {
     switch lst {
     | Empty => acc ++ "Empty"

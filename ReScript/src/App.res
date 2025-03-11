@@ -17,7 +17,7 @@ let myList7 = Node("H", Node("E", Node("L", Node("L", Node("O", Empty)))))
 // myList->delete(1)->display
 // let _ = myList4->reverse->display
 
-let _ = myList4->filter(n => n < 3)->display
-let _ = reduceLeft(myList4, (acc, curr) => acc + curr, 0)->Console.log
-let _ = reduceLeft(myList7, (acc, curr) => acc ++ curr, "")->Console.log
-let _ = reduceRight(myList7, (acc, curr) => acc ++ curr, "")->Console.log
+let _ = myList4->filter(n => n <= 3)->displayIntList
+// let _ = reduceLeft(myList4, (acc, curr) => acc + curr, 0)->Console.log
+// let _ = reduceLeft(myList7, (acc, curr) => acc ++ curr, "")->Console.log
+// let _ = reduceRight(myList7, (acc, curr) => acc ++ curr, "")->Console.log

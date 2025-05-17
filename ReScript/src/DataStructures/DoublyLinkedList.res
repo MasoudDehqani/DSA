@@ -1,1 +1,1 @@
-type rec doublyLinkedList<'a, 'b> = Empty | Node('a, 'b, doublyLinkedList<'a, 'b>)
+type rec doublyLinkedList<'a> = Empty | Node('a, doublyLinkedList<'a>, doublyLinkedList<'a>)

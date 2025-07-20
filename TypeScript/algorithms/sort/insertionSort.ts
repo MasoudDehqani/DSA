@@ -1,13 +1,12 @@
 export default function insertionSort(arr: Array<number>, arrayLength: number) {
-  for (let i = 0; i < arrayLength - 1; i++) {
-    const key = arr[i + 1];
-    for (let j = i - 1; j > 0; j--) {
+  for (let i = 1; i < arrayLength; i++) {
+    const key = arr[i];
+    for (let j = i - 1; j >= 0; j--) {
       if (key < arr[j]) {
-        arr[i + 1] = arr[j]
-        arr[j] = key
+        [arr[j], arr[j + 1]] = [key, arr[j]];
       }
     }
   }
 
-  return arr
+  return arr;
 }

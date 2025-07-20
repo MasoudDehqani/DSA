@@ -1,5 +1,3 @@
-import flattenArray from "./algorithms/flattenArray/flattenArray.js";
+import insertionSort from "./algorithms/sort/insertionSort.js";
 
-console.log(
-  flattenArray([1, [2, [[[3, 4, 5]]], [6]], 7, 8, [9, 10, [11, [[12]]]], [13]])
-);
+console.log(insertionSort([2, 3, 1, 9, 0, 8], 6))

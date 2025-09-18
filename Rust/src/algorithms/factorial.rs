@@ -1,7 +1,7 @@
+#[allow(dead_code)]
 pub fn factorial(n: u64) -> u64 {
-    if n == 0 || n == 1 {
-        return 1;
+    match n < 2 {
+        true => 1,
+        false => factorial(n - 1) * n,
     }
-
-    factorial(n - 1) * n
 }

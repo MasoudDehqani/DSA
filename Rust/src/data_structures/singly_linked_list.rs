@@ -1,30 +1,23 @@
-#[derive(Debug)]
-pub enum SinglyLinkedList<T> {
-    Nil,
-    Node(T, Box<SinglyLinkedList<T>>),
+pub trait List<T> {
+    fn read(&self, index: usize) -> Option<&T>;
 }
 
-use crate::SinglyLinkedList::{Nil, Node};
+pub enum SinglyLinkedList<T> {
+    Node(T, Box<SinglyLinkedList<T>>),
+    Nil,
+}
 
-impl<T: Copy> SinglyLinkedList<T> {
-    pub fn read(&self, index: u32) -> Option<T> {
-        fn read_aux<T: Copy>(
-            lst: &SinglyLinkedList<T>,
-            index: u32,
-            current_index: u32,
-        ) -> Option<T> {
-            match lst {
-                Nil => None,
-                Node(v, nxt) => {
-                    if index == current_index {
-                        Some(*v)
-                    } else {
-                        read_aux(nxt, index, current_index + 1)
-                    }
+impl<T> List<T> for SinglyLinkedList<T> {
+    fn read(&self, index: usize) -> Option<&T> {
+        match self {
+            SinglyLinkedList::Nil => None,
+            SinglyLinkedList::Node(head, tail) => {
+                if index == 0 {
+                    Some(head)
+                } else {
+                    tail.read(index - 1)
                 }
             }
         }
-
-        read_aux(&self, index, 0)
     }
 }

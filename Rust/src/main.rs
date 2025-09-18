@@ -10,6 +10,9 @@ fn main() {
         1,
         Box::new(Node(2, Box::new(Node(3, Box::new(Node(4, Box::new(Nil))))))),
     );
+    println!("{}", lst.size());
     let v1 = lst.read(2);
     println!("{:?}", v1);
+    println!("{:?}", lst.reverse());
+    println!("{:?}", lst)
 }

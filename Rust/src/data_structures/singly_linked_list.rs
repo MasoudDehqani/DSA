@@ -44,4 +44,18 @@ impl<T: Copy> List<T> for SinglyLinkedList<T> {
     fn reverse(&self) -> Self {
         self.reverse_aux(Nil)
     }
+
+    // fn reverse(&self) -> Self {
+    //     fn reverse_aux<T: Copy>(
+    //         lst: &SinglyLinkedList<T>,
+    //         acc: SinglyLinkedList<T>,
+    //     ) -> SinglyLinkedList<T> {
+    //         match lst {
+    //             Nil => acc,
+    //             Node(head, tail) => reverse_aux(tail, Node(head.clone(), Box::new(acc))),
+    //         }
+    //     }
+
+    //     reverse_aux(self, Nil)
+    // }
 }

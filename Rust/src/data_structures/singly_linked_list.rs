@@ -13,10 +13,10 @@ pub enum SinglyLinkedList<T> {
 use SinglyLinkedList::*;
 
 impl<T: Copy> SinglyLinkedList<T> {
-    fn reverse_aux(&self, acc: SinglyLinkedList<T>) -> SinglyLinkedList<T> {
+    fn reverse_helper(&self, acc: SinglyLinkedList<T>) -> SinglyLinkedList<T> {
         match self {
             Nil => acc,
-            Node(head, tail) => tail.reverse_aux(Node(head.clone(), Box::new(acc))),
+            Node(head, tail) => tail.reverse_helper(Node(head.clone(), Box::new(acc))),
         }
     }
 }
@@ -42,7 +42,7 @@ impl<T: Copy> List<T> for SinglyLinkedList<T> {
     }
 
     fn reverse(&self) -> Self {
-        self.reverse_aux(Nil)
+        self.reverse_helper(Nil)
     }
 
     // fn reverse(&self) -> Self {

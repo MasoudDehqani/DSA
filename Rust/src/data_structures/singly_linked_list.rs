@@ -1,7 +1,8 @@
-pub trait List<T: Copy> {
+pub trait List<T: Copy + PartialEq> {
     fn read(&self, index: usize) -> Option<&T>;
     fn size(&self) -> usize;
     fn reverse(&self) -> Self;
+    fn find(&self, val: T) -> Option<usize>;
 }
 
 #[derive(Debug)]
@@ -21,7 +22,7 @@ impl<T: Copy> SinglyLinkedList<T> {
     }
 }
 
-impl<T: Copy> List<T> for SinglyLinkedList<T> {
+impl<T: Copy + PartialEq> List<T> for SinglyLinkedList<T> {
     fn read(&self, index: usize) -> Option<&T> {
         match (self, index == 0) {
             (Nil, _) => None,
@@ -43,6 +44,22 @@ impl<T: Copy> List<T> for SinglyLinkedList<T> {
 
     fn reverse(&self) -> Self {
         self.reverse_helper(Nil)
+    }
+
+    fn find(&self, val: T) -> Option<usize> {
+        let mut current_index = 0_usize;
+        let mut current_node = self;
+
+        while let Node(head, tail) = current_node {
+            if val == *head {
+                return Some(current_index);
+            } else {
+                current_node = tail;
+                current_index += 1;
+            }
+        }
+
+        None
     }
 
     // fn reverse(&self) -> Self {

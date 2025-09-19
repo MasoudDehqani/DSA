@@ -14,5 +14,6 @@ fn main() {
     let v1 = lst.read(2);
     println!("{:?}", v1);
     println!("{:?}", lst.reverse());
-    println!("{:?}", lst)
+    println!("{:?}", lst);
+    println!("{:?}", lst.find(1))
 }

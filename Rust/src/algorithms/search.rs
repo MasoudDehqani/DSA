@@ -1,11 +1,13 @@
-fn binary_search_helper(
-    arr: &[i32],
-    value: i32,
-    start: usize,
-    middle: usize,
-    end: usize,
-) -> Option<usize> {
-    if start >= end {
+use std::cmp::Ordering;
+
+fn binary_search_helper(arr: &[i32], value: i32, start: usize, end: usize) -> Option<usize> {
+    if start > end {
+        return None;
+    }
+
+    let middle = (start + end).div_ceil(2);
+
+    if start == end {
         if value == arr[middle] {
             return Some(middle);
         } else {
@@ -13,14 +15,10 @@ fn binary_search_helper(
         }
     }
 
-    if value == arr[middle] {
-        Some(middle)
-    } else if value > arr[middle] {
-        let new_middle = (end + middle) / 2;
-        binary_search_helper(arr, value, middle, new_middle, end)
-    } else {
-        let new_middle = (middle + start) / 2;
-        binary_search_helper(arr, value, start, new_middle, middle)
+    match value.cmp(&arr[middle]) {
+        Ordering::Equal => Some(middle),
+        Ordering::Greater => binary_search_helper(arr, value, middle + 1, end),
+        Ordering::Less => binary_search_helper(arr, value, start, middle - 1),
     }
 }
 
@@ -29,10 +27,7 @@ pub fn binary_search(arr: &[i32], value: i32) -> Option<usize> {
         return None;
     }
 
-    let middle = arr.len() / 2;
-    let end = arr.len() - 1;
-
-    binary_search_helper(arr, value, 0, middle, end)
+    binary_search_helper(arr, value, 0, arr.len() - 1)
 }
 
 #[cfg(test)]

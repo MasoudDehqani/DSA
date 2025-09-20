@@ -1,13 +1,9 @@
 use std::cmp::Ordering;
 
 fn binary_search_helper(arr: &[i32], value: i32, start: usize, end: usize) -> Option<usize> {
-    if start > end {
-        return None;
-    }
-
     let middle = (start + end).div_ceil(2);
 
-    if start == end {
+    if start >= end {
         if value == arr[middle] {
             return Some(middle);
         } else {

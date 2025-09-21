@@ -1,2 +1,21 @@
+Main operations on a data structure:
+- read
+- search
+- insertion
+- deletion
+
+Categories of time complexityies in terms of Big O:
+- O(1) -> constatnt time
+- O(n) -> linear time
+- O(log n) -> logarithmic time
+
+- array VS set -> only differs on insertion
+
 - The whole beauty of binary search is that each inspection eliminates half of the remaining elements. Therefore, each time we double the amount
 of data, we add only one step
+
+Logarithm
+- inverse of exponentiation
+- how many times the base needs to be multiplied by itself to reach the number specified in front of log
+- what exponent the base should be raised to reach the number specified in front of log
+- how many times the number specified in front of log should be divided by the base to reach 1

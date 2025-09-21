@@ -17,7 +17,8 @@ fn main() {
     // println!("{:?}", lst);
     // println!("{:?}", lst.find(1));
 
-    let f = algorithms::search::binary_search(&[4], 4);
+    // let f = algorithms::search::binary_search(&[4], 4);
+    let r = algorithms::prime::is_prime(4);
 
-    println!("{:?}", f);
+    println!("{:?}", r);
 }

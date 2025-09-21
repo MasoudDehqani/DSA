@@ -18,31 +18,47 @@ use std::cmp::Ordering;
 //     }
 // }
 
-fn binary_search_helper(arr: &[i32], value: i32, start: usize, end: usize) -> Option<usize> {
-    if start > end {
-        return None;
-    }
+// fn binary_search_helper(arr: &[i32], value: i32, start: usize, end: usize) -> Option<usize> {
+//     if start > end {
+//         return None;
+//     }
 
-    let middle = (start + end) / 2;
+//     let middle = (start + end) / 2;
 
-    match value.cmp(&arr[middle]) {
-        Ordering::Equal => Some(middle),
-        Ordering::Greater => binary_search_helper(arr, value, middle + 1, end),
-        Ordering::Less => {
-            if middle == 0 {
-                None // prevent underflow
-            } else {
-                binary_search_helper(arr, value, start, middle - 1)
-            }
-        }
-    }
-}
+//     match value.cmp(&arr[middle]) {
+//         Ordering::Equal => Some(middle),
+//         Ordering::Greater => binary_search_helper(arr, value, middle + 1, end),
+//         Ordering::Less => {
+//             if middle == 0 {
+//                 None // prevent underflow
+//             } else {
+//                 binary_search_helper(arr, value, start, middle - 1)
+//             }
+//         }
+//     }
+// }
+
+// pub fn binary_search(arr: &[i32], value: i32) -> Option<usize> {
+//     match arr.is_empty() {
+//         true => None,
+//         false => binary_search_helper(arr, value, 0, arr.len() - 1),
+//     }
+// }
 
 pub fn binary_search(arr: &[i32], value: i32) -> Option<usize> {
-    match arr.is_empty() {
-        true => None,
-        false => binary_search_helper(arr, value, 0, arr.len() - 1),
+    let mut start = 0;
+    let mut end = arr.len();
+
+    while start < end {
+        let middle = (start + end) / 2;
+        match value.cmp(&arr[middle]) {
+            Ordering::Equal => return Some(middle),
+            Ordering::Greater => start = middle + 1,
+            Ordering::Less => end = middle,
+        }
     }
+
+    None
 }
 
 #[cfg(test)]
@@ -132,8 +148,8 @@ mod test {
         assert_eq!(None, binary_search(arr, 5));
 
         let arr2 = &[2, 2, 2, 2];
-        // assert_eq!(Some(2), binary_search(arr2, 2));
-        assert_eq!(Some(1), binary_search(arr2, 2));
+        assert_eq!(Some(2), binary_search(arr2, 2));
+        // assert_eq!(Some(1), binary_search(arr2, 2));
         assert_eq!(None, binary_search(arr2, 1));
         assert_eq!(None, binary_search(arr2, 3));
     }

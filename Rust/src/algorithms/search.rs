@@ -71,13 +71,52 @@ mod test {
     #[test]
     fn array_with_negative_and_positive_numbers() {
         let arr: [i32; 1000] = (-500..500).collect::<Vec<i32>>().try_into().unwrap();
+        assert_eq!(Some(0), binary_search(&arr, -500));
         assert_eq!(Some(388), binary_search(&arr, -112));
         assert_eq!(Some(999), binary_search(&arr, 499));
+        assert_eq!(None, binary_search(&arr, 500));
+
+        let arr2: [i32; 1001] = (-500..=500).collect::<Vec<i32>>().try_into().unwrap();
+        assert_eq!(Some(0), binary_search(&arr2, -500));
+        assert_eq!(Some(735), binary_search(&arr2, 235));
+        assert_eq!(Some(1000), binary_search(&arr2, 500));
+        assert_eq!(None, binary_search(&arr2, 501));
     }
 
     #[test]
     fn ordered_non_consecutive_array() {
         let arr = &[3, 8, 26, 89, 117, 259, 808, 1222];
         assert_eq!(Some(4), binary_search(arr, 117));
+        assert_eq!(Some(0), binary_search(arr, 3));
+        assert_eq!(Some(7), binary_search(arr, 1222));
+        assert_eq!(None, binary_search(arr, -1));
+        assert_eq!(None, binary_search(arr, 1223));
+    }
+
+    #[test]
+    fn very_long_array() {
+        let arr: [i32; 100_000] = (-50_000..50_000).collect::<Vec<i32>>().try_into().unwrap();
+        assert_eq!(Some(0), binary_search(&arr, -50_000));
+        assert_eq!(Some(26970), binary_search(&arr, -23_030));
+        assert_eq!(Some(99999), binary_search(&arr, 49999));
+        assert_eq!(None, binary_search(&arr, -50_001));
+        assert_eq!(None, binary_search(&arr, 50_000));
+    }
+
+    #[test]
+    fn array_with_duplicates() {
+        let arr = &[1, 1, 2, 3, 4, 4, 4];
+        assert_eq!(Some(3), binary_search(arr, 3));
+        assert_eq!(Some(1), binary_search(arr, 1));
+        assert_eq!(Some(5), binary_search(arr, 4));
+        assert_eq!(None, binary_search(arr, -1));
+        assert_eq!(None, binary_search(arr, 5));
+
+        let arr2 = &[2, 2, 2, 2];
+        assert_eq!(Some(2), binary_search(arr2, 2));
+        // assert_eq!(Some(0), binary_search(arr, 1));
+        // assert_eq!(Some(6), binary_search(arr, 4));
+        assert_eq!(None, binary_search(arr2, 1));
+        assert_eq!(None, binary_search(arr2, 3));
     }
 }

@@ -1,0 +1,2 @@
+- The whole beauty of binary search is that each inspection eliminates half of the remaining elements. Therefore, each time we double the amount
+of data, we add only one step

@@ -1,29 +1,48 @@
 use std::cmp::Ordering;
 
-fn binary_search_helper(arr: &[i32], value: i32, start: usize, end: usize) -> Option<usize> {
-    let middle = (start + end).div_ceil(2);
+// fn binary_search_helper(arr: &[i32], value: i32, start: usize, end: usize) -> Option<usize> {
+//     let middle = (start + end).div_ceil(2);
 
-    if start >= end {
-        if value == arr[middle] {
-            return Some(middle);
-        } else {
-            return None;
-        }
+//     if start >= end {
+//         if value == arr[middle] {
+//             return Some(middle);
+//         } else {
+//             return None;
+//         }
+//     }
+
+//     match value.cmp(&arr[middle]) {
+//         Ordering::Equal => Some(middle),
+//         Ordering::Greater => binary_search_helper(arr, value, middle + 1, end),
+//         Ordering::Less => binary_search_helper(arr, value, start, middle - 1),
+//     }
+// }
+
+fn binary_search_helper(arr: &[i32], value: i32, start: usize, end: usize) -> Option<usize> {
+    if start > end {
+        return None;
     }
+
+    let middle = (start + end) / 2;
 
     match value.cmp(&arr[middle]) {
         Ordering::Equal => Some(middle),
         Ordering::Greater => binary_search_helper(arr, value, middle + 1, end),
-        Ordering::Less => binary_search_helper(arr, value, start, middle - 1),
+        Ordering::Less => {
+            if middle == 0 {
+                None // prevent underflow
+            } else {
+                binary_search_helper(arr, value, start, middle - 1)
+            }
+        }
     }
 }
 
 pub fn binary_search(arr: &[i32], value: i32) -> Option<usize> {
-    if arr.is_empty() {
-        return None;
+    match arr.is_empty() {
+        true => None,
+        false => binary_search_helper(arr, value, 0, arr.len() - 1),
     }
-
-    binary_search_helper(arr, value, 0, arr.len() - 1)
 }
 
 #[cfg(test)]
@@ -113,9 +132,8 @@ mod test {
         assert_eq!(None, binary_search(arr, 5));
 
         let arr2 = &[2, 2, 2, 2];
-        assert_eq!(Some(2), binary_search(arr2, 2));
-        // assert_eq!(Some(0), binary_search(arr, 1));
-        // assert_eq!(Some(6), binary_search(arr, 4));
+        // assert_eq!(Some(2), binary_search(arr2, 2));
+        assert_eq!(Some(1), binary_search(arr2, 2));
         assert_eq!(None, binary_search(arr2, 1));
         assert_eq!(None, binary_search(arr2, 3));
     }

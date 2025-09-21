@@ -17,7 +17,7 @@
 pub fn is_prime(n: u32) -> bool {
     let mut d = 2;
 
-    while d < n {
+    while d < n && d <= n.isqrt() {
         if n % d == 0 {
             return false;
         }

@@ -1,9 +1,10 @@
-mod algorithms;
-mod data_structures;
+#![allow(dead_code, unused_imports)]
+
 // use data_structures::singly_linked_list::{
 //     List,
 //     SinglyLinkedList::{Nil, Node},
 // };
+use rust::{algorithms, data_structures};
 
 fn main() {
     // let lst = Node(

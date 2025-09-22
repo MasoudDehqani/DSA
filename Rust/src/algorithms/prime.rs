@@ -14,15 +14,25 @@
 //     is_prime_helper(n, 2)
 // }
 
-pub fn is_prime(n: u32) -> bool {
-    let mut d = 2;
+// pub fn is_prime(n: u32) -> bool {
+//     let mut d = 2;
 
-    while d < n && d <= n.isqrt() {
-        if n % d == 0 {
+//     while d < n && d <= n.isqrt() {
+//         if n % d == 0 {
+//             return false;
+//         }
+
+//         d += 1;
+//     }
+
+//     n > 1
+// }
+
+pub fn is_prime(n: u32) -> bool {
+    for i in 2..=n.isqrt() {
+        if n % i == 0 {
             return false;
         }
-
-        d += 1;
     }
 
     n > 1

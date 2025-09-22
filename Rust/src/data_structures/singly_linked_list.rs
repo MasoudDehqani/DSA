@@ -3,6 +3,7 @@ pub trait List<T: Copy + PartialEq> {
     fn size(&self) -> usize;
     fn reverse(&self) -> Self;
     fn find(&self, val: T) -> Option<usize>;
+    fn map(&self, f: impl Fn(&T) -> T) -> Self;
 }
 
 #[derive(Debug)]
@@ -23,6 +24,13 @@ impl<T: Copy> SinglyLinkedList<T> {
 }
 
 impl<T: Copy + PartialEq> List<T> for SinglyLinkedList<T> {
+    fn map(&self, func: impl Fn(&T) -> T) -> Self {
+        match self {
+            Nil => Nil,
+            Node(head, tail) => Node(func(head), Box::new(tail.map(func))),
+        }
+    }
+
     fn read(&self, index: usize) -> Option<&T> {
         match (self, index == 0) {
             (Nil, _) => None,

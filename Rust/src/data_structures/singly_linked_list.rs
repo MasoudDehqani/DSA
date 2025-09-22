@@ -1,4 +1,4 @@
-pub trait List<T: Copy + PartialEq> {
+pub trait List<T> {
     fn read(&self, index: usize) -> Option<&T>;
     fn size(&self) -> usize;
     fn reverse(&self) -> Self;
@@ -18,7 +18,7 @@ impl<T: Copy> SinglyLinkedList<T> {
     fn reverse_helper(&self, acc: SinglyLinkedList<T>) -> SinglyLinkedList<T> {
         match self {
             Nil => acc,
-            Node(head, tail) => tail.reverse_helper(Node(head.clone(), Box::new(acc))),
+            Node(head, tail) => tail.reverse_helper(Node(*head, Box::new(acc))),
         }
     }
 }

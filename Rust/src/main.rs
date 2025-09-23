@@ -22,12 +22,14 @@ fn main() {
     // println!("{:?}", lst.find(1));
 
     // let f = algorithms::search::binary_search(&[4], 4);
-    // let r = algorithms::prime::is_prime(4);
+    // let r = algorithms::prime_numbers::is_prime(4);
 
     // println!("{:?}", r);
 
     println!(
         "{:?}",
-        algorithms::search::linear_search(&[1, 0, 5, 100, 32, 9, 0, 1, 1228], 100)
+        algorithms::recursion::palindrome::is_palindrome_string(String::from(
+            "A man, a plan, a canal: Panama"
+        ))
     )
 }

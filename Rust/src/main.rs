@@ -47,6 +47,11 @@ fn main() {
 
     println!(
         "{}",
-        algorithms::recursion::reverse_number::reverse_number_iterative(1234)
+        algorithms::recursion::reverse_number::reverse_number_non_tail_rec(1234)
     )
+
+    // println!(
+    //     "{}",
+    //     algorithms::recursion::count_digits_non_tail_rec(7231039459093487509)
+    // )
 }

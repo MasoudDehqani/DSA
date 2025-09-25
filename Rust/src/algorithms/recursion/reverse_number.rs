@@ -1,6 +1,4 @@
-use std::ops::Neg;
-
-pub fn reverse_number_recursive(n: u64) -> u64 {
+pub fn reverse_number_non_tail_rec(n: u64) -> u64 {
     if n < 10 {
         return n;
     }
@@ -9,24 +7,36 @@ pub fn reverse_number_recursive(n: u64) -> u64 {
     let rem = n % 10;
     let rem_digit_place_value = quotient.ilog10() + 1;
 
-    reverse_number_recursive(quotient) + (rem * 10_u64.pow(rem_digit_place_value))
+    reverse_number_non_tail_rec(quotient) + (rem * 10_u64.pow(rem_digit_place_value))
 }
 
-pub fn reverse_number_iterative(mut n: u64) -> u64 {
-    let mut res = 0;
+pub fn reverse_number_tail_rec(n: u64) -> u64 {
+    fn helper(n: u64, acc: u64) -> u64 {
+        if n < 1 {
+            return acc;
+        }
 
-    while n > 0 {
-        let quotient = n / 10;
-        let rem = n % 10;
-        let rem_digit_place_value = n.ilog10();
-
-        res = res + (rem * 10_u64.pow(rem_digit_place_value));
-
-        n = quotient;
+        helper(n / 10, acc * 10 + n % 10)
     }
 
-    res
+    helper(n, 0)
 }
+
+// pub fn reverse_number_iterative(mut n: u64) -> u64 {
+//     let mut res = 0;
+
+//     while n > 0 {
+//         let quotient = n / 10;
+//         let rem = n % 10;
+//         let rem_digit_place_value = n.ilog10();
+
+//         res = res + (rem * 10_u64.pow(rem_digit_place_value));
+
+//         n = quotient;
+//     }
+
+//     res
+// }
 
 // pub fn reverse_number_iterative(mut n: u64) -> u64 {
 //     let mut rev = 0;
@@ -66,7 +76,7 @@ pub fn reverse_number_iterative(mut n: u64) -> u64 {
 //     }
 // }
 
-pub fn reverse_number(mut n: i32) -> i32 {
+fn reverse_number_iterative(mut n: i32) -> i32 {
     let factor = if n.is_negative() { -1 } else { 1 };
     n = n.abs();
     let mut rev: i32 = 0;

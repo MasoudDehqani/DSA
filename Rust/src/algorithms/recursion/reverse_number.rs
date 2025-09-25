@@ -16,11 +16,7 @@ pub fn reverse_number_iterative(mut n: u64) -> u64 {
     while n > 0 {
         let quotient = n / 10;
         let rem = n % 10;
-        let rem_digit_place_value = if quotient == 0 {
-            0
-        } else {
-            quotient.ilog10() + 1
-        };
+        let rem_digit_place_value = n.ilog10();
 
         res = res + (rem * 10_u64.pow(rem_digit_place_value));
 

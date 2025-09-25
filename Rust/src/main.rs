@@ -38,5 +38,15 @@ fn main() {
     // algorithms::sort::bubble_sort(&mut arr);
     // println!("{:?}", arr);
 
-    println!("{}", algorithms::recursion::count_digits(1094758291));
+    // println!("{}", algorithms::recursion::count_digits(1094758291));
+
+    // println!(
+    //     "{}",
+    //     algorithms::recursion::reverse_number::reverse_number_recursive(100)
+    // );
+
+    println!(
+        "{}",
+        algorithms::recursion::reverse_number::reverse_number_iterative(1234)
+    )
 }

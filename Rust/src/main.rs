@@ -26,10 +26,17 @@ fn main() {
 
     // println!("{:?}", r);
 
-    println!(
-        "{:?}",
-        algorithms::recursion::palindrome::is_palindrome_string(String::from(
-            "A man, a plan, a canal: Panama"
-        ))
-    )
+    // println!(
+    //     "{:?}",
+    //     algorithms::recursion::palindrome::is_palindrome_string(String::from(
+    //         "A man, a plan, a canal: Panama"
+    //     ))
+    // )
+
+    // let mut arr = [1, 0, 120, 4, 8, 37, 93];
+
+    // algorithms::sort::bubble_sort(&mut arr);
+    // println!("{:?}", arr);
+
+    println!("{}", algorithms::recursion::count_digits(1094758291));
 }

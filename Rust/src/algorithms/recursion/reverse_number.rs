@@ -1,3 +1,5 @@
+use std::ops::Neg;
+
 pub fn reverse_number_recursive(n: u64) -> u64 {
     if n < 10 {
         return n;
@@ -34,3 +36,50 @@ pub fn reverse_number_iterative(mut n: u64) -> u64 {
 //     }
 //     rev
 // }
+
+// pub fn reverse(x: i32) -> i32 {
+//     let mut n = x.abs();
+//     let mut res: i32 = 0;
+
+//     while n > 0 {
+//         let quotient = n / 10;
+//         let rem = n % 10;
+//         let rem_digit_place_value = n.ilog10();
+
+//         let (f, is_overflowing_1) = 10_i32.overflowing_pow(rem_digit_place_value);
+//         let (s, is_overflowing_2) = rem.overflowing_mul(f);
+//         let (new_res, is_overflowing_3) = res.overflowing_add(s);
+
+//         if is_overflowing_1 || is_overflowing_2 || is_overflowing_3 {
+//             return 0;
+//         }
+
+//         res = new_res;
+
+//         n = quotient;
+//     }
+
+//     if x < 0 {
+//         -res
+//     } else {
+//         res
+//     }
+// }
+
+pub fn reverse_number(mut n: i32) -> i32 {
+    let factor = if n.is_negative() { -1 } else { 1 };
+    n = n.abs();
+    let mut rev: i32 = 0;
+
+    while n > 0 {
+        let (multiplied, is_overflowing) = rev.overflowing_mul(10);
+        if is_overflowing {
+            return 0;
+        }
+
+        rev = multiplied + n % 10;
+        n /= 10;
+    }
+
+    rev * factor
+}

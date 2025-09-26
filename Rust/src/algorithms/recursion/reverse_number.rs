@@ -76,7 +76,7 @@ pub fn reverse_number_tail_rec(n: u64) -> u64 {
 //     }
 // }
 
-fn reverse_number_iterative(mut n: i32) -> i32 {
+pub fn reverse_number_iterative(mut n: i32) -> i32 {
     let factor = if n.is_negative() { -1 } else { 1 };
     n = n.abs();
     let mut rev: i32 = 0;

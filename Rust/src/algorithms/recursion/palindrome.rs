@@ -101,6 +101,16 @@ pub fn is_palindrome_string(s: String) -> bool {
 //     true
 // }
 
+use crate::algorithms::recursion::reverse_number::reverse_number_iterative;
+
+pub fn is_palindrome_number(n: i32) -> bool {
+    if n < 0 {
+        return false;
+    }
+
+    reverse_number_iterative(n) == n
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

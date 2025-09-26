@@ -4,6 +4,7 @@ pub trait List<T> {
     fn reverse(&self) -> Self;
     fn find(&self, val: T) -> Option<usize>;
     fn map(&self, f: impl Fn(&T) -> T) -> Self;
+    fn filter(&self, f: impl Fn(&T) -> bool) -> Self;
 }
 
 #[derive(Debug)]
@@ -68,6 +69,19 @@ impl<T: Copy + PartialEq> List<T> for SinglyLinkedList<T> {
         }
 
         None
+    }
+
+    fn filter(&self, f: impl Fn(&T) -> bool) -> Self {
+        match self {
+            Nil => Nil,
+            Node(head, tail) => {
+                if f(head) {
+                    Node(*head, Box::new(tail.filter(f)))
+                } else {
+                    tail.filter(f)
+                }
+            }
+        }
     }
 
     // fn reverse(&self) -> Self {

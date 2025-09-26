@@ -11,6 +11,7 @@ fn main() {
     //     1,
     //     Box::new(Node(2, Box::new(Node(3, Box::new(Node(4, Box::new(Nil))))))),
     // );
+    // println!("{:?}", lst.filter(|e| e % 2 == 0));
     // println!("{:?}", lst.map(|e| e * 2));
     // let a = algorithms::search::binary_search(&[1, 2, 3, 4, 5, 6, 7], 5);
     // println!("{:?}", a);
@@ -45,13 +46,13 @@ fn main() {
     //     algorithms::recursion::reverse_number::reverse_number_recursive(100)
     // );
 
-    println!(
-        "{}",
-        algorithms::recursion::reverse_number::reverse_number_non_tail_rec(1234)
-    )
-
     // println!(
     //     "{}",
-    //     algorithms::recursion::count_digits_non_tail_rec(7231039459093487509)
+    //     algorithms::recursion::reverse_number::reverse_number_non_tail_rec(1234)
     // )
+
+    println!(
+        "{}",
+        algorithms::recursion::count_digits_non_tail_rec(7231039459093487509)
+    )
 }

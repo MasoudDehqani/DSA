@@ -1,4 +1,3 @@
-#[allow(dead_code)]
 pub fn fibonacci(n: u64) -> u64 {
     match n < 2 {
         true => n,

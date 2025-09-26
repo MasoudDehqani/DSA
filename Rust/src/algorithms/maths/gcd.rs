@@ -1,8 +1,6 @@
 pub fn gcd(n1: i32, n2: i32) -> i32 {
     fn helper(n1: i32, n2: i32) -> i32 {
-        if n1 == 0 {
-            return n2;
-        } else if n2 == 0 {
+        if n2 == 0 {
             return n1;
         }
 
@@ -47,6 +45,17 @@ mod tests {
     #[test]
     fn gcd_large_numbers() {
         assert_eq!(12, gcd(123456, 789012))
+    }
+
+    #[test]
+    fn gcd_both_zero() {
+        assert_eq!(0, gcd(0, 0))
+    }
+
+    #[test]
+    fn gcd_one_zero() {
+        assert_eq!(10, gcd(0, 10));
+        assert_eq!(5, gcd(5, 0))
     }
 
     #[test]

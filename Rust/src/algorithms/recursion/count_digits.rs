@@ -17,14 +17,3 @@ pub fn count_digits_non_tail_rec(n: u64) -> u64 {
 
     count_digits_non_tail_rec(n / 10) + 1
 }
-
-fn count_digits_iterative(mut n: u64) -> u64 {
-    let mut count = 1;
-
-    while n > 9 {
-        n /= 10;
-        count += 1;
-    }
-
-    count
-}

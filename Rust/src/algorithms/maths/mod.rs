@@ -1,3 +1,4 @@
+mod armstrong;
 mod count_digits;
 mod factorial;
 mod fibonacci;
@@ -8,6 +9,7 @@ mod reverse_number;
 pub use factorial::factorial;
 pub use fibonacci::fibonacci;
 pub mod palindrome;
+pub use armstrong::is_armstrong_number;
 pub use count_digits::count_digits;
 pub use gcd::gcd;
 pub use prime_numbers::is_prime;

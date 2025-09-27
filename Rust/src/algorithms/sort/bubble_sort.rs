@@ -24,23 +24,65 @@ mod tests {
     use super::*;
 
     #[test]
-    fn empty_array() {
+    fn test_bubble_sort() {
+        let mut arr = [5, 3, 8, 4, 2];
+        bubble_sort(&mut arr);
+        assert_eq!(arr, [2, 3, 4, 5, 8]);
+    }
+
+    #[test]
+    fn test_bubble_sort_empty() {
         let mut arr = [];
         bubble_sort(&mut arr);
-        assert!(arr.is_empty());
+        assert_eq!(arr, []);
     }
 
     #[test]
-    fn single_element_array() {
-        let mut arr = [2];
+    fn test_bubble_sort_single_element() {
+        let mut arr = [5];
         bubble_sort(&mut arr);
-        assert_eq!([2], arr);
+        assert_eq!(arr, [5]);
     }
 
     #[test]
-    fn multi_element_array() {
-        let mut arr = [1, 0, 120, 4, 8, 37, 93];
+    fn test_bubble_sort_sorted() {
+        let mut arr = [1, 2, 3, 4, 5];
         bubble_sort(&mut arr);
-        assert_eq!([0, 1, 4, 8, 37, 93, 120], arr);
+        assert_eq!(arr, [1, 2, 3, 4, 5]);
+    }
+
+    #[test]
+    fn test_bubble_sort_reverse() {
+        let mut arr = [5, 4, 3, 2, 1];
+        bubble_sort(&mut arr);
+        assert_eq!(arr, [1, 2, 3, 4, 5]);
+    }
+
+    #[test]
+    fn test_bubble_sort_duplicate() {
+        let mut arr = [5, 3, 8, 4, 2, 5];
+        bubble_sort(&mut arr);
+        assert_eq!(arr, [2, 3, 4, 5, 5, 8]);
+    }
+
+    #[test]
+    fn test_bubble_sort_duplicate_sorted() {
+        let mut arr = [2, 3, 4, 5, 5, 8];
+        bubble_sort(&mut arr);
+        assert_eq!(arr, [2, 3, 4, 5, 5, 8]);
+    }
+
+    #[test]
+    fn test_bubble_sort_duplicate_sorted_reverse() {
+        let mut arr = [8, 5, 5, 4, 3, 2];
+        bubble_sort(&mut arr);
+        assert_eq!(arr, [2, 3, 4, 5, 5, 8]);
+    }
+
+    #[test]
+    fn test_bubble_sort_duplicate_sorted_reverse_duplicate() {
+        let mut arr = [8, 5, 5, 4, 3, 2, 5];
+        bubble_sort(&mut arr);
+        assert_eq!(arr, [2, 3, 4, 5, 5, 5, 8]);
     }
 }

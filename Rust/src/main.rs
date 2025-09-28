@@ -51,8 +51,12 @@ fn main() {
     //     algorithms::recursion::reverse_number::reverse_number_non_tail_rec(1234)
     // )
 
-    println!(
-        "{}",
-        algorithms::recursion::count_digits_non_tail_rec(7231039459093487509)
-    )
+    // println!(
+    //     "{}",
+    //     algorithms::recursion::count_digits_non_tail_rec(7231039459093487509)
+    // )
+
+    let mut arr = [5, 3, 8, 4, 2, 5];
+    algorithms::sort::quick_sort(&mut arr);
+    println!("{:?}", arr);
 }

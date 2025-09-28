@@ -1,34 +1,67 @@
-fn helper(arr: &mut [i32], start: usize, end: usize) {
-    if start >= end {
-        return;
-    }
+// fn helper(arr: &mut [i32], start: usize, end: usize) {
+//     if start >= end {
+//         return;
+//     }
 
-    let mut pivot = end;
-    let mut i: i32 = start as i32 - 1;
-    let mut j = start;
+//     let mut pivot = end;
+//     let mut i: i32 = start as i32 - 1;
+//     let mut j = start;
 
-    while j < pivot {
-        if arr[j] >= arr[pivot] {
-            j += 1;
-            continue;
-        } else {
+//     while j < pivot {
+//         if arr[j] >= arr[pivot] {
+//             j += 1;
+//             continue;
+//         } else {
+//             i += 1;
+//             arr.swap(i as usize, j);
+//             j += 1;
+//         }
+//     }
+
+//     i += 1;
+//     arr.swap(i as usize, pivot);
+//     pivot = i as usize;
+
+//     helper(arr, start, pivot.saturating_sub(1));
+//     helper(arr, pivot + 1, end);
+// }
+
+// pub fn quick_sort(arr: &mut [i32]) {
+//     let end = arr.len().saturating_sub(1);
+//     helper(arr, 0, end);
+// }
+
+fn partition(arr: &mut [i32], start: usize, end: usize) -> usize {
+    let pivot = arr[end];
+    let mut i = start;
+
+    for j in start..end {
+        if arr[j] < pivot {
+            arr.swap(i, j);
             i += 1;
-            arr.swap(i as usize, j);
-            j += 1;
         }
     }
 
-    i += 1;
-    arr.swap(i as usize, pivot);
-    pivot = i as usize;
+    arr.swap(i, end);
+    i
+}
 
-    helper(arr, start, pivot.saturating_sub(1));
-    helper(arr, pivot + 1, end);
+fn quick_sort_helper(arr: &mut [i32], start: usize, end: usize) {
+    if start < end {
+        let pivot = partition(arr, start, end);
+        if pivot > 0 {
+            quick_sort_helper(arr, start, pivot - 1);
+        }
+        quick_sort_helper(arr, pivot + 1, end);
+    }
 }
 
 pub fn quick_sort(arr: &mut [i32]) {
-    let end = arr.len().saturating_sub(1);
-    helper(arr, 0, end);
+    if arr.is_empty() {
+        return;
+    }
+    let end = arr.len() - 1;
+    quick_sort_helper(arr, 0, end);
 }
 
 #[cfg(test)]

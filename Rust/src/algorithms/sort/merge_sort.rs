@@ -32,6 +32,45 @@
 //     helper(arr, 0, end);
 // }
 
+// pub fn merge_sort(arr: &[i32]) -> Vec<i32> {
+//     if arr.len() < 2 {
+//         return arr.to_vec();
+//     }
+
+//     let mid = arr.len() / 2;
+
+//     let left = merge_sort(&arr[0..mid]);
+//     let right = merge_sort(&arr[mid..]);
+
+//     // let mut res = vec![];
+//     let mut res = Vec::with_capacity(arr.len());
+//     let mut left_current = 0;
+//     let mut right_current = 0;
+
+//     loop {
+//         match (left.get(left_current), right.get(right_current)) {
+//             (Some(&l), Some(&r)) => {
+//                 if l < r {
+//                     res.push(l);
+//                     left_current += 1;
+//                 } else {
+//                     res.push(r);
+//                     right_current += 1;
+//                 }
+//             }
+//             (Some(&l), None) => {
+//                 res.push(l);
+//                 left_current += 1;
+//             }
+//             (None, Some(&r)) => {
+//                 res.push(r);
+//                 right_current += 1;
+//             }
+//             (None, None) => break res,
+//         }
+//     }
+// }
+
 pub fn merge_sort(arr: &[i32]) -> Vec<i32> {
     if arr.len() < 2 {
         return arr.to_vec();
@@ -47,28 +86,20 @@ pub fn merge_sort(arr: &[i32]) -> Vec<i32> {
     let mut left_current = 0;
     let mut right_current = 0;
 
-    loop {
-        match (left.get(left_current), right.get(right_current)) {
-            (Some(&l), Some(&r)) => {
-                if l < r {
-                    res.push(l);
-                    left_current += 1;
-                } else {
-                    res.push(r);
-                    right_current += 1;
-                }
-            }
-            (Some(&l), None) => {
-                res.push(l);
-                left_current += 1;
-            }
-            (None, Some(&r)) => {
-                res.push(r);
-                right_current += 1;
-            }
-            (None, None) => break res,
+    while left_current < left.len() && right_current < right.len() {
+        if left[left_current] < right[right_current] {
+            res.push(left[left_current]);
+            left_current += 1;
+        } else {
+            res.push(right[right_current]);
+            right_current += 1;
         }
     }
+
+    res.extend_from_slice(&left[left_current..]);
+    res.extend_from_slice(&right[right_current..]);
+
+    res
 }
 
 #[cfg(test)]

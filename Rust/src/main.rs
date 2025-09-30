@@ -56,7 +56,7 @@ fn main() {
     //     algorithms::recursion::count_digits_non_tail_rec(7231039459093487509)
     // )
 
-    let mut arr = [5, 3, 8, 4, 2, 5];
-    algorithms::sort::quick_sort(&mut arr);
-    println!("{:?}", arr);
+    let arr = [3, 8, 5, 4, 2, 5];
+    println!("{:?}", algorithms::sort::merge_sort(&arr));
+    // println!("{:?}", arr);
 }

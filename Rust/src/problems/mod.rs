@@ -1,5 +1,6 @@
 pub mod grains;
 mod has_duplicate;
+pub mod largest_element_array;
 mod pascal_triangle;
 mod sublist;
 

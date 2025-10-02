@@ -2,7 +2,7 @@ pub fn selection_sort(arr: &mut [i32]) {
     for i in 0..arr.len() {
         let mut current_smallest_index = i;
 
-        for j in i..arr.len() {
+        for j in (i + 1)..arr.len() {
             if arr[j] < arr[current_smallest_index] {
                 current_smallest_index = j;
             }

@@ -54,7 +54,60 @@ fn main() {
     //     algorithms::recursion::count_digits_non_tail_rec(7231039459093487509)
     // )
 
-    let arr = [3, 8, 5, 4, 2, 5];
-    println!("{:?}", algorithms::sort::merge_sort(&arr));
+    // let arr = [3, 8, 5, 4, 2, 5];
+    // println!("{:?}", algorithms::sort::merge_sort(&arr));
     // println!("{:?}", arr);
+    // println!("{}", check(vec![2, 1]));
+    let mut v = vec![1, 1, 2];
+    println!("{}", remove_duplicates(&mut v));
+    println!("{v:?}");
 }
+
+pub fn remove_duplicates(nums: &mut Vec<i32>) -> i32 {
+    let mut prev = 0;
+    let mut i = 0;
+    while i < nums.len() {
+        if prev == nums[i] {
+            nums.remove(i);
+        } else {
+            prev = nums[i];
+            i += 1;
+        }
+    }
+
+    nums.len().try_into().unwrap()
+}
+
+pub fn check(nums: Vec<i32>) -> bool {
+    let n = nums.len();
+    let mut drops = 0;
+
+    for i in 1..n {
+        if nums[i] < nums[i - 1] {
+            drops += 1;
+            if drops > 1 {
+                return false;
+            }
+        }
+    }
+
+    if drops == 1 && nums[0] < nums[n - 1] {
+        return false;
+    }
+
+    true
+}
+
+// pub fn find_kth_largest(mut nums: Vec<i32>, k: i32) -> i32 {
+//     nums.sort();
+//     nums.into_iter().rev().enumerate().fold(
+//         0,
+//         |acc, (i, curr)| {
+//             if i == k as usize {
+//                 curr
+//             } else {
+//                 acc
+//             }
+//         },
+//     )
+// }

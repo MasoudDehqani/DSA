@@ -40,3 +40,17 @@
 // }
 
 // }
+
+// pub fn find_kth_largest(mut nums: Vec<i32>, k: i32) -> i32 {
+//     nums.sort();
+//     nums.into_iter().rev().enumerate().fold(
+//         0,
+//         |acc, (i, curr)| {
+//             if i == (k - 1) as usize {
+//                 curr
+//             } else {
+//                 acc
+//             }
+//         },
+//     )
+// }

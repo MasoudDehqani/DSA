@@ -1,3 +1,4 @@
+pub mod array;
 pub mod grains;
 mod has_duplicate;
 pub mod largest_element_array;

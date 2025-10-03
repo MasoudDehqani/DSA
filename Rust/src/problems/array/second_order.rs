@@ -96,3 +96,26 @@ mod tests {
         assert_eq!(second_largest_number(vec![2, 2, 2, 2, 2]), 2);
     }
 }
+
+// class Solution {
+//     secondLargestElement(nums) {
+//         let largest = nums[0];
+//         let secondLargest;
+
+//         for (let i = 0; i < nums.length; i++) {
+//             if (nums[i] !== largest && !secondLargest) {
+//                 secondLargest = nums[i];
+//             }
+//             if (nums[i] > largest) {
+//                 secondLargest = largest;
+//                 largest = nums[i];
+//             }
+//         }
+
+//         return secondLargest ? secondLargest : -1;
+//     }
+// }
+
+// [8, 8, 7, 6, 5]
+// [10, 10, 10, 10, 10]
+// [7, 7, 2, 2, 10, 10, 10]

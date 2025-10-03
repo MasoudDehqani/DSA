@@ -2,13 +2,15 @@
 //     for i in 0..nums.len() {
 //         let mut count = 0;
 //         for j in 0..nums.len() {
-//             if i != j && nums[j] >= nums[i] {
+//             if nums[j] > nums[i] {
 //                 count += 1;
 //             }
-//             println!("i: {}, j: {}", nums[i], nums[j]);
+//             if nums[j] == nums[i] {
+//                 if j > i {
+//                     count += 1;
+//                 }
+//             }
 //         }
-
-//         println!("count: {count}, k: {k}");
 
 //         if count == k - 1 {
 //             return nums[i];
@@ -38,25 +40,3 @@
 // }
 
 // }
-// class Solution {
-//     secondLargestElement(nums) {
-//         let largest = nums[0];
-//         let secondLargest;
-
-//         for (let i = 0; i < nums.length; i++) {
-//             if (nums[i] !== largest && !secondLargest) {
-//                 secondLargest = nums[i];
-//             }
-//             if (nums[i] > largest) {
-//                 secondLargest = largest;
-//                 largest = nums[i];
-//             }
-//         }
-
-//         return secondLargest ? secondLargest : -1;
-//     }
-// }
-
-// [8, 8, 7, 6, 5]
-// [10, 10, 10, 10, 10]
-// [7, 7, 2, 2, 10, 10, 10]

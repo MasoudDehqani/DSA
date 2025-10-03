@@ -1,9 +1,7 @@
 #![allow(dead_code, unused_imports)]
 
-use data_structures::singly_linked_list::{
-    List,
-    SinglyLinkedList::{Nil, Node},
-};
+use data_structures::list::List;
+use data_structures::singly_linked_list::SinglyLinkedList::{Nil, Node};
 use rust::{algorithms, data_structures};
 
 fn main() {

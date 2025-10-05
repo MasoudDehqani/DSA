@@ -1,3 +1,18 @@
+// pub fn remove_duplicates(nums: &mut Vec<i32>) -> i32 {
+//     let mut prev = i32::MIN;
+//     let mut i = 0;
+//     while i < nums.len() {
+//         if prev == nums[i] {
+//             nums.remove(i);
+//         } else {
+//             prev = nums[i];
+//             i += 1;
+//         }
+//     }
+
+//     nums.len() as _
+// }
+
 pub fn remove_duplicates(nums: &mut Vec<i32>) -> i32 {
     let mut i = 1;
     let mut j = 0;

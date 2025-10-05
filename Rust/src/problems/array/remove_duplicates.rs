@@ -1,14 +1,15 @@
 pub fn remove_duplicates(nums: &mut Vec<i32>) -> i32 {
-    let mut prev = 0;
-    let mut i = 0;
+    let mut i = 1;
+    let mut j = 0;
     while i < nums.len() {
-        if prev == nums[i] {
-            nums[i] = nums[i];
+        if nums[i] != nums[j] {
+            j += 1;
+            nums[j] = nums[i];
+            i += 1;
         } else {
-            prev = nums[i];
             i += 1;
         }
     }
 
-    nums.len().try_into().unwrap()
+    (j + 1) as i32
 }

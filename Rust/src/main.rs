@@ -61,4 +61,7 @@ fn main() {
     // let mut v = vec![0, 0, 1, 1, 1, 2, 2, 3, 3, 4];
     // println!("{}", remove_duplicates(&mut v));
     // println!("{v:?}");
+    // let mut arr = vec![1, 2];
+    // rotate(&mut arr, 7);
+    // println!("{arr:?}");
 }

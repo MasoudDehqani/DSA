@@ -45,6 +45,29 @@ use std::cmp::Ordering;
 //     }
 // }
 
+/*
+  leetcode problem
+*/
+// pub fn search(nums: Vec<i32>, target: i32) -> i32 {
+//     let mut start = 0;
+//     let mut end: isize = (nums.len() - 1) as isize;
+
+//     while end >= start {
+//         let mid = (start + end) / 2;
+//         let mid_val = nums[mid as usize];
+
+//         if target > mid_val {
+//             start = mid + 1;
+//         } else if target < mid_val {
+//             end = mid - 1;
+//         } else {
+//             return mid as i32;
+//         }
+//     }
+
+//     -1
+// }
+
 pub fn binary_search(arr: &[i32], value: i32) -> Option<usize> {
     let mut start = 0;
     let mut end = arr.len();

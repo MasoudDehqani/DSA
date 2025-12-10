@@ -66,5 +66,5 @@ fn main() {
     // rotate(&mut arr, 7);
     // println!("{arr:?}");
 
-    pyramid_of_stars(10);
+    pyramid_of_stars();
 }

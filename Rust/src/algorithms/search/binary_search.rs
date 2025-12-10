@@ -1,5 +1,3 @@
-use std::cmp::Ordering;
-
 // fn binary_search_helper(arr: &[i32], value: i32, start: usize, end: usize) -> Option<usize> {
 //     let middle = (start + end).div_ceil(2);
 
@@ -67,6 +65,8 @@ use std::cmp::Ordering;
 
 //     -1
 // }
+
+use std::cmp::Ordering;
 
 pub fn binary_search(arr: &[i32], value: i32) -> Option<usize> {
     let mut start = 0;

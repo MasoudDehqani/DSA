@@ -2,6 +2,7 @@
 
 use data_structures::list::List;
 use data_structures::singly_linked_list::SinglyLinkedList::{Nil, Node};
+use rust::problems::pyramid_of_stars;
 use rust::{algorithms, data_structures};
 
 fn main() {
@@ -64,4 +65,6 @@ fn main() {
     // let mut arr = vec![1, 2];
     // rotate(&mut arr, 7);
     // println!("{arr:?}");
+
+    pyramid_of_stars(10);
 }

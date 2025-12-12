@@ -52,20 +52,31 @@
 //     }
 // }
 
+// pub fn reverse_number(mut n: i32) -> i32 {
+//     let factor = if n.is_negative() { -1 } else { 1 };
+//     n = n.abs();
+//     let mut rev: i32 = 0;
+
+//     while n > 0 {
+//         let (multiplied, is_overflowing) = rev.overflowing_mul(10);
+//         if is_overflowing {
+//             return 0;
+//         }
+
+//         rev = multiplied + n % 10;
+//         n /= 10;
+//     }
+
+//     rev * factor
+// }
+
 pub fn reverse_number(mut n: i32) -> i32 {
-    let factor = if n.is_negative() { -1 } else { 1 };
-    n = n.abs();
-    let mut rev: i32 = 0;
+    let mut rev = 0;
 
     while n > 0 {
-        let (multiplied, is_overflowing) = rev.overflowing_mul(10);
-        if is_overflowing {
-            return 0;
-        }
-
-        rev = multiplied + n % 10;
+        rev = rev * 10 + n % 10;
         n /= 10;
     }
 
-    rev * factor
+    rev
 }

@@ -2,6 +2,7 @@
 
 use data_structures::list::List;
 use data_structures::singly_linked_list::SinglyLinkedList::{Nil, Node};
+use rust::algorithms::maths::reverse_number;
 use rust::algorithms::recursion::reverse_string;
 use rust::problems::pyramid_of_stars;
 use rust::{algorithms, data_structures};
@@ -68,5 +69,6 @@ fn main() {
     // println!("{arr:?}");
 
     // pyramid_of_stars();
-    println!("{}", reverse_string(String::from("Hello!")));
+    // println!("{}", reverse_string(String::from("Hello!")));
+    println!("{}", reverse_number(123));
 }

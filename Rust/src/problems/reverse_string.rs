@@ -17,7 +17,7 @@ pub fn reverse_string_recursive(s: String) -> String {
     let first = chars.next().unwrap();
     let rest = chars.as_str().to_string();
 
-    reverse_string(rest) + &first.to_string()
+    reverse_string_recursive(rest) + &first.to_string()
 }
 
 #[cfg(test)]

@@ -70,13 +70,27 @@
 //     rev * factor
 // }
 
+// pub fn reverse_number(n: i32) -> i32 {
+//     let mut reversed = 0;
+//     let mut curr = n;
+
+//     while curr > 0 {
+//         let rem = curr % 10;
+//         reversed = (reversed * 10) + rem;
+//         curr /= 10;
+//     }
+
+//     reversed
+// }
+
 pub fn reverse_number(mut n: i32) -> i32 {
-    let mut rev = 0;
+    let mut reversed = 0;
 
     while n > 0 {
-        rev = rev * 10 + n % 10;
+        let rem = n % 10;
+        reversed = (reversed * 10) + rem;
         n /= 10;
     }
 
-    rev
+    reversed
 }

@@ -1,5 +1,6 @@
 pub mod array;
 pub mod binary_search;
+mod count_duplicates;
 pub mod grains;
 mod has_duplicate;
 pub mod largest_element_array;
@@ -9,6 +10,7 @@ mod pyramid_of_stars;
 mod reverse_string;
 mod sublist;
 
+pub use count_duplicates::count_duplicates;
 pub use has_duplicate::has_duplicate;
 pub use move_zeros::move_zeros;
 pub use pascal_triangle::pascal_triangle;

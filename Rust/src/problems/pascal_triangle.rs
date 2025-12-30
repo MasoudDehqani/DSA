@@ -17,3 +17,11 @@ pub fn pascal_triangle(num_rows: i32) -> Vec<Vec<i32>> {
 
     res
 }
+
+pub fn pascal_triangle_at(row: u32, column: u32) -> u32 {
+    if row < 2 || (column < 1 || column >= row) {
+        return 1;
+    }
+
+    pascal_triangle_at(row - 1, column) + pascal_triangle_at(row - 1, column - 1)
+}

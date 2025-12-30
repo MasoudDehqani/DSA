@@ -4,7 +4,7 @@ use data_structures::list::List;
 use data_structures::singly_linked_list::SinglyLinkedList::{Nil, Node};
 use rust::algorithms::maths::reverse_number;
 use rust::algorithms::recursion::reverse_string;
-use rust::problems::pyramid_of_stars;
+use rust::problems::{pascal_triangle_at, pyramid_of_stars};
 use rust::{algorithms, data_structures};
 
 fn main() {
@@ -71,4 +71,50 @@ fn main() {
     // pyramid_of_stars();
     // println!("{}", reverse_string(String::from("Hello!")));
     println!("{}", reverse_number(123));
+
+    // println!("{}", pascal_triangle_at(0, 0));
+    // println!("{}", pascal_triangle_at(1, 0));
+    // println!("{}", pascal_triangle_at(1, 1));
+
+    // println!("{}", pascal_triangle_at(2, 0));
+    // println!("{}", pascal_triangle_at(2, 1));
+    // println!("{}", pascal_triangle_at(2, 2));
+
+    // println!("{}", pascal_triangle_at(3, 0));
+    // println!("{}", pascal_triangle_at(3, 1));
+    // println!("{}", pascal_triangle_at(3, 2));
+    // println!("{}", pascal_triangle_at(3, 3));
+
+    // println!("{}", pascal_triangle_at(4, 0));
+    // println!("{}", pascal_triangle_at(4, 4));
+    // println!("{}", pascal_triangle_at(7, 0));
+    // println!("{}", pascal_triangle_at(7, 7));
+
+    // println!("{}", pascal_triangle_at(15, 0));
+    // println!("{}", pascal_triangle_at(15, 15));
+
+    // println!("{}", pascal_triangle_at(4, 1));
+    // println!("{}", pascal_triangle_at(4, 2));
+    // println!("{}", pascal_triangle_at(4, 3));
+
+    // println!("{}", pascal_triangle_at(5, 2));
+    // println!("{}", pascal_triangle_at(6, 3));
+    // println!("{}", pascal_triangle_at(7, 3));
+    // println!("{}", pascal_triangle_at(7, 4));
+
+    // println!("{}", pascal_triangle_at(8, 2));
+    // println!("{}", pascal_triangle_at(9, 3));
+    // println!("{}", pascal_triangle_at(10, 4));
+
+    // println!("{}", pascal_triangle_at(10, 5));
+    // println!("{}", pascal_triangle_at(15, 7));
+    // println!("{}", pascal_triangle_at(20, 10));
+    // println!("{}", pascal_triangle_at(25, 12));
+    // println!("{}", pascal_triangle_at(30, 15));
+
+    // println!("{}", pascal_triangle_at(4, 3));
+    // println!("{}", pascal_triangle_at(8, 5));
+    // println!("{}", pascal_triangle_at(0, -1));
+    // println!("{}", pascal_triangle_at(-1, 4));
+    // println!("{}", pascal_triangle_at(-3, -2));
 }

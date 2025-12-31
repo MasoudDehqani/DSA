@@ -1,5 +1,6 @@
 pub mod array;
 pub mod binary_search;
+pub mod brackets_check;
 mod count_duplicates;
 pub mod grains;
 mod has_duplicate;

@@ -5,7 +5,7 @@ use data_structures::singly_linked_list::SinglyLinkedList::{Nil, Node};
 use rust::algorithms::maths::reverse_number;
 use rust::algorithms::recursion::reverse_string;
 use rust::problems::brackets_check::balance;
-use rust::problems::{self, pascal_triangle_at, pyramid_of_stars};
+use rust::problems::{self, pascal_triangle_at, pascal_triangle_at_mem, pyramid_of_stars};
 use rust::{algorithms, data_structures};
 
 fn main() {
@@ -71,8 +71,11 @@ fn main() {
 
     // pyramid_of_stars();
     // println!("{}", reverse_string(String::from("Hello!")));
-    println!("{}", reverse_number(123));
+    // println!("{}", reverse_number(123));
     // println!("{}", balance(vec!['(', ')', '(']))
+
+    println!("{}", pascal_triangle_at_mem(40, 30));
+    println!("{}", pascal_triangle_at(40, 30))
 
     // println!("{}", pascal_triangle_at(0, 0));
     // println!("{}", pascal_triangle_at(1, 0));

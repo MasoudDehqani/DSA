@@ -15,7 +15,7 @@ mod sublist;
 pub use count_duplicates::count_duplicates;
 pub use has_duplicate::has_duplicate;
 pub use move_zeros::move_zeros;
-pub use pascal_triangle::{pascal_triangle, pascal_triangle_at};
+pub use pascal_triangle::{pascal_triangle, pascal_triangle_at, pascal_triangle_at_mem};
 pub use persistent_bugger::persistence;
 pub use pyramid_of_stars::pyramid_of_stars;
 pub use reverse_string::{reverse_string, reverse_string_recursive};

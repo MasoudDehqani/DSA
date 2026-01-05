@@ -1,0 +1,78 @@
+############################
+# OS / Editor noise (any depth)
+############################
+**/.DS_Store
+**/Thumbs.db
+**/*.swp
+**/*.swo
+**/*~
+**/.idea/
+**/.vscode/
+**/*.iml
+
+############################
+# IntelliJ / Metals (per-project)
+############################
+**/.metals/
+**/.bloop/
+**/.project
+**/.classpath
+**/.settings/
+**/.bsp/
+
+############################
+# Scala build outputs (ANY project)
+############################
+# sbt
+**/target/
+**/project/target/
+**/project/project/
+
+# Mill
+**/out/
+
+# Scala CLI
+**/.scala-build/
+
+############################
+# Dependency caches (never commit, any depth)
+############################
+**/.ivy2/
+**/.coursier/
+**/.sbt/
+**/.cache/
+
+############################
+# Logs & runtime artifacts
+############################
+**/logs/
+**/*.log
+**/hs_err_pid*
+
+############################
+# Coverage / test artifacts
+############################
+**/.coverage
+**/.coverage-data
+**/.scalac.coverage
+**/scalac.scoverage.xml
+**/target/scala-*/scoverage-report/
+
+############################
+# JVM packaging artifacts
+############################
+**/*.jar
+**/*.war
+**/*.ear
+
+############################
+# REPL / scratch / temp
+############################
+**/*.sc.tmp
+**/.repl_history
+
+############################
+# Local environment files
+############################
+**/.env
+**/.env.*

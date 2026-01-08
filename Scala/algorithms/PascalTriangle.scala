@@ -27,7 +27,7 @@ def pascalMemo(c: Int, r: Int): Int =
       else aux(column, row - 1) + aux(column - 1, row - 1)
     )
 
-    aux(c, r)
+  aux(c, r)
 
 /** Exercise 2
   */

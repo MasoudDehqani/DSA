@@ -1,8 +1,8 @@
 CC = gcc
 CFLAGS = -std=c17 -Wall -Wextra -Wpedantic -Wshadow -Wconversion -Wsign-conversion -Wuninitialized -Werror -fdiagnostics-color=always
 
-SRC = armstrong_number.c
-OUT = armstrong_number
+SRC = prime_number.c
+OUT = prime_number
 
 all: $(OUT)
 

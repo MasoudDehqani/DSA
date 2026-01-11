@@ -3,7 +3,7 @@
 use data_structures::list::List;
 use data_structures::singly_linked_list::SinglyLinkedList::{Nil, Node};
 use rust::algorithms::maths::reverse_number;
-use rust::algorithms::recursion::reverse_string;
+use rust::algorithms::recursion::{pow, reverse_string};
 use rust::problems::brackets_check::balance;
 use rust::problems::{self, pascal_triangle_at, pascal_triangle_at_mem, pyramid_of_stars};
 use rust::{algorithms, data_structures};
@@ -74,8 +74,8 @@ fn main() {
     // println!("{}", reverse_number(123));
     // println!("{}", balance(vec!['(', ')', '(']))
 
-    println!("{}", pascal_triangle_at_mem(40, 30));
-    println!("{}", pascal_triangle_at(40, 30))
+    // println!("{}", pascal_triangle_at_mem(40, 30));
+    // println!("{}", pascal_triangle_at(40, 30))
 
     // println!("{}", pascal_triangle_at(0, 0));
     // println!("{}", pascal_triangle_at(1, 0));
@@ -122,4 +122,33 @@ fn main() {
     // println!("{}", pascal_triangle_at(0, -1));
     // println!("{}", pascal_triangle_at(-1, 4));
     // println!("{}", pascal_triangle_at(-3, -2));
+    // println!("0: {}", pow::pow_iterative(2.0, 0.0));
+    // println!("1: {}", pow::pow_iterative(2.0, 1.0));
+    // println!("2: {}", pow::pow_iterative(2.0, 2.0));
+    // println!("3: {}", pow::pow_iterative(2.0, 3.0));
+    // println!("4: {}", pow::pow_iterative(2.0, 4.0));
+    // println!("5: {}", pow::pow_iterative(2.0, 5.0));
+    // println!("6: {}", pow::pow_iterative(2.0, 6.0));
+    // println!("7: {}", pow::pow_iterative(2.0, 7.0));
+    // println!("8: {}", pow::pow_iterative(2.0, 8.0));
+    // println!("9: {}", pow::pow_iterative(2.0, 9.0));
+    // println!("10: {}", pow::pow_iterative(2.0, 10.0));
+    // println!("11: {}", pow::pow_iterative(2.0, 11.0));
+    // println!("12: {}", pow::pow_iterative(2.0, 12.0));
+
+    // println!("0: {}", pow::pow(2.0, 0.0));
+    // println!("1: {}", pow::pow(2.0, 1.0));
+    // println!("2: {}", pow::pow(2.0, 2.0));
+    // println!("3: {}", pow::pow(2.0, 3.0));
+    // println!("4: {}", pow::pow(2.0, 4.0));
+    // println!("5: {}", pow::pow(2.0, 5.0));
+    // println!("6: {}", pow::pow(2.0, 6.0));
+    // println!("7: {}", pow::pow(2.0, 7.0));
+    // println!("8: {}", pow::pow(2.0, 8.0));
+    // println!("9: {}", pow::pow(2.0, 9.0));
+    // println!("10: {}", pow::pow(2.0, 10.0));
+    // println!("11: {}", pow::pow(2.0, 11.0));
+    // println!("12: {}", pow::pow(2.0, 12.0));
+    // println!("13: {}", pow::pow(2.0, 13.0));
+    // println!("14: {}", pow::pow(2.0, 14.0));
 }

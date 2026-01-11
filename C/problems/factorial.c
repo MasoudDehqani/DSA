@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int factorial(int num)
+int factorial_iterative(int num)
 {
   int res = num;
 
@@ -14,12 +14,20 @@ int factorial(int num)
   return res;
 }
 
+int factorial_recursive(int num)
+{
+  if (num <= 2)
+    return num;
+
+  return num * factorial_recursive(num - 1);
+}
+
 int main()
 {
   printf("Enter the number you want its factorial:\n");
   int input_num;
 
   scanf("%d", &input_num);
-  int fac = factorial(input_num);
-  printf("%d\n", fac);
+  int fac = factorial_recursive(input_num);
+  printf("Factorial of %d is: %d\n", input_num, fac);
 }

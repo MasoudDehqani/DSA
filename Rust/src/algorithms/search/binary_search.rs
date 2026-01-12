@@ -84,6 +84,24 @@ pub fn binary_search(arr: &[i32], value: i32) -> Option<usize> {
     None
 }
 
+pub fn binary_search_recursive(arr: &[i32], n: i32) -> Option<usize> {
+    fn aux(arr: &[i32], n: i32, start: usize, end: usize) -> Option<usize> {
+        if start >= end {
+            return None;
+        }
+
+        let mid = (start + end) / 2;
+
+        match n.cmp(&arr[mid]) {
+            Ordering::Equal => Some(mid),
+            Ordering::Greater => aux(&arr, n, mid + 1, end),
+            Ordering::Less => aux(&arr, n, start, mid),
+        }
+    }
+
+    aux(arr, n, 0, arr.len())
+}
+
 #[cfg(test)]
 mod test {
     use super::*;

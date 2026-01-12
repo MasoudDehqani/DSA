@@ -4,6 +4,7 @@ mod digital_root;
 mod factorial;
 mod fibonacci;
 mod gcd;
+pub mod pow;
 mod prime_numbers;
 mod reverse_number;
 

@@ -1,3 +1,21 @@
+pub fn pow_iterative(base: f64, exp: f64) -> f64 {
+    let is_exp_negative = exp < 0.0;
+    let mut exp = if is_exp_negative { -exp } else { exp };
+
+    let mut res = 1.0;
+
+    while exp > 0.0 {
+        res *= base;
+        exp -= 1.0;
+    }
+
+    if is_exp_negative {
+        1.0 / res
+    } else {
+        res
+    }
+}
+
 pub fn pow_recursive(base: f64, exp: f64) -> f64 {
     fn aux(acc: f64, base: f64, exp: f64) -> f64 {
         if exp == 0.0 {
@@ -14,7 +32,7 @@ pub fn pow_recursive(base: f64, exp: f64) -> f64 {
     }
 }
 
-pub fn pow_recursive_squaring(base: f64, exp: f64) -> f64 {
+pub fn pow(base: f64, exp: f64) -> f64 {
     fn aux(base: f64, exp: f64) -> f64 {
         if exp < 2.0 {
             return if exp == 0.0 { 1.0 } else { base };

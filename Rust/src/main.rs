@@ -5,7 +5,9 @@ use data_structures::singly_linked_list::SinglyLinkedList::{Nil, Node};
 use rust::algorithms::maths::reverse_number;
 use rust::algorithms::recursion::{pow, reverse_string};
 use rust::problems::brackets_check::balance;
-use rust::problems::{self, pascal_triangle_at, pascal_triangle_at_mem, pyramid_of_stars};
+use rust::problems::{
+    self, binary_search, pascal_triangle_at, pascal_triangle_at_mem, pyramid_of_stars,
+};
 use rust::{algorithms, data_structures};
 
 fn main() {
@@ -138,4 +140,14 @@ fn main() {
     // println!("12: {}", pow::pow_recursive_squaring(2.0, 12.0));
     // println!("13: {}", pow::pow_recursive_squaring(2.0, 13.0));
     // println!("14: {}", pow::pow_recursive_squaring(2.0, 14.0));
+
+    println!(
+        "{}",
+        binary_search::search_insert_position(&[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 15], 11)
+    );
+
+    println!(
+        "{}",
+        binary_search::search_insert_position(&[0, 22, 29, 84, 125, 130, 561, 777, 1231, 1800], 25)
+    );
 }

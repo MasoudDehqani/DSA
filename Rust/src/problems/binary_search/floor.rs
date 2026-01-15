@@ -1,16 +1,16 @@
-pub fn floor(arr: &[i32], target: i32) -> i32 {
+pub fn floor(arr: &[i32], target: i32) -> Option<i32> {
     let mut start = 0;
     let mut end = arr.len();
-    let mut answer = 0;
+    let mut answer = None;
 
-    while end >= start {
+    while start < end {
         let mid = (start + end) / 2;
 
         if arr[mid] <= target {
-            answer = arr[mid];
+            answer = Some(arr[mid]);
             start = mid + 1;
         } else {
-            end = mid - 1;
+            end = mid;
         }
     }
 

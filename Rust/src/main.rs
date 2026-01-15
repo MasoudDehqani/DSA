@@ -160,21 +160,31 @@ fn main() {
     //     )
     // );
 
-    // println!("{}", ceil(&[10, 20, 30, 40, 50], 25));
+    // println!("{:?}", ceil(&[10, 20, 30, 40, 50], 25));
+    // println!("{:?}", ceil(&[10, 20, 30, 40, 50], 0));
+    // println!("{:?}", ceil(&[10, 20, 30, 40, 50], 60));
+    // println!("{:?}", ceil(&[10, 20, 30, 40, 50], 10));
+    // println!("{:?}", ceil(&[10, 20, 30, 40, 50], 50));
+
+    // println!("{:?}", floor(&[10, 20, 30, 40, 50], 25));
+    // println!("{:?}", floor(&[10, 20, 30, 40, 50], 0));
+    // println!("{:?}", floor(&[10, 20, 30, 40, 50], 60));
+    // println!("{:?}", floor(&[10, 20, 30, 40, 50], 10));
+    // println!("{:?}", floor(&[10, 20, 30, 40, 50], 50));
     // println!("{}", floor(&[10, 20, 30, 40, 50], 25))
 
-    println!("{:?}", first_and_last_occ(&[0, 1, 2, 2, 2, 3, 4, 5], 2));
-    println!("{:?}", first_and_last_occ(&[0, 1, 2, 2, 2, 4, 5, 6], 3));
-    println!("{:?}", first_and_last_occ(&[0, 1, 2, 2, 2, 3, 4, 5], 0));
-    println!("{:?}", first_and_last_occ(&[0, 1, 2, 2, 2, 3, 4, 5], 5));
-    println!(
-        "{:?}",
-        first_and_last_occ(&[0, 0, 0, 0, 1, 2, 2, 2, 3, 4, 5], 0)
-    );
-    println!(
-        "{:?}",
-        first_and_last_occ(&[0, 1, 2, 2, 2, 3, 4, 5, 5, 5], 5)
-    );
+    // println!("{:?}", first_and_last_occ(&[0, 1, 2, 2, 2, 3, 4, 5], 2));
+    // println!("{:?}", first_and_last_occ(&[0, 1, 2, 2, 2, 4, 5, 6], 3));
+    // println!("{:?}", first_and_last_occ(&[0, 1, 2, 2, 2, 3, 4, 5], 0));
+    // println!("{:?}", first_and_last_occ(&[0, 1, 2, 2, 2, 3, 4, 5], 5));
+    // println!(
+    //     "{:?}",
+    //     first_and_last_occ(&[0, 0, 0, 0, 1, 2, 2, 2, 3, 4, 5], 0)
+    // );
+    // println!(
+    //     "{:?}",
+    //     first_and_last_occ(&[0, 1, 2, 2, 2, 3, 4, 5, 5, 5], 5)
+    // );
 
     // println!(
     //     "{}",

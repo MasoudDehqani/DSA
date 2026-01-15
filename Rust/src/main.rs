@@ -4,7 +4,7 @@ use data_structures::list::List;
 use data_structures::singly_linked_list::SinglyLinkedList::{Nil, Node};
 use rust::algorithms::maths::reverse_number;
 use rust::algorithms::recursion::{pow, reverse_string};
-use rust::problems::binary_search::{ceil, floor};
+use rust::problems::binary_search::{ceil, first_and_last_occ, floor, lower_bound, upper_bound};
 use rust::problems::brackets_check::balance;
 use rust::problems::{
     self, binary_search, pascal_triangle_at, pascal_triangle_at_mem, pyramid_of_stars,
@@ -160,6 +160,44 @@ fn main() {
     //     )
     // );
 
-    println!("{}", ceil(&[10, 20, 30, 40, 50], 25));
-    println!("{}", floor(&[10, 20, 30, 40, 50], 25))
+    // println!("{}", ceil(&[10, 20, 30, 40, 50], 25));
+    // println!("{}", floor(&[10, 20, 30, 40, 50], 25))
+
+    println!("{:?}", first_and_last_occ(&[0, 1, 2, 2, 2, 3, 4, 5], 2));
+    println!("{:?}", first_and_last_occ(&[0, 1, 2, 2, 2, 4, 5, 6], 3));
+    println!("{:?}", first_and_last_occ(&[0, 1, 2, 2, 2, 3, 4, 5], 0));
+    println!("{:?}", first_and_last_occ(&[0, 1, 2, 2, 2, 3, 4, 5], 5));
+    println!(
+        "{:?}",
+        first_and_last_occ(&[0, 0, 0, 0, 1, 2, 2, 2, 3, 4, 5], 0)
+    );
+    println!(
+        "{:?}",
+        first_and_last_occ(&[0, 1, 2, 2, 2, 3, 4, 5, 5, 5], 5)
+    );
+
+    // println!(
+    //     "{}",
+    //     lower_bound(&[0, 22, 29, 84, 125, 130, 561, 777, 1231, 1800], 182)
+    // );
+
+    // println!("{}", upper_bound(&[0, 1, 2, 2, 2, 3, 4, 5, 5, 5], 5));
+    // println!("{}", upper_bound(&[], 5));
+    // println!("{}", lower_bound(&[0, 1, 2, 2, 2, 3, 4, 5, 5, 5], 5));
+
+    // println!("{}", lower_bound(&[1, 2, 2, 2, 3, 4, 5, 5, 5], 0));
+    // println!("{}", lower_bound(&[1, 2, 2, 2, 3, 4, 5, 5, 5], 6));
+    // println!("{}", lower_bound(&[1, 2, 2, 2, 3, 4, 5, 5, 5], 5));
+    // println!("{}", lower_bound(&[1, 2, 2, 2, 3, 4, 5, 5, 5], 4));
+    // println!("{}", lower_bound(&[1, 2, 2, 2, 3, 4, 5, 5, 5], 2));
+    // println!("{}", lower_bound(&[1, 2, 2, 2, 3, 4, 5, 5, 5], 1));
+
+    // println!("----------------------------------------");
+
+    // println!("{}", upper_bound(&[1, 2, 2, 2, 3, 4, 5, 5, 5], 0));
+    // println!("{}", upper_bound(&[1, 2, 2, 2, 3, 4, 5, 5, 5], 6));
+    // println!("{}", upper_bound(&[1, 2, 2, 2, 3, 4, 5, 5, 5], 5));
+    // println!("{}", upper_bound(&[1, 2, 2, 2, 3, 4, 5, 5, 5], 4));
+    // println!("{}", upper_bound(&[1, 2, 2, 2, 3, 4, 5, 5, 5], 2));
+    // println!("{}", upper_bound(&[1, 2, 2, 2, 3, 4, 5, 5, 5], 1))
 }

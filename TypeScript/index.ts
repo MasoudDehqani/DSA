@@ -1,3 +1,36 @@
-import insertionSort from "./algorithms/sort/insertionSort.js";
+import { flattenArray } from "./algorithms/flattenArray/flattenArray";
 
-console.log(insertionSort([2, 3, 1, 9, 0, 8]))
+const sampleNestedArray = [
+  [],
+  1,
+  2,
+  [[[[[[3]]]]]],
+  [4, 5, 6, [7, 8, [9, 10]]],
+  11,
+  [12],
+  13,
+  14,
+  15,
+  [16, 17, [18], 19],
+  20,
+];
+
+console.log(flattenArray(sampleNestedArray));
+
+const sampleNestedArray2 = [
+  1,
+  [2, 3, 4, [5, [[[[[[6]]]]]], 7, 8]],
+  9,
+  10,
+  [11, [12, [13, [14]]]],
+  15,
+  16,
+  17,
+  [],
+  [],
+  18,
+  19,
+  [[20]],
+];
+
+console.log(flattenArray(sampleNestedArray2));

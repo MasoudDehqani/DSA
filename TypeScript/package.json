@@ -1,10 +1,9 @@
 {
   "name": "typescript",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "index.ts",
   "license": "MIT",
   "scripts": {
-    "ts:dev": "tsc -w",
     "dev": "vite"
   },
   "devDependencies": {

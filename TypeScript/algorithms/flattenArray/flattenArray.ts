@@ -6,22 +6,45 @@
 //   );
 // }
 
-const flattenArrayAux = <T>(
-  arr: Array<T | Array<T>>,
-  acc: Array<T>,
-  currentIndex: number
-): Array<T> => {
-  if (arr[currentIndex] == null) return acc;
+// const flattenArrayAux = <T>(
+//   arr: Array<T | Array<T>>,
+//   acc: Array<T>,
+//   currentIndex: number
+// ): Array<T> => {
+//   if (arr[currentIndex] == null) return acc;
 
-  if (Array.isArray(arr[currentIndex])) {
-    acc.concat(flattenArrayAux(arr[currentIndex], acc, 0));
+//   if (Array.isArray(arr[currentIndex])) {
+//     acc.concat(flattenArrayAux(arr[currentIndex], acc, 0));
+//   } else {
+//     acc.push(arr[currentIndex]);
+//   }
+
+//   return flattenArrayAux(arr, acc, currentIndex + 1);
+// };
+
+// export default function flattenArray<T>(arr: Array<T | Array<T>>): Array<T> {
+//   return flattenArrayAux(arr, [], 0);
+// }
+
+function flattenArrayAux<T>(
+  arr: Array<T>,
+  currentIndex: number,
+  acc: Array<T>
+) {
+  const curr = arr[currentIndex];
+  if (curr == null) return;
+
+  if (Array.isArray(curr)) {
+    flattenArrayAux(curr, 0, acc);
   } else {
-    acc.push(arr[currentIndex]);
+    acc.push(curr);
   }
 
-  return flattenArrayAux(arr, acc, currentIndex + 1);
-};
+  flattenArrayAux(arr, currentIndex + 1, acc);
+}
 
-export default function flattenArray<T>(arr: Array<T | Array<T>>): Array<T> {
-  return flattenArrayAux(arr, [], 0);
+export function flattenArray<T>(arr: Array<T>) {
+  let acc: Array<T> = [];
+  flattenArrayAux(arr, 0, acc);
+  return acc;
 }

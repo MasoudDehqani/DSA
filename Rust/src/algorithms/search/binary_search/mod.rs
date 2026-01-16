@@ -1,3 +1,4 @@
+mod binary_search;
 mod ceil;
 mod first_and_last_occ;
 mod floor;
@@ -5,6 +6,7 @@ mod lower_bound;
 mod search_insert_position;
 mod upper_bound;
 
+pub use binary_search::binary_search;
 pub use ceil::ceil;
 pub use first_and_last_occ::first_and_last_occ;
 pub use floor::floor;

@@ -1,6 +1,6 @@
 use std::cmp::Ordering;
 
-use crate::problems::binary_search::{lower_bound, upper_bound};
+use crate::algorithms::search::binary_search::{lower_bound, upper_bound};
 
 fn first_occ(arr: &[i32], target: i32) -> Option<usize> {
     let mut start = 0;

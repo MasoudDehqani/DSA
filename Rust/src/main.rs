@@ -4,11 +4,11 @@ use data_structures::list::List;
 use data_structures::singly_linked_list::SinglyLinkedList::{Nil, Node};
 use rust::algorithms::maths::reverse_number;
 use rust::algorithms::recursion::{pow, reverse_string};
-use rust::problems::binary_search::{ceil, first_and_last_occ, floor, lower_bound, upper_bound};
-use rust::problems::brackets_check::balance;
-use rust::problems::{
-    self, binary_search, pascal_triangle_at, pascal_triangle_at_mem, pyramid_of_stars,
+use rust::algorithms::search::binary_search::{
+    ceil, first_and_last_occ, floor, lower_bound, upper_bound,
 };
+use rust::problems::brackets_check::balance;
+use rust::problems::{self, pascal_triangle_at, pascal_triangle_at_mem, pyramid_of_stars};
 use rust::{algorithms, data_structures};
 
 fn main() {

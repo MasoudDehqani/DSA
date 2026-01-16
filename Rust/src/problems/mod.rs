@@ -1,4 +1,3 @@
-pub mod array;
 pub mod brackets_check;
 mod count_duplicates;
 pub mod grains;

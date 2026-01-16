@@ -1,9 +1,12 @@
 mod bubble_sort;
+mod combination_sum;
 mod count_digits;
 mod gcd;
 pub mod pow;
 mod prime_numbers;
+mod reverse_array;
 mod reverse_string;
+mod sum_of_first_natural_numbers;
 
 pub mod factorial;
 pub mod fibonacci;
@@ -13,5 +16,9 @@ pub use bubble_sort::bubble_sort;
 pub use count_digits::{count_digits_non_tail_rec, count_digits_tail_rec};
 pub use gcd::gcd;
 // pub use pow::pow;
+pub use combination_sum::combination_sum;
 pub use prime_numbers::is_prime;
+pub use reverse_array::reverse_array;
 pub use reverse_string::reverse_string;
+pub use sum_of_first_natural_numbers::sum_of_first_natural_numbers;
+pub use sum_of_first_natural_numbers::sum_of_first_natural_numbers_tail_recursive;

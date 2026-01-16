@@ -5,14 +5,14 @@ use crate::algorithms::search::binary_search::{lower_bound, upper_bound};
 fn first_occ(arr: &[i32], target: i32) -> Option<usize> {
     let mut start = 0;
     let mut end = arr.len();
-    let mut f = None;
+    let mut occ = None;
 
     while start < end {
         let mid = (start + end) / 2;
 
         match target.cmp(&arr[mid]) {
             Ordering::Equal => {
-                f = Some(mid);
+                occ = Some(mid);
                 end = mid;
             }
             Ordering::Greater => start = mid + 1,
@@ -20,20 +20,20 @@ fn first_occ(arr: &[i32], target: i32) -> Option<usize> {
         }
     }
 
-    f
+    occ
 }
 
 fn last_occ(arr: &[i32], target: i32) -> Option<usize> {
     let mut start = 0;
     let mut end = arr.len();
-    let mut l = None;
+    let mut occ = None;
 
     while start < end {
         let mid = (start + end) / 2;
 
         match target.cmp(&arr[mid]) {
             Ordering::Equal => {
-                l = Some(mid);
+                occ = Some(mid);
                 start = mid + 1;
             }
             Ordering::Greater => start = mid + 1,
@@ -41,7 +41,7 @@ fn last_occ(arr: &[i32], target: i32) -> Option<usize> {
         }
     }
 
-    l
+    occ
 }
 
 // pub fn first_and_last_occ(arr: &[i32], target: i32) -> (Option<usize>, Option<usize>) {

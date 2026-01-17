@@ -4,8 +4,8 @@ Main operations on a data structure:
 - insertion
 - deletion
 
-Categories of time complexityies in terms of Big O:
-- O(1) -> constatnt time
+Categories of time complexities in terms of Big O:
+- O(1) -> constant time
 - O(n) -> linear time
 - O(log n) -> logarithmic time
 
@@ -19,3 +19,7 @@ Logarithm
 - how many times the base needs to be multiplied by itself to reach the number specified in front of log
 - what exponent the base should be raised to reach the number specified in front of log
 - how many times the number specified in front of log should be divided by the base to reach 1
+
+- sequence - subsequence - contiguous - non-contiguous - follows the order
+- array - sub-array
+- power set

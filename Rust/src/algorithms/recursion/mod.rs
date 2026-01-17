@@ -1,3 +1,4 @@
+mod all_subsequences;
 mod bubble_sort;
 mod combination_sum;
 mod count_digits;
@@ -10,6 +11,7 @@ mod reverse_array;
 mod reverse_string;
 mod sum_of_first_natural_numbers;
 
+pub use all_subsequences::{all_subsequences, print_all_subsequences};
 pub use fibonacci::{fibonacci, fibonacci_memoization};
 pub mod factorial;
 pub mod palindrome;

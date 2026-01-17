@@ -4,8 +4,9 @@ use data_structures::list::List;
 use data_structures::singly_linked_list::SinglyLinkedList::{Nil, Node};
 use rust::algorithms::maths::{fibonacci, fibonacci_memoization, reverse_number};
 use rust::algorithms::recursion::{
-    combination_sum, is_string_palindrome, pow, reverse_array_in_place, reverse_string,
-    sum_of_first_natural_numbers, sum_of_first_natural_numbers_tail_recursive,
+    all_subsequences, combination_sum, is_string_palindrome, pow, print_all_subsequences,
+    reverse_array_in_place, reverse_string, sum_of_first_natural_numbers,
+    sum_of_first_natural_numbers_tail_recursive,
 };
 use rust::algorithms::search::binary_search::{
     ceil, first_and_last_occ, floor, lower_bound, upper_bound,
@@ -224,4 +225,8 @@ fn main() {
 
     // println!("{}", fibonacci(45));
     // println!("{}", fibonacci_memoization(45))
+    let arr = vec![3, 1, 2];
+    print_all_subsequences(&arr);
+
+    println!("{:?}", all_subsequences(&arr))
 }

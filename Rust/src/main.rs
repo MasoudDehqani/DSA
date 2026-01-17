@@ -218,5 +218,5 @@ fn main() {
     // println!("{}", sum_of_first_natural_numbers_recursive(5));
     // println!("{}", sum_of_first_natural_numbers_tail_recursive(5));
     // println!("{:?}", reverse_array(vec![1, 2, 3, 4]));
-    println!("{:?}", is_string_palindrome("A"))
+    println!("{:?}", is_string_palindrome("ABBA"))
 }

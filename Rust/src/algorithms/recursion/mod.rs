@@ -21,6 +21,7 @@ pub use combination_sum::combination_sum;
 pub use is_string_palindrome::is_string_palindrome;
 pub use prime_numbers::is_prime;
 pub use reverse_array::reverse_array;
+pub use reverse_array::reverse_array_in_place;
 pub use reverse_string::reverse_string;
 pub use sum_of_first_natural_numbers::sum_of_first_natural_numbers;
 pub use sum_of_first_natural_numbers::sum_of_first_natural_numbers_tail_recursive;

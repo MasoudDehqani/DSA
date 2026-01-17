@@ -4,7 +4,7 @@ use data_structures::list::List;
 use data_structures::singly_linked_list::SinglyLinkedList::{Nil, Node};
 use rust::algorithms::maths::reverse_number;
 use rust::algorithms::recursion::{
-    combination_sum, is_string_palindrome, pow, reverse_array, reverse_string,
+    combination_sum, is_string_palindrome, pow, reverse_array_in_place, reverse_string,
     sum_of_first_natural_numbers, sum_of_first_natural_numbers_tail_recursive,
 };
 use rust::algorithms::search::binary_search::{
@@ -217,6 +217,8 @@ fn main() {
     // println!("{:?}", combination_sum(vec![2, 3, 5], 8))
     // println!("{}", sum_of_first_natural_numbers_recursive(5));
     // println!("{}", sum_of_first_natural_numbers_tail_recursive(5));
-    // println!("{:?}", reverse_array(vec![1, 2, 3, 4]));
-    println!("{:?}", is_string_palindrome("ABBA"))
+    // let mut arr: Vec<i32> = vec![1, 2, 3, 4];
+    // reverse_array_in_place(&mut arr);
+    // println!("{:?}", arr);
+    // println!("{:?}", is_string_palindrome("ABCBA"))
 }

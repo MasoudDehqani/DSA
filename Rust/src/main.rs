@@ -2,7 +2,7 @@
 
 use data_structures::list::List;
 use data_structures::singly_linked_list::SinglyLinkedList::{Nil, Node};
-use rust::algorithms::maths::reverse_number;
+use rust::algorithms::maths::{fibonacci, fibonacci_memoization, reverse_number};
 use rust::algorithms::recursion::{
     combination_sum, is_string_palindrome, pow, reverse_array_in_place, reverse_string,
     sum_of_first_natural_numbers, sum_of_first_natural_numbers_tail_recursive,
@@ -221,4 +221,7 @@ fn main() {
     // reverse_array_in_place(&mut arr);
     // println!("{:?}", arr);
     // println!("{:?}", is_string_palindrome("ABCBA"))
+
+    // println!("{}", fibonacci(45));
+    // println!("{}", fibonacci_memoization(50))
 }

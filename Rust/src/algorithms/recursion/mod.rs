@@ -1,6 +1,7 @@
 mod bubble_sort;
 mod combination_sum;
 mod count_digits;
+mod fibonacci;
 mod gcd;
 mod is_string_palindrome;
 pub mod pow;
@@ -9,8 +10,8 @@ mod reverse_array;
 mod reverse_string;
 mod sum_of_first_natural_numbers;
 
+pub use fibonacci::{fibonacci, fibonacci_memoization};
 pub mod factorial;
-pub mod fibonacci;
 pub mod palindrome;
 pub mod reverse_number;
 pub use bubble_sort::bubble_sort;

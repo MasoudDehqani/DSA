@@ -216,7 +216,8 @@ fn main() {
     // println!("{}", upper_bound(&[1, 2, 2, 2, 3, 4, 5, 5, 5], 2));
     // println!("{}", upper_bound(&[1, 2, 2, 2, 3, 4, 5, 5, 5], 1))
 
-    // println!("{:?}", combination_sum(vec![2, 3, 5], 8))
+    println!("{:?}", combination_sum(vec![2, 3, 5], 8));
+    println!("{:?}", combination_sum(vec![2, 3, 6, 7], 7));
     // println!("{}", sum_of_first_natural_numbers_recursive(5));
     // println!("{}", sum_of_first_natural_numbers_tail_recursive(5));
     // let mut arr: Vec<i32> = vec![1, 2, 3, 4];
@@ -226,11 +227,11 @@ fn main() {
 
     // println!("{}", fibonacci(45));
     // println!("{}", fibonacci_memoization(45))
-    let seq = vec![1, 2, 3, 4, 5];
+    // let seq = vec![1, 2, 3, 4, 5];
     // let seq = vec![3, 1, 2];
-    println!("{:?}", count_subsequences_with_k_sum(&seq, 5));
+    // println!("{:?}", count_subsequences_with_k_sum(&seq, 5));
     // print_all_subsequences(&seq);
-    println!("{:?}", subsequences_with_k_sum(&seq, 5));
+    // println!("{:?}", subsequences_with_k_sum(&seq, 5));
     // print_subsequences_with_k_sum(&seq, 5);
 
     // println!("{:?}", all_subsequences(&arr))

@@ -75,3 +75,51 @@ pub fn any_one_subsequence_with_k_sum(seq: &Vec<i32>, k: i32) -> Vec<i32> {
     aux(seq, k, 0, &mut sub, 0);
     sub
 }
+
+// pub fn count_subsequences_with_k_sum(seq: &Vec<i32>, k: i32) -> i32 {
+//     fn aux(seq: &Vec<i32>, k: i32, i: usize, count: &mut i32, mut sum: i32) {
+//         if i >= seq.len() {
+//             if sum == k {
+//                 *count += 1;
+//             }
+
+//             return;
+//         }
+
+//         sum += seq[i];
+//         aux(seq, k, i + 1, count, sum);
+
+//         sum -= seq[i];
+//         aux(seq, k, i + 1, count, sum);
+//     }
+
+//     let mut count = 0;
+//     aux(seq, k, 0, &mut count, 0);
+//     count
+// }
+
+pub fn count_subsequences_with_k_sum(seq: &Vec<i32>, k: i32) -> i32 {
+    fn aux(seq: &Vec<i32>, k: i32, i: usize, mut sum: i32) -> i32 {
+        // only applicable on positive sequences
+        // if sum > k {
+        //     return 0;
+        // }
+        if i >= seq.len() {
+            if sum == k {
+                return 1;
+            }
+
+            return 0;
+        }
+
+        sum += seq[i];
+        let l = aux(seq, k, i + 1, sum);
+
+        sum -= seq[i];
+        let r = aux(seq, k, i + 1, sum);
+
+        l + r
+    }
+
+    aux(seq, k, 0, 0)
+}

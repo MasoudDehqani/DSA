@@ -14,7 +14,9 @@ mod sum_of_first_natural_numbers;
 
 pub use all_subsequences::{all_subsequences, print_all_subsequences};
 pub use fibonacci::{fibonacci, fibonacci_memoization};
-pub use subsequences_with_k_sum::{print_subsequences_with_k_sum, subsequences_with_k_sum};
+pub use subsequences_with_k_sum::{
+    any_one_subsequence_with_k_sum, print_subsequences_with_k_sum, subsequences_with_k_sum,
+};
 pub mod factorial;
 pub mod palindrome;
 pub mod reverse_number;

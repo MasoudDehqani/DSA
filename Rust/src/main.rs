@@ -4,9 +4,10 @@ use data_structures::list::List;
 use data_structures::singly_linked_list::SinglyLinkedList::{Nil, Node};
 use rust::algorithms::maths::{fibonacci, fibonacci_memoization, reverse_number};
 use rust::algorithms::recursion::{
-    all_subsequences, combination_sum, is_string_palindrome, pow, print_all_subsequences,
-    print_subsequences_with_k_sum, reverse_array_in_place, reverse_string, subsequences_with_k_sum,
-    sum_of_first_natural_numbers, sum_of_first_natural_numbers_tail_recursive,
+    all_subsequences, any_one_subsequence_with_k_sum, combination_sum, is_string_palindrome, pow,
+    print_all_subsequences, print_subsequences_with_k_sum, reverse_array_in_place, reverse_string,
+    subsequences_with_k_sum, sum_of_first_natural_numbers,
+    sum_of_first_natural_numbers_tail_recursive,
 };
 use rust::algorithms::search::binary_search::{
     ceil, first_and_last_occ, floor, lower_bound, upper_bound,
@@ -226,9 +227,11 @@ fn main() {
     // println!("{}", fibonacci(45));
     // println!("{}", fibonacci_memoization(45))
     let seq = vec![1, 2, 3, 4, 5];
+    // let seq = vec![3, 1, 2];
+    println!("{:?}", any_one_subsequence_with_k_sum(&seq, 5))
     // print_all_subsequences(&seq);
-    println!("{:?}", subsequences_with_k_sum(&seq, 5));
-    print_subsequences_with_k_sum(&seq, 5);
+    // println!("{:?}", subsequences_with_k_sum(&seq, 5));
+    // print_subsequences_with_k_sum(&seq, 5);
 
     // println!("{:?}", all_subsequences(&arr))
 }

@@ -16,6 +16,7 @@ use rust::algorithms::search::binary_search::{
     ceil, first_and_last_occ, floor, lower_bound, upper_bound,
 };
 use rust::data_structures::array::kth_order;
+use rust::data_structures::array::second_order::second_largest_number;
 use rust::problems::brackets_check::balance;
 use rust::problems::{self, pascal_triangle_at, pascal_triangle_at_mem, pyramid_of_stars};
 use rust::{algorithms, data_structures};
@@ -253,4 +254,5 @@ fn main() {
 
     // let numbers = vec![1, 2, 3, 4, 5, 6, 7, 8, 8, 8, 9, 9];
     // println!("{:?}", kth_order::find_kth_largest(&numbers, 9))
+    println!("{:?}", second_largest_number(&vec![1, 2, 3, 4, 4, 5, 5, 5]));
 }

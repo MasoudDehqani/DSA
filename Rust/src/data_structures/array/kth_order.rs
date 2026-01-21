@@ -60,7 +60,7 @@ pub fn find_kth_largest(numbers: &Vec<i32>, mut k: u32) -> Option<i32> {
         return None;
     }
 
-    let mut largest = numbers[0];
+    let mut largest = i32::MIN;
 
     for &n in numbers {
         if n > largest {
@@ -73,7 +73,7 @@ pub fn find_kth_largest(numbers: &Vec<i32>, mut k: u32) -> Option<i32> {
     let mut last_largest = largest;
     k -= 1;
     while k > 0 {
-        let mut current_largest = numbers[0];
+        let mut current_largest = i32::MIN;
         for &n in numbers {
             if n > current_largest && n < last_largest {
                 current_largest = n;

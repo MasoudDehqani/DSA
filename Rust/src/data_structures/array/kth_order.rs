@@ -54,3 +54,42 @@
 //         },
 //     )
 // }
+
+pub fn find_kth_largest(numbers: &Vec<i32>, mut k: u32) -> Option<i32> {
+    if k == 0 || numbers.len() == 0 {
+        return None;
+    }
+
+    let mut largest = numbers[0];
+
+    for &n in numbers {
+        if n > largest {
+            largest = n;
+        }
+    }
+
+    let mut kth_largest = Some(largest);
+
+    let mut last_largest = largest;
+    k -= 1;
+    while k > 0 {
+        let mut current_largest = numbers[0];
+        for &n in numbers {
+            if n > current_largest && n < last_largest {
+                current_largest = n;
+            }
+        }
+
+        if current_largest != last_largest {
+            kth_largest = Some(current_largest);
+        } else {
+            kth_largest = None;
+        }
+
+        last_largest = current_largest;
+
+        k -= 1;
+    }
+
+    kth_largest
+}

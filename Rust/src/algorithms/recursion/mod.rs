@@ -2,6 +2,7 @@ mod all_subsequences;
 mod bubble_sort;
 mod combination_sum;
 mod count_digits;
+mod count_inversions;
 mod fibonacci;
 mod gcd;
 mod is_string_palindrome;
@@ -13,6 +14,7 @@ mod subsequences_with_k_sum;
 mod sum_of_first_natural_numbers;
 
 pub use all_subsequences::{all_subsequences, print_all_subsequences};
+pub use count_inversions::count_inversions;
 pub use fibonacci::{fibonacci, fibonacci_memoization};
 pub use subsequences_with_k_sum::{
     any_one_subsequence_with_k_sum, count_subsequences_with_k_sum, print_subsequences_with_k_sum,

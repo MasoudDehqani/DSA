@@ -1,4 +1,5 @@
 mod all_subsequences;
+pub mod basic_recursion;
 mod bubble_sort;
 mod combination_sum;
 mod count_digits;

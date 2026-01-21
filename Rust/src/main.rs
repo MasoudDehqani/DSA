@@ -3,6 +3,9 @@
 use data_structures::list::List;
 use data_structures::singly_linked_list::SinglyLinkedList::{Nil, Node};
 use rust::algorithms::maths::{fibonacci, fibonacci_memoization, reverse_number};
+use rust::algorithms::recursion::basic_recursion::{
+    count_1_to_n, count_1_to_n_linearly, count_n_to_1,
+};
 use rust::algorithms::recursion::{
     all_subsequences, any_one_subsequence_with_k_sum, combination_sum, count_inversions,
     count_subsequences_with_k_sum, is_string_palindrome, pow, print_all_subsequences,
@@ -239,6 +242,11 @@ fn main() {
 
     // println!("{:?}", all_subsequences(&arr))
 
-    let arr = vec![5, 3, 2, 4, 1];
-    println!("{}", count_inversions(&arr))
+    // let arr = vec![5, 3, 2, 4, 1];
+    // println!("{}", count_inversions(&arr))
+
+    // count_1_to_n(8);
+    // count_n_to_1(8);
+
+    count_1_to_n_linearly(8);
 }

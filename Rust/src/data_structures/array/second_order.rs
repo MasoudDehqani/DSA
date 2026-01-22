@@ -81,22 +81,37 @@ pub fn second_largest_number(numbers: &Vec<i32>) -> Option<i32> {
 }
 
 pub fn second_smallest_number(numbers: &Vec<i32>) -> Option<i32> {
-    let mut smallest = i32::MAX;
-    let mut second_smallest = None;
+    let mut maybe_smallest = None;
+    let mut maybe_second_smallest = None;
 
     for &n in numbers {
-        match second_smallest {
-            Some(ss) if n < ss && ss > smallest => second_smallest = Some(n),
-            None if n > smallest => second_smallest = Some(n),
-            _ => (),
+        let Some(smallest) = maybe_smallest else {
+            maybe_smallest = Some(n);
+            continue;
+        };
+
+        println!("{n}, {smallest}");
+        if n < smallest {
+            maybe_second_smallest = maybe_smallest;
+            maybe_smallest = Some(n);
+            continue;
         }
 
-        if n < smallest {
-            smallest = n;
+        match maybe_second_smallest {
+            Some(second_smallest) => {
+                if n < second_smallest && n != smallest {
+                    maybe_second_smallest = Some(n)
+                }
+            }
+            None => {
+                if n > smallest {
+                    maybe_second_smallest = Some(n)
+                }
+            }
         }
     }
 
-    second_smallest
+    maybe_second_smallest
 }
 
 #[cfg(test)]

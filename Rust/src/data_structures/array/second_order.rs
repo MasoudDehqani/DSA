@@ -57,46 +57,42 @@
 // }
 
 pub fn second_largest_number(numbers: &Vec<i32>) -> Option<i32> {
-    let mut largest = None;
-    let mut second_largest = None;
+    let mut maybe_largest = None;
+    let mut maybe_second_largest = None;
 
     for &n in numbers {
-        match largest {
-            Some(l) => {
-                if second_largest == None && n < l {
-                    second_largest = Some(n);
-                }
+        let Some(largest) = maybe_largest else {
+            maybe_largest = Some(n);
+            continue;
+        };
 
-                if n > l {
-                    second_largest = Some(l);
-                    largest = Some(n)
-                }
-            }
-            None => largest = Some(n),
+        if n > largest {
+            maybe_second_largest = maybe_largest;
+            maybe_largest = Some(n);
+            continue;
+        }
+
+        if Some(n).gt(&maybe_second_largest) && n != largest {
+            maybe_second_largest = Some(n)
         }
     }
 
-    second_largest
+    maybe_second_largest
 }
 
 pub fn second_smallest_number(numbers: &Vec<i32>) -> Option<i32> {
-    let mut smallest = None;
+    let mut smallest = i32::MAX;
     let mut second_smallest = None;
 
     for &n in numbers {
-        match smallest {
-            Some(s) => {
-                if second_smallest == None && n > s {
-                    second_smallest = Some(n)
-                }
+        match second_smallest {
+            Some(ss) if n < ss && ss > smallest => second_smallest = Some(n),
+            None if n > smallest => second_smallest = Some(n),
+            _ => (),
+        }
 
-                if n < s {
-                    second_smallest = Some(s);
-                    smallest = Some(n);
-                }
-            }
-
-            None => smallest = Some(n),
+        if n < smallest {
+            smallest = n;
         }
     }
 
@@ -129,14 +125,16 @@ mod tests {
 
     #[test]
     fn test_second_smallest_number() {
-        assert_eq!(second_smallest_number(&vec![1, 2, 3, 4, 5]), Some(2));
-        assert_eq!(second_smallest_number(&vec![5, 4, 3, 2, 1]), Some(2));
+        assert_eq!(second_smallest_number(&vec![0, 1, 2, 3, 4, 5]), Some(1));
+        assert_eq!(second_smallest_number(&vec![5, 4, 3, 2, 1, 0]), Some(1));
+        assert_eq!(second_smallest_number(&vec![5, 4, 0, 2, 1, 3]), Some(1));
     }
 
     #[test]
     fn test_second_largest_number() {
-        assert_eq!(second_largest_number(&vec![1, 2, 3, 4, 5]), Some(4));
-        assert_eq!(second_largest_number(&vec![5, 4, 3, 2, 1]), Some(4));
+        assert_eq!(second_largest_number(&vec![0, 1, 2, 3, 4, 5]), Some(4));
+        assert_eq!(second_largest_number(&vec![5, 4, 3, 2, 1, 0]), Some(4));
+        assert_eq!(second_largest_number(&vec![5, 4, 0, 2, 1, 3]), Some(4));
     }
 
     #[test]
@@ -155,6 +153,16 @@ mod tests {
         assert_eq!(second_largest_number(&vec![1, 1, 2, 2, 2]), Some(1));
         assert_eq!(second_largest_number(&vec![2, 2, 2, 2, 2]), None);
         assert_eq!(second_largest_number(&vec![1, 2, 2, 3, 3, 3]), Some(2));
+    }
+
+    #[test]
+    fn test_second_smallest_number_negative() {
+        assert_eq!(second_smallest_number(&vec![-1, 0, -2, -3]), Some(-2));
+    }
+
+    #[test]
+    fn test_second_largest_number_negative() {
+        assert_eq!(second_largest_number(&vec![-1, 0, -2, -3]), Some(-1));
     }
 }
 

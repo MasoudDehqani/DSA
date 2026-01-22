@@ -108,21 +108,35 @@ mod tests {
     use super::*;
 
     #[test]
+    fn test_second_smallest_number_empty_array() {
+        assert_eq!(second_smallest_number(&vec![]), None);
+    }
+
+    #[test]
+    fn test_second_largest_number_empty_array() {
+        assert_eq!(second_largest_number(&vec![]), None);
+    }
+
+    #[test]
+    fn test_second_smallest_number_single_element_array() {
+        assert_eq!(second_smallest_number(&vec![3]), None);
+    }
+
+    #[test]
+    fn test_second_largest_number_single_element_array() {
+        assert_eq!(second_largest_number(&vec![3]), None);
+    }
+
+    #[test]
     fn test_second_smallest_number() {
         assert_eq!(second_smallest_number(&vec![1, 2, 3, 4, 5]), Some(2));
         assert_eq!(second_smallest_number(&vec![5, 4, 3, 2, 1]), Some(2));
-        assert_eq!(second_smallest_number(&vec![1, 1, 2, 2, 3]), Some(2));
-        assert_eq!(second_smallest_number(&vec![1, 2, 2, 3, 3]), Some(2));
-        assert_eq!(second_smallest_number(&vec![1, 2, 3, 4, 5]), Some(2));
     }
 
     #[test]
     fn test_second_largest_number() {
         assert_eq!(second_largest_number(&vec![1, 2, 3, 4, 5]), Some(4));
         assert_eq!(second_largest_number(&vec![5, 4, 3, 2, 1]), Some(4));
-        assert_eq!(second_largest_number(&vec![1, 1, 2, 2, 3]), Some(2));
-        assert_eq!(second_largest_number(&vec![1, 2, 2, 3, 3]), Some(2));
-        assert_eq!(second_largest_number(&vec![1, 2, 3, 4, 5]), Some(4));
     }
 
     #[test]
@@ -130,8 +144,8 @@ mod tests {
         assert_eq!(second_smallest_number(&vec![1, 1, 1, 1, 1]), None);
         assert_eq!(second_smallest_number(&vec![1, 1, 1, 2, 2]), Some(2));
         assert_eq!(second_smallest_number(&vec![1, 1, 2, 2, 2]), Some(2));
-        assert_eq!(second_smallest_number(&vec![1, 2, 2, 2, 2]), Some(2));
         assert_eq!(second_smallest_number(&vec![2, 2, 2, 2, 2]), None);
+        assert_eq!(second_smallest_number(&vec![1, 2, 2, 3, 3, 3]), Some(2));
     }
 
     #[test]
@@ -139,8 +153,8 @@ mod tests {
         assert_eq!(second_largest_number(&vec![1, 1, 1, 1, 1]), None);
         assert_eq!(second_largest_number(&vec![1, 1, 1, 2, 2]), Some(1));
         assert_eq!(second_largest_number(&vec![1, 1, 2, 2, 2]), Some(1));
-        assert_eq!(second_largest_number(&vec![1, 2, 2, 2, 2]), Some(1));
         assert_eq!(second_largest_number(&vec![2, 2, 2, 2, 2]), None);
+        assert_eq!(second_largest_number(&vec![1, 2, 2, 3, 3, 3]), Some(2));
     }
 }
 

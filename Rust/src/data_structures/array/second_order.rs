@@ -56,62 +56,116 @@
 //     second_largest
 // }
 
-pub fn second_largest_number(numbers: &Vec<i32>) -> Option<i32> {
-    let mut maybe_largest = None;
-    let mut maybe_second_largest = None;
+// pub fn second_largest_number(numbers: &Vec<i32>) -> Option<i32> {
+//     let mut maybe_largest = None;
+//     let mut maybe_second_largest = None;
+
+//     for &n in numbers {
+//         let Some(largest) = maybe_largest else {
+//             maybe_largest = Some(n);
+//             continue;
+//         };
+
+//         if n > largest {
+//             maybe_second_largest = maybe_largest;
+//             maybe_largest = Some(n);
+//             continue;
+//         }
+
+//         if Some(n).gt(&maybe_second_largest) && n != largest {
+//             maybe_second_largest = Some(n)
+//         }
+//     }
+
+//     maybe_second_largest
+// }
+
+// pub fn second_smallest_number(numbers: &Vec<i32>) -> Option<i32> {
+//     let mut maybe_smallest = None;
+//     let mut maybe_second_smallest = None;
+
+//     for &n in numbers {
+//         let Some(smallest) = maybe_smallest else {
+//             maybe_smallest = Some(n);
+//             continue;
+//         };
+
+//         println!("{n}, {smallest}");
+//         if n < smallest {
+//             maybe_second_smallest = maybe_smallest;
+//             maybe_smallest = Some(n);
+//             continue;
+//         }
+
+//         match maybe_second_smallest {
+//             Some(second_smallest) => {
+//                 if n < second_smallest && n != smallest {
+//                     maybe_second_smallest = Some(n)
+//                 }
+//             }
+//             None => {
+//                 if n > smallest {
+//                     maybe_second_smallest = Some(n)
+//                 }
+//             }
+//         }
+//     }
+
+//     maybe_second_smallest
+// }
+
+/*
+    Reviewed and written by chatgpt
+*/
+pub fn second_largest_number(numbers: &[i32]) -> Option<i32> {
+    let mut largest = None;
+    let mut second = None;
 
     for &n in numbers {
-        let Some(largest) = maybe_largest else {
-            maybe_largest = Some(n);
-            continue;
-        };
+        match largest {
+            None => largest = Some(n),
 
-        if n > largest {
-            maybe_second_largest = maybe_largest;
-            maybe_largest = Some(n);
-            continue;
-        }
+            Some(l) if n > l => {
+                second = largest;
+                largest = Some(n);
+            }
 
-        if Some(n).gt(&maybe_second_largest) && n != largest {
-            maybe_second_largest = Some(n)
+            Some(l) if n < l => {
+                if second.map_or(true, |s| n > s) {
+                    second = Some(n);
+                }
+            }
+            _ => {}
         }
     }
 
-    maybe_second_largest
+    second
 }
 
-pub fn second_smallest_number(numbers: &Vec<i32>) -> Option<i32> {
-    let mut maybe_smallest = None;
-    let mut maybe_second_smallest = None;
+pub fn second_smallest_number(numbers: &[i32]) -> Option<i32> {
+    let mut smallest = None;
+    let mut second = None;
 
     for &n in numbers {
-        let Some(smallest) = maybe_smallest else {
-            maybe_smallest = Some(n);
-            continue;
-        };
+        match smallest {
+            None => smallest = Some(n),
 
-        println!("{n}, {smallest}");
-        if n < smallest {
-            maybe_second_smallest = maybe_smallest;
-            maybe_smallest = Some(n);
-            continue;
-        }
+            Some(s) if n < s => {
+                second = smallest;
+                smallest = Some(n);
+            }
 
-        match maybe_second_smallest {
-            Some(second_smallest) => {
-                if n < second_smallest && n != smallest {
-                    maybe_second_smallest = Some(n)
+            Some(s) if n > s => {
+                if second.map_or(true, |x| n < x) {
+                    second = Some(n);
                 }
             }
-            None => {
-                if n > smallest {
-                    maybe_second_smallest = Some(n)
-                }
-            }
+
+            _ => {} // n == smallest → ignore
         }
     }
 
-    maybe_second_smallest
+    second
 }
 
 #[cfg(test)]

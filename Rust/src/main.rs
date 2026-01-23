@@ -15,6 +15,7 @@ use rust::algorithms::recursion::{
 use rust::algorithms::search::binary_search::{
     ceil, first_and_last_occ, floor, lower_bound, upper_bound,
 };
+use rust::data_structures::array::remove_duplicates_in_place::remove_duplicates_in_place_from_sorted_array;
 use rust::data_structures::array::second_order::second_largest_number;
 use rust::data_structures::array::{is_array_sorted, kth_order};
 use rust::problems::brackets_check::balance;
@@ -255,4 +256,9 @@ fn main() {
     // let numbers = vec![1, 2, 3, 4, 5, 6, 7, 8, 8, 8, 9, 9];
     // println!("{:?}", kth_order::find_kth_largest(&numbers, 9))
     // println!("{:?}", second_largest_number(&vec![1, 2, 3, 4, 4, 5, 5, 5]));
+    // let mut arr = vec![1, 1, 1, 2, 3];
+    // let mut arr = vec![1, 1, 1, 2, 3];
+    // let mut arr = vec![3, 3, 3, 2, 2, 0, -1];
+    // remove_duplicates_in_place_from_sorted_array(&mut arr);
+    // println!("{:?}", arr)
 }

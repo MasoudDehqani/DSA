@@ -262,7 +262,7 @@ fn main() {
     // let mut arr = vec![3, 3, 3, 2, 2, 0, -1];
     // remove_duplicates_in_place_from_sorted_array(&mut arr);
     // println!("{:?}", arr)
-    // let mut arr = vec![1, 2, 3, 4, 5];
-    // left_rotate_by_one_place(&mut arr);
-    // println!("{arr:?}")
+    let mut arr = vec![1, 2, 3, 4, 5];
+    left_rotate_by_one_place(&mut arr);
+    println!("{arr:?}")
 }

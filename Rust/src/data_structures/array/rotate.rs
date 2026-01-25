@@ -38,12 +38,19 @@ pub fn rotate_right_k_steps(nums: &mut Vec<i32>, k: i32) {
     }
 }
 
-pub fn left_rotate_by_one_place(arr: &mut Vec<i32>) {
-    match arr.first() {
-        Some(&n) => {
-            arr.push(n);
-            arr.remove(0);
+pub fn left_rotate_by_one_place(arr: &mut [i32]) {
+    let mut first = None;
+    for i in 0..arr.len() {
+        if i == 0 {
+            first = Some(arr[i]);
+            continue;
         }
+
+        arr[i - 1] = arr[i];
+    }
+
+    match first {
+        Some(n) => arr[arr.len() - 1] = n,
         None => (),
     }
 }

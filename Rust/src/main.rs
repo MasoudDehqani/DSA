@@ -15,6 +15,7 @@ use rust::algorithms::recursion::{
 use rust::algorithms::search::binary_search::{
     ceil, first_and_last_occ, floor, lower_bound, upper_bound,
 };
+use rust::data_structures::array::move_zeros::move_zeroes_to_end;
 use rust::data_structures::array::remove_duplicates_in_place::remove_duplicates_in_place_from_sorted_array;
 use rust::data_structures::array::rotate::{left_rotate_by_k_places, left_rotate_by_one_place};
 use rust::data_structures::array::second_order::second_largest_number;
@@ -262,8 +263,13 @@ fn main() {
     // let mut arr = vec![3, 3, 3, 2, 2, 0, -1];
     // remove_duplicates_in_place_from_sorted_array(&mut arr);
     // println!("{:?}", arr)
-    let mut arr = vec![1, 2, 3, 4, 5, 6, 7];
-    left_rotate_by_k_places(&mut arr, 3);
+    // let mut arr = vec![1, 2, 3, 4, 5, 6, 7];
+    // left_rotate_by_k_places(&mut arr, 3);
     // left_rotate_by_one_place(&mut arr);
-    println!("{arr:?}")
+    // println!("{arr:?}");
+    // let mut numbers = [1, 0, 2, 3, 0, 0, 4];
+    // let mut numbers = [0, 0, 0, 1, 0, 12];
+    // let mut numbers = [1, 0, 2, 3, 0, 0, 4];
+    // move_zeroes_to_end(&mut numbers);
+    // println!("{:?}", numbers);
 }

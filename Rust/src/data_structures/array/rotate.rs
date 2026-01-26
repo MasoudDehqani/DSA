@@ -55,29 +55,47 @@ pub fn left_rotate_by_one_place(arr: &mut [i32]) {
     }
 }
 
+// pub fn left_rotate_by_k_places(arr: &mut [i32], k: u32) {
+//     if arr.len() == 0 {
+//         return;
+//     }
+
+//     let mut k = k % arr.len() as u32;
+
+//     while k > 0 {
+//         let mut first = None;
+//         for i in 0..arr.len() {
+//             if i == 0 {
+//                 first = Some(arr[i]);
+//                 continue;
+//             }
+
+//             arr[i - 1] = arr[i];
+//         }
+
+//         match first {
+//             Some(n) => arr[arr.len() - 1] = n,
+//             None => (),
+//         }
+
+//         k -= 1;
+//     }
+// }
+
 pub fn left_rotate_by_k_places(arr: &mut [i32], k: u32) {
     if arr.len() == 0 {
         return;
     }
 
-    let mut k = k % arr.len() as u32;
+    let k: usize = k as usize % arr.len();
 
-    while k > 0 {
-        let mut first = None;
-        for i in 0..arr.len() {
-            if i == 0 {
-                first = Some(arr[i]);
-                continue;
-            }
+    let t = Vec::from(&arr[0..k]);
 
-            arr[i - 1] = arr[i];
-        }
+    for i in k..arr.len() {
+        arr[i - k] = arr[i];
+    }
 
-        match first {
-            Some(n) => arr[arr.len() - 1] = n,
-            None => (),
-        }
-
-        k -= 1;
+    for i in 0..t.len() {
+        arr[i + k + 1] = t[i];
     }
 }

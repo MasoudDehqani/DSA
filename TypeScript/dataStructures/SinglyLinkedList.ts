@@ -18,16 +18,13 @@ export class SinglyLinkedListNode<T> {
 
   append(newValue: T): SinglyLinkedListNode<T> {
     let cp = { ...this };
-    let curr = cp.next;
+    let curr = cp.next || cp;
 
-    while (curr != null) {
-      if (curr.next == null) {
-        curr.next = new SinglyLinkedListNode(newValue);
-        break;
-      }
-
+    while (curr != null && curr.next != null) {
       curr = curr.next;
     }
+
+    curr.next = new SinglyLinkedListNode(newValue);
 
     return cp;
   }

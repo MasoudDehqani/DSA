@@ -20,7 +20,7 @@ export class SinglyLinkedListNode<T> {
     let cp = { ...this };
     let curr = cp.next || cp;
 
-    while (curr != null && curr.next != null) {
+    while (curr.next != null) {
       curr = curr.next;
     }
 

@@ -2,16 +2,18 @@ import { SinglyLinkedListNode } from "../dataStructures/SinglyLinkedList";
 import { expect, test } from "vitest";
 
 test("test", () => {
+  const ls = new SinglyLinkedListNode(1);
+  const res = new SinglyLinkedListNode(1, new SinglyLinkedListNode(2));
+
+  expect(ls.append(2)).toMatchObject(res);
+});
+
+test("test 2", () => {
   const ls = new SinglyLinkedListNode(1, new SinglyLinkedListNode(2));
-  // ls.appendInplace(3);
-  // ls.append(3)
-  const t = new SinglyLinkedListNode(
+  const res = new SinglyLinkedListNode(
     1,
     new SinglyLinkedListNode(2, new SinglyLinkedListNode(3)),
   );
 
-  // console.log(ls.append(3));
-  // console.log(ls);
-
-  expect(ls.append(3)).toMatchObject(t);
+  expect(ls.append(3)).toMatchObject(res);
 });

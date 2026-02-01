@@ -1,221 +1,106 @@
-export class SinglyLinkedListNode<T> {
+class SinglyLinkedListNode<T> {
   value: T;
   next: SinglyLinkedListNode<T> | null;
 
-  constructor(value: T, next?: SinglyLinkedListNode<T> | null) {
+  constructor(value: T, next: SinglyLinkedListNode<T> | null = null) {
     this.value = value;
-    this.next = next || null;
+    this.next = next;
+  }
+}
+
+export class SinglyLinkedList<T> {
+  head: SinglyLinkedListNode<T> | null;
+
+  constructor(headData: T | null = null) {
+    this.head = headData != null ? new SinglyLinkedListNode(headData) : null;
   }
 
-  appendInplace(newValue: T) {
-    if (this.next == null) {
-      this.next = new SinglyLinkedListNode(newValue);
+  appendInPlace(newValue: T): void {
+    const newNode = new SinglyLinkedListNode(newValue);
+
+    if (this.head == null) {
+      this.head = newNode;
       return;
     }
 
-    this.next.appendInplace(newValue);
-  }
+    let curr = this.head;
 
-  append(newValue: T): SinglyLinkedListNode<T> {
-    let cp = { ...this };
-    let curr = cp.next || cp;
-
-    while (curr.next != null) {
+    while (curr.next) {
       curr = curr.next;
     }
 
-    curr.next = new SinglyLinkedListNode(newValue);
-
-    return cp;
+    curr.next = newNode;
   }
 
-  // append(newValue: T): SinglyLinkedListNode<T> {
-  //   const newNode = new SinglyLinkedListNode(newValue);
-  //   if (this.value == null) return this;
+  append(newValue: T): SinglyLinkedList<T> {
+    if (this.head == null) {
+      return new SinglyLinkedList(newValue);
+    }
 
-  //   const newHead = new SinglyLinkedListNode(this.value);
-  //   let newListCurrent = newHead;
-  //   let currentNode = this.next;
+    const newList: SinglyLinkedList<T> = new SinglyLinkedList();
+    newList.head = new SinglyLinkedListNode(this.head.value);
 
-  //   while (currentNode != null) {
-  //     newListCurrent.next = this;
-  //     newListCurrent = newListCurrent.next;
-  //     currentNode = currentNode.next;
-  //   }
+    let currOld = this.head.next;
+    let currNew = newList.head;
 
-  //   newListCurrent.next = newNode;
-  //   return new SinglyLinkedList(newHead);
+    while (currOld && currNew) {
+      currNew.next = new SinglyLinkedListNode(currOld.value);
+      currNew = currNew.next;
+      currOld = currOld.next;
+    }
+
+    currNew.next = new SinglyLinkedListNode(newValue);
+
+    return newList;
+  }
+
+  // prepend(newValue: T): SinglyLinkedList<T> {
+  //   const newList = new SinglyLinkedList<T>();
+  //   newList.head = new SinglyLinkedListNode(newValue, this.head);
+  //   return newList;
   // }
 
-  // appendInPlace(newValue: T): void {
-  //   if (this.value == null) return;
+  prepend(newValue: T): SinglyLinkedList<T> {
+    let newList = new SinglyLinkedList(newValue);
 
-  //   let lastNode = this.value;
-  //   while (lastNode.next != null) {
-  //     lastNode = lastNode.next;
-  //   }
+    let oldCurr = this.head;
+    let newCurr = newList.head;
 
-  //   lastNode.next = new SinglyLinkedListNode(newValue);
-  // }
+    while (oldCurr && newCurr) {
+      newCurr.next = new SinglyLinkedListNode(oldCurr.value);
+      oldCurr = oldCurr.next;
+      newCurr = newCurr.next;
+    }
 
-  // read(index: number): T | null {
-  //   if (this.value == null) return null;
-  //   if (index < 0) throw new Error("negative index error");
+    return newList;
+  }
 
-  //   let currentNode: SinglyLinkedListNode<T> | null = this.value;
+  prependInPlace(newValue: T) {
+    this.head = new SinglyLinkedListNode(newValue, this.head);
+  }
 
-  //   while (currentNode != null) {
-  //     if (index === 0) return currentNode.value;
-  //     currentNode = currentNode.next;
-  //     index -= 1;
-  //   }
+  toArray(): T[] {
+    let arr = [];
+    let curr = this.head;
 
-  //   return null;
-  // }
+    while (curr) {
+      arr.push(curr.value);
+      curr = curr.next;
+    }
 
-  // search(val: T): number | null {
-  //   let currentNode = this.value;
-  //   let currentIndex = 0;
+    return arr;
+  }
 
-  //   while (currentNode != null) {
-  //     if (currentNode.value === val) {
-  //       return currentIndex;
-  //     }
+  display() {
+    let str = "";
+    let curr = this.head;
+    while (curr) {
+      str = str + curr.value + " -> ";
+      curr = curr.next;
+    }
 
-  //     currentNode = currentNode.next;
-  //     currentIndex += 1;
-  //   }
+    str = str + "null";
 
-  //   return null;
-  // }
-
-  // delete(index: number): SinglyLinkedList<T> {
-  //   if (this.value == null) throw new Error("list is empty");
-  //   if (index === 0) return new SinglyLinkedList(this.value.next);
-  //   if (index < 0) throw new Error("negative index error");
-
-  //   const newHead = new SinglyLinkedListNode(this.value);
-  //   let currentNewNode = newHead;
-  //   let currentNode = this.value.next;
-
-  //   for (let i = 1; i <= index; i++) {
-  //     if (currentNode == null) throw new Error("out of bound index");
-
-  //     if (i === index) {
-  //       currentNewNode.next = currentNode.next;
-  //       break;
-  //     } else {
-  //       currentNewNode.next = new SinglyLinkedListNode(currentNode.value);
-  //     }
-
-  //     currentNewNode = currentNewNode.next;
-  //     currentNode = currentNode.next;
-  //   }
-
-  //   return new SinglyLinkedList(newHead);
-  // }
-
-  // deleteInPlace(index: number): void {
-  //   if (this.value == null) throw new Error("empty list");
-  //   if (index === 0) {
-  //     this.value = this.value.next;
-  //     return;
-  //   }
-
-  //   if (index < 0) throw new Error("negative index");
-
-  //   let currentNode: SinglyLinkedListNode<T> | null = this.value;
-
-  //   for (let i = 0; i <= index; i++) {
-  //     if (currentNode == null) throw new Error("out of bound index");
-
-  //     if (i === index - 1 && currentNode.next != null) {
-  //       currentNode.next = currentNode.next.next;
-  //       break;
-  //     }
-
-  //     currentNode = currentNode.next;
-  //   }
-  // }
-
-  // reverse(): SinglyLinkedList<T> | null {
-  //   if (this.value == null) return null;
-  //   if (this.value.next == null) return new SinglyLinkedList(this.value);
-
-  //   let currentNode = this.value;
-  //   let newListNode = new SinglyLinkedListNode(this.value);
-
-  //   while (currentNode.next != null) {
-  //     newListNode = new SinglyLinkedListNode(
-  //       currentNode.next.value,
-  //       newListNode,
-  //     );
-
-  //     currentNode = currentNode.next;
-  //   }
-
-  //   return new SinglyLinkedList(newListNode);
-  // }
-
-  // reverseInPlace(): void {
-  //   if (this.value == null || this.value.next == null) return;
-
-  //   let prevNode = null;
-  //   let currentNode: SinglyLinkedListNode<T> | null = this.value;
-
-  //   while (currentNode != null) {
-  //     const nxt: SinglyLinkedListNode<T> | null = currentNode.next;
-  //     currentNode.next = prevNode;
-  //     prevNode = currentNode;
-  //     currentNode = nxt;
-  //   }
-
-  //   this.value = prevNode;
-  // }
-
-  // reverseRecursiveInPlace() {
-  //   if (this.value == null || this.value.next == null) return;
-
-  //   const reverseRecursiveInPlaceAux = (
-  //     listHead: SinglyLinkedListNode<T>,
-  //   ): SinglyLinkedListNode<T> => {
-  //     if (listHead.next == null) return listHead;
-
-  //     const newHead = reverseRecursiveInPlaceAux(listHead.next);
-
-  //     const hd = listHead;
-  //     const nxt = listHead.next;
-  //     const rest = listHead.next.next;
-
-  //     listHead = nxt;
-  //     listHead.next = hd;
-  //     listHead.next.next = rest;
-
-  //     return newHead;
-  //   };
-
-  //   this.value = reverseRecursiveInPlaceAux(this.value);
-  // }
-
-  // reverseTailRecursive(): SinglyLinkedList<T> {
-  //   if (this.value == null || this.value.next == null)
-  //     return new SinglyLinkedList(this.value);
-
-  //   const reverseTailRecursiveAux = (
-  //     listHead: SinglyLinkedListNode<T>,
-  //     acc: SinglyLinkedList<T>,
-  //   ): SinglyLinkedList<T> => {
-  //     const newAcc = new SinglyLinkedList(
-  //       new SinglyLinkedListNode(listHead.value, acc.value),
-  //     );
-
-  //     if (listHead.next == null) return newAcc;
-
-  //     return reverseTailRecursiveAux(listHead.next, newAcc);
-  //   };
-
-  //   return reverseTailRecursiveAux(this.value, new SinglyLinkedList());
-  // }
+    console.log(str);
+  }
 }
-
-export type SinglyLinkedList<T> = SinglyLinkedListNode<T> | null;

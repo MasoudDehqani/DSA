@@ -79,6 +79,87 @@ export class SinglyLinkedList<T> {
     this.head = new SinglyLinkedListNode(newValue, this.head);
   }
 
+  removeByIndexInPlace(index: number) {
+    if (index < 0) return;
+    if (this.head == null) return;
+
+    if (index === 0) {
+      this.head = this.head.next;
+      return;
+    }
+
+    let currIndex = index - 1;
+    let curr = this.head;
+
+    while (curr.next) {
+      if (currIndex === 0) {
+        curr.next = curr.next.next;
+        return;
+      }
+
+      currIndex -= 1;
+      curr = curr.next;
+    }
+  }
+
+  removeByIndex(index: number): SinglyLinkedList<T> {
+    if (index < 0) throw new Error("Negative index");
+
+    const newList = new SinglyLinkedList<T>();
+
+    const aux = (
+      i: number,
+      node: SinglyLinkedListNode<T> | null,
+    ): SinglyLinkedListNode<T> | null => {
+      if (node == null) {
+        return new SinglyLinkedList<T>().head;
+      }
+
+      if (i === 0) {
+        return node.next;
+      }
+
+      const newNextNode =
+        i === 1 ? node.next?.next || null : aux(i - 1, node.next);
+
+      return new SinglyLinkedListNode(node.value, newNextNode);
+    };
+
+    newList.head = aux(index, this.head);
+    return newList;
+  }
+
+  // removeByIndex(index: number): SinglyLinkedList<T> {
+  //   if (this.head == null) return new SinglyLinkedList<T>();
+  //   if (index === 0) {
+  //     if (this.head.next) {
+  //       const res = new SinglyLinkedList(this.head.next.value);
+  //       res.head = this.head.next.next;
+  //       return res;
+  //     }
+
+  //     return new SinglyLinkedList();
+  //   }
+
+  //   if (index < 0) {
+  //     throw new Error("negative index");
+  //   }
+
+  //   let curr = this.head;
+  //   let currIndex = index - 1;
+  //   let newList = new SinglyLinkedList(this.head.value);
+  //   let newCurr = this.head;
+
+  //   while (curr.next) {
+  //     if (currIndex === 0) {
+  //       newCurr.next = curr.next;
+  //     }
+
+  //     newCurr.next = curr;
+  //     curr = curr.next;
+  //   }
+  // }
+
   toArray(): T[] {
     let arr = [];
     let curr = this.head;
